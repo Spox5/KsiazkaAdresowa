@@ -7,6 +7,8 @@
 
 using namespace std;
 
+//Komentarz testowy 2
+
 struct Adresat
 {
     int id;
