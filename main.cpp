@@ -415,6 +415,64 @@ vector <Adresat> usuniecieAdresata (Adresat adresat, vector<Adresat> adresatVect
     return adresatVector;
 }
 
+void nadpisaniePliku (Adresat adresat, vector<Adresat>adresatVector, int idZalogowanegoUzytkownika)
+{
+
+
+    string imie, nazwisko, email, adres, nrTelefonu;
+    int id;
+    fstream plik;
+    plik.open("Adresaci.txt", ios::in | ios::out);
+    string linia;
+    int licznik = 0;
+    while(getline(plik, linia, '|'))
+    {
+        licznik = licznik + 1;
+
+        if (licznik == 1)
+        {
+            adresat.id = atoi(linia.c_str());
+        }
+        else if (licznik == 2)
+        {
+            // sprawdzenie, czy id zmienianego uzytkownika jest id aktualnie wczytywanej linii
+            if (idUzytkownikaSprawdzenie != idZalogowanegoUzytkownika)
+                licznik = 0;
+        }
+        else if (licznik == 3)
+        {
+            adresat.imie = linia;
+        }
+        else if (licznik == 4)
+        {
+            adresat.nazwisko = linia;
+        }
+        else if (licznik == 5)
+        {
+            adresat.email = linia;
+        }
+        else if (licznik == 6)
+        {
+            adresat.adres = linia;
+        }
+        else if (licznik == 7)
+        {
+            adresat.nrTelefonu = linia;
+        }
+
+        if (licznik == 7)
+        {
+            licznik = 0;
+            adresatVector.push_back(adresat);
+        }
+    }
+
+    fstream plikAdresaciTymczasowy;
+    plik.open("Adresaci_tymczasowy.txt", ios::in | ios::out);
+
+
+}
+
 void adresaciMenu(int idZalogowanegoUzytkownika, Uzytkownik uzytkownik, vector <Uzytkownik> uzytkownikVector)
 {
     Adresat adresat;
@@ -424,11 +482,12 @@ void adresaciMenu(int idZalogowanegoUzytkownika, Uzytkownik uzytkownik, vector <
     plik.open("Adresaci.txt", ios::in | ios::out);
     if (plik.good() == false)
     {
-        cout << "Baza adresatow jest pusta" << endl;
+        cout << "Baza adresatow jest pusta." << endl;
         system("pause");
         system("cls");
     }
     string linia;
+    int idUzytkownikaSprawdzenie;
     int licznik = 0;
     int nr_przyjaciela = 0;
     while(getline(plik, linia, '|'))
@@ -441,7 +500,9 @@ void adresaciMenu(int idZalogowanegoUzytkownika, Uzytkownik uzytkownik, vector <
         }
         else if (licznik == 2)
         {
-
+            idUzytkownikaSprawdzenie = atoi(linia.c_str());
+            if (idUzytkownikaSprawdzenie != idZalogowanegoUzytkownika)
+                licznik = 0;
         }
         else if (licznik == 3)
         {
