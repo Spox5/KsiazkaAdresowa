@@ -154,7 +154,7 @@ int main()
         system("cls");
         cout << "1. Logowanie." << endl;
         cout << "2. Rejestracja." << endl;
-        cout << "3. Zmana hasla." << endl;
+        cout << "3. Zmiana hasla." << endl;
         cout << "9. Zamknij program" << endl;
 
         cin >> wybor;
@@ -176,7 +176,7 @@ int main()
             exit(0);
         }
         else
-            cout << "Nieprawid³wy wybor";
+            cout << "Nieprawidlowy wybor";
             system("pause");
     }
 
