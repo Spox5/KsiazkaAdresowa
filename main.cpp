@@ -90,7 +90,6 @@ int logowanieUzytkownika (Uzytkownik uzytkownik, vector <Uzytkownik> uzytkownikV
     cout << "Nie ma uzytkownika o takiej nazwie." << endl;
     system ("pause");
     return 0;
-
 }
 
 vector <Uzytkownik> zmianaHaslaUzytkownika(Uzytkownik uzytkownik, vector <Uzytkownik> uzytkownikVector, int idZalogowanegoUzytkownika)
@@ -140,12 +139,24 @@ vector<Adresat> dodajAdresata(Adresat adresat, vector<Adresat>adresatVector, int
     getline(cin>>ws, adres);
     cout << "Podaj numer telefonu: " << endl;
     cin >> nrTelefonu;
-    if (adresatVector.size() == 0)
+
+    fstream plik;
+    string linia;
+    string idOstatniegoAdresataString;
+    int idOstatniegoAdresata = 0;
+    plik.open("Adresaci.txt", ios::in | ios:: out);
+    while(getline(plik, linia))
+    {
+        idOstatniegoAdresataString = linia[0];
+    }
+    idOstatniegoAdresata = atoi(idOstatniegoAdresataString.c_str());
+    plik.close();
+    if (idOstatniegoAdresata == 0)
     {
         id = 1;
     }
     else
-        id = adresatVector[adresatVector.size()-1].id + 1;
+        id = idOstatniegoAdresata + 1;
     adresat.imie = imie;
     adresat.nazwisko = nazwisko;
     adresat.email = email;
@@ -153,7 +164,6 @@ vector<Adresat> dodajAdresata(Adresat adresat, vector<Adresat>adresatVector, int
     adresat.nrTelefonu = nrTelefonu;
     adresat.id = id;
     adresatVector.push_back(adresat);
-    fstream plik;
     plik.open("Adresaci.txt", ios::out | ios::app);
     plik << id << "|" << idZalogowanegoUzytkownika << "|" << imie << "|" << nazwisko << "|" << email << "|" << adres << "|" << nrTelefonu << "|" << endl;
 
@@ -252,7 +262,7 @@ void listaAdresatow(Adresat adresat, vector<Adresat> adresatVector)
         {
             cout << adresatVector[i].id << ". ";
             cout << adresatVector[i].imie << " ";
-            cout << adresatVector[i].nazwisko << " ,";
+            cout << adresatVector[i].nazwisko << ", ";
             cout << adresatVector[i].email << ", ";
             cout << adresatVector[i].adres << ", ";
             cout << adresatVector[i].nrTelefonu << endl;
@@ -351,7 +361,8 @@ vector <Adresat> edycjaAdresata (Adresat adresat, vector<Adresat> adresatVector,
                 else if (wybor == "4")
                 {
                     cout << "Podaj nowy adres: ";
-                    cin >> adresat.adres;
+                    cin.sync();
+                    getline(cin>>ws, adresat.adres);
                     adresatVector[i].adres = adresat.adres;
                 }
                 else if (wybor == "5")
@@ -650,7 +661,7 @@ int main()
         }
         else
         {
-            cout << "Nieprawidlowy wybor";
+            cout << "Nieprawidlowy wybor" << endl;;
             system("pause");
         }
     }
