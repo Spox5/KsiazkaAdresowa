@@ -33,9 +33,7 @@ vector <Uzytkownik> rejestracjaUzytkownika (Uzytkownik uzytkownik, vector <Uzytk
                 i = 0;
             }
             else
-            {
                 i++;
-            }
         }
     }
     cout << "Podaj haslo uzytkownika: " << endl;
@@ -199,8 +197,6 @@ void wyszukajAdresataPoImieniu (Adresat adresat, vector <Adresat> adresatVector)
         cout << endl;
         system("pause");
     }
-
-
 }
 
 void wyszukajAdresataPoNazwisku (Adresat adresat, vector <Adresat> adresatVector)
@@ -373,11 +369,8 @@ vector <Adresat> edycjaAdresata (Adresat adresat, vector<Adresat> adresatVector,
                     cout << "Nieprawidlowy wybor." << endl;
                     system("pause");
                 }
-                if (adresatVector.size() != 0)
-                {
-                    plik.close();
-                    nadpisaniePlikuEdycjaAdresata(idEdytowanegoAdresata, adresat, idZalogowanegoUzytkownika);
-                }
+                plik.close();
+                nadpisaniePlikuEdycjaAdresata(idEdytowanegoAdresata, adresat, idZalogowanegoUzytkownika);
             }
         }
         if (znalezionoID == false)
@@ -450,11 +443,8 @@ vector <Adresat> usuniecieAdresata (Adresat adresat, vector<Adresat> adresatVect
                 {
                     break;
                 }
-                if (adresatVector.size() != 0)
-                {
-                    plik.close();
-                    nadpisaniePlikuUsuniecieAdresata(idUsuwanegoAdresata, adresat, idZalogowanegoUzytkownika);
-                }
+                plik.close();
+                nadpisaniePlikuUsuniecieAdresata(idUsuwanegoAdresata, adresat, idZalogowanegoUzytkownika);
             }
             i ++;
         }
