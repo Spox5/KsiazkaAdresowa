@@ -8,7 +8,7 @@
 #include <cstdio>
 
 using namespace std;
-// start
+
 struct Uzytkownik
 {
     int idUzytkownika;
@@ -95,7 +95,7 @@ int logowanieUzytkownika (Uzytkownik uzytkownik, vector <Uzytkownik> uzytkownikV
 
 }
 
-void zmianaHaslaUzytkownika(Uzytkownik uzytkownik, vector <Uzytkownik> uzytkownikVector, int idZalogowanegoUzytkownika)
+vector <Uzytkownik> zmianaHaslaUzytkownika(Uzytkownik uzytkownik, vector <Uzytkownik> uzytkownikVector, int idZalogowanegoUzytkownika)
 {
     ofstream plikUzytkownicy;
     string haslo;
@@ -117,8 +117,10 @@ void zmianaHaslaUzytkownika(Uzytkownik uzytkownik, vector <Uzytkownik> uzytkowni
             system("pause");
         }
     }
+    plikUzytkownicy.close();
+    return uzytkownikVector;
 }
-//end
+
 struct Adresat
 {
     int id;
@@ -272,11 +274,13 @@ void nadpisaniePlikuEdycjaAdresata (int idEdytowanegoAdresata, Adresat adresat, 
     plikAdresaciTymczasowy.open("Adresaci_tymczasowy.txt", ios::in | ios::app);
 
     string linia;
-    string idString;
+    string idStringEdytowanegoAdresata;
+    string idStringZalogowanegoUzytkownika;
     while(getline(plik, linia))
     {
-        idString = linia[0];
-        if (idEdytowanegoAdresata == atoi(idString.c_str()))
+        idStringEdytowanegoAdresata = linia[0];
+        idStringZalogowanegoUzytkownika = linia[2];
+        if (idEdytowanegoAdresata == atoi(idStringEdytowanegoAdresata.c_str()) && idZalogowanegoUzytkownika == atoi(idStringZalogowanegoUzytkownika.c_str()))
         {
             plikAdresaciTymczasowy << adresat.id << "|" << idZalogowanegoUzytkownika << "|" <<  adresat.imie << "|"
                                    << adresat.nazwisko << "|" << adresat.email << "|" << adresat.adres << "|" << adresat.nrTelefonu << "|" << endl;
@@ -393,14 +397,15 @@ void nadpisaniePlikuUsuniecieAdresata (int idEdytowanegoAdresata, Adresat adresa
     plikAdresaciTymczasowy.open("Adresaci_tymczasowy.txt", ios::in | ios::app);
 
     string linia;
-    string idString;
+    string idStringUsuwanegoAdresata;
+    string idStringZalogowanegoUzytkownika;
     while(getline(plik, linia))
     {
-        idString = linia[0];
-        if (idEdytowanegoAdresata == atoi(idString.c_str()));
+        idStringUsuwanegoAdresata = linia[0];
+        idStringZalogowanegoUzytkownika = linia[2];
+        if (idEdytowanegoAdresata == atoi(idStringUsuwanegoAdresata.c_str()) && idZalogowanegoUzytkownika == atoi(idStringZalogowanegoUzytkownika.c_str()));
         else
         {
-
             plikAdresaciTymczasowy << linia << endl;
         }
     }
@@ -462,7 +467,7 @@ vector <Adresat> usuniecieAdresata (Adresat adresat, vector<Adresat> adresatVect
     return adresatVector;
 }
 
-void adresaciMenu(int idZalogowanegoUzytkownika, Uzytkownik uzytkownik, vector <Uzytkownik> uzytkownikVector)
+vector <Uzytkownik> adresaciMenu(int idZalogowanegoUzytkownika, Uzytkownik uzytkownik, vector <Uzytkownik> uzytkownikVector)
 {
     Adresat adresat;
     vector <Adresat> adresatVector;
@@ -479,48 +484,55 @@ void adresaciMenu(int idZalogowanegoUzytkownika, Uzytkownik uzytkownik, vector <
     string linia;
     int idUzytkownikaSprawdzenie;
     int licznik = 0;
+    bool czyZapisacUzytkownika;
 
-            while(getline(plik, linia, '|'))
-            {
-                licznik = licznik + 1;
+    while(getline(plik, linia, '|'))
+    {
+        licznik = licznik + 1;
 
-                if (licznik == 1)
-                {
-                    adresat.id = atoi(linia.c_str());
-                }
-                else if (licznik == 2)
-                {
-                    idUzytkownikaSprawdzenie = atoi(linia.c_str());
-                    if (idUzytkownikaSprawdzenie != idZalogowanegoUzytkownika)
-                        licznik = 0;
-                }
-                else if (licznik == 3)
-                {
-                    adresat.imie = linia;
-                }
-                else if (licznik == 4)
-                {
-                    adresat.nazwisko = linia;
-                }
-                else if (licznik == 5)
-                {
-                    adresat.email = linia;
-                }
-                else if (licznik == 6)
-                {
-                    adresat.adres = linia;
-                }
-                else if (licznik == 7)
-                {
-                    adresat.nrTelefonu = linia;
-                }
+        if (licznik == 1)
+        {
+            adresat.id = atoi(linia.c_str());
+        }
+        else if (licznik == 2)
+        {
 
-                if (licznik == 7)
-                {
-                    licznik = 0;
-                    adresatVector.push_back(adresat);
-                }
-            }
+            idUzytkownikaSprawdzenie = atoi(linia.c_str());
+            if (idUzytkownikaSprawdzenie != idZalogowanegoUzytkownika)
+                czyZapisacUzytkownika = false;
+            else
+                czyZapisacUzytkownika = true;
+        }
+        else if (licznik == 3)
+        {
+            adresat.imie = linia;
+        }
+        else if (licznik == 4)
+        {
+            adresat.nazwisko = linia;
+        }
+        else if (licznik == 5)
+        {
+            adresat.email = linia;
+        }
+        else if (licznik == 6)
+        {
+            adresat.adres = linia;
+        }
+        else if (licznik == 7)
+        {
+            adresat.nrTelefonu = linia;
+        }
+
+        if (licznik == 7 && czyZapisacUzytkownika == true)
+        {
+            licznik = 0;
+            czyZapisacUzytkownika = false;
+            adresatVector.push_back(adresat);
+        }
+        else if (licznik == 7)
+            licznik = 0;
+    }
 
     plik.close();
 
@@ -536,8 +548,6 @@ void adresaciMenu(int idZalogowanegoUzytkownika, Uzytkownik uzytkownik, vector <
         cout << "6. Edytuj adresata." << endl;
         cout << "7. Zmien haslo." << endl;
         cout << "9. Wyloguj sie." << endl;
-
-
 
         char wybor;
         cin >> wybor;
@@ -567,11 +577,11 @@ void adresaciMenu(int idZalogowanegoUzytkownika, Uzytkownik uzytkownik, vector <
         }
         else if (wybor == '7')
         {
-            zmianaHaslaUzytkownika(uzytkownik, uzytkownikVector, idZalogowanegoUzytkownika);
+            uzytkownikVector = zmianaHaslaUzytkownika(uzytkownik, uzytkownikVector, idZalogowanegoUzytkownika);
         }
         else if (wybor == '9')
         {
-            break;
+            return uzytkownikVector;
         }
         else
         {
@@ -584,7 +594,6 @@ void adresaciMenu(int idZalogowanegoUzytkownika, Uzytkownik uzytkownik, vector <
 
 int main()
 {
-    // start
     Uzytkownik uzytkownik;
     vector <Uzytkownik> uzytkownikVector;
     int idZalogowanegoUzytkownika = 0;
@@ -639,7 +648,7 @@ int main()
         {
             idZalogowanegoUzytkownika = logowanieUzytkownika(uzytkownik, uzytkownikVector);
             if (idZalogowanegoUzytkownika != 0)
-                adresaciMenu(idZalogowanegoUzytkownika, uzytkownik, uzytkownikVector);
+                uzytkownikVector = adresaciMenu(idZalogowanegoUzytkownika, uzytkownik, uzytkownikVector);
         }
         else if (wyborUzytkownicy == '2')
         {
@@ -655,8 +664,5 @@ int main()
             system("pause");
         }
     }
-    //end
-
-
     return 0;
 }
