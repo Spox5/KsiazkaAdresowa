@@ -275,8 +275,6 @@ void nadpisaniePlikuEdycjaAdresata (int idEdytowanegoAdresata, Adresat adresat, 
     string idString;
     while(getline(plik, linia))
     {
-        cout << linia[0];
-        system("pause");
         idString = linia[0];
         if (idEdytowanegoAdresata == atoi(idString.c_str()))
         {
@@ -285,7 +283,6 @@ void nadpisaniePlikuEdycjaAdresata (int idEdytowanegoAdresata, Adresat adresat, 
         }
         else
         {
-            cout << linia;
             plikAdresaciTymczasowy << linia << endl;
         }
     }
@@ -388,8 +385,32 @@ vector <Adresat> edycjaAdresata (Adresat adresat, vector<Adresat> adresatVector,
     return adresatVector;
 }
 
+void nadpisaniePlikuUsuniecieAdresata (int idEdytowanegoAdresata, Adresat adresat, int idZalogowanegoUzytkownika)
+{
+    fstream plik;
+    plik.open("Adresaci.txt", ios::in | ios::out);
+    fstream plikAdresaciTymczasowy;
+    plikAdresaciTymczasowy.open("Adresaci_tymczasowy.txt", ios::in | ios::app);
 
-vector <Adresat> usuniecieAdresata (Adresat adresat, vector<Adresat> adresatVector)
+    string linia;
+    string idString;
+    while(getline(plik, linia))
+    {
+        idString = linia[0];
+        if (idEdytowanegoAdresata == atoi(idString.c_str()));
+        else
+        {
+
+            plikAdresaciTymczasowy << linia << endl;
+        }
+    }
+    plik.close();
+    plikAdresaciTymczasowy.close();
+    remove("Adresaci.txt");
+    rename ("Adresaci_tymczasowy.txt", "Adresaci.txt");
+}
+
+vector <Adresat> usuniecieAdresata (Adresat adresat, vector<Adresat> adresatVector, int idZalogowanegoUzytkownika)
 {
     string idString;
     string wybor;
@@ -407,10 +428,10 @@ vector <Adresat> usuniecieAdresata (Adresat adresat, vector<Adresat> adresatVect
     {
         cout << "Podaj ID adresata, ktorego chcesz usunac: ";
         cin >> idString;
-        int id = atoi(idString.c_str());
+        int idUsuwanegoAdresata = atoi(idString.c_str());
         for (vector<Adresat>::iterator it = adresatVector.begin(), koniec = adresatVector.end(); it != koniec; it++)
         {
-            if (id == adresatVector[i].id)
+            if (idUsuwanegoAdresata == adresatVector[i].id)
             {
                 znalezionoID = true;
                 system("cls");
@@ -427,18 +448,7 @@ vector <Adresat> usuniecieAdresata (Adresat adresat, vector<Adresat> adresatVect
                 if (adresatVector.size() != 0)
                 {
                     plik.close();
-                    plik.open("Adresaci.txt");
-                    for (int i = 0; i <= adresatVector.size()-1; i++)
-                    {
-                        plik << adresatVector[i].id << "|" << adresatVector[i].imie << "|" << adresatVector[i].nazwisko <<
-                             "|" << adresatVector[i].email << "|" << adresatVector[i].adres << "|" << adresatVector[i].nrTelefonu <<
-                             "|" << endl;
-                    }
-                }
-                else
-                {
-                    plik.close();
-                    plik.open("Adresaci.txt");
+                    nadpisaniePlikuUsuniecieAdresata(idUsuwanegoAdresata, adresat, idZalogowanegoUzytkownika);
                 }
             }
             i ++;
@@ -549,7 +559,7 @@ void adresaciMenu(int idZalogowanegoUzytkownika, Uzytkownik uzytkownik, vector <
         }
         else if (wybor == '5')
         {
-            adresatVector = usuniecieAdresata(adresat, adresatVector);
+            adresatVector = usuniecieAdresata(adresat, adresatVector, idZalogowanegoUzytkownika);
         }
         else if (wybor == '6')
         {
