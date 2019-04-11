@@ -132,13 +132,13 @@ vector<Adresat> dodajAdresata(Adresat adresat, vector<Adresat>adresatVector, int
     cin >> imie;
     cout << "Podaj nazwisko" << endl;
     cin >> nazwisko;
+    cout << "Podaj numer telefonu: " << endl;
+    cin >> nrTelefonu;
     cout << "Podaj email: " << endl;
     cin >> email;
     cout << "Podaj adres: " << endl;
     cin.sync();
     getline(cin>>ws, adres);
-    cout << "Podaj numer telefonu: " << endl;
-    cin >> nrTelefonu;
 
     fstream plik;
     string linia;
@@ -159,13 +159,13 @@ vector<Adresat> dodajAdresata(Adresat adresat, vector<Adresat>adresatVector, int
         id = idOstatniegoAdresata + 1;
     adresat.imie = imie;
     adresat.nazwisko = nazwisko;
+    adresat.nrTelefonu = nrTelefonu;
     adresat.email = email;
     adresat.adres = adres;
-    adresat.nrTelefonu = nrTelefonu;
     adresat.id = id;
     adresatVector.push_back(adresat);
     plik.open("Adresaci.txt", ios::out | ios::app);
-    plik << id << "|" << idZalogowanegoUzytkownika << "|" << imie << "|" << nazwisko << "|" << email << "|" << adres << "|" << nrTelefonu << "|" << endl;
+    plik << id << "|" << idZalogowanegoUzytkownika << "|" << imie << "|" << nazwisko << "|" << nrTelefonu << "|" << email << "|" << adres << "|" << endl;
 
     cout << "Adresat zostal dodany" << endl;
     system("pause");
@@ -195,9 +195,9 @@ void wyszukajAdresataPoImieniu (Adresat adresat, vector <Adresat> adresatVector)
                 licznikImion = true;
                 cout << adresatVector[i].imie << " ";
                 cout << adresatVector[i].nazwisko << ", ";
+                cout << adresatVector[i].nrTelefonu << ", ";
                 cout << adresatVector[i].email << ", ";
-                cout << adresatVector[i].adres << ", ";
-                cout << adresatVector[i].nrTelefonu << "." << endl;
+                cout << adresatVector[i].adres << "." << endl;
             }
         }
         if (licznikImion == false)
@@ -231,9 +231,9 @@ void wyszukajAdresataPoNazwisku (Adresat adresat, vector <Adresat> adresatVector
                 licznikNazwisk = true;
                 cout << adresatVector[i].imie << " ";
                 cout << adresatVector[i].nazwisko << ", ";
+                cout << adresatVector[i].nrTelefonu << ", ";
                 cout << adresatVector[i].email << ", ";
-                cout << adresatVector[i].adres << ", ";
-                cout << adresatVector[i].nrTelefonu << "." << endl;
+                cout << adresatVector[i].adres << "." << endl;
             }
         }
         if (licznikNazwisk == false)
@@ -243,7 +243,6 @@ void wyszukajAdresataPoNazwisku (Adresat adresat, vector <Adresat> adresatVector
         cout << endl;
         system("pause");
     }
-
 }
 
 void listaAdresatow(Adresat adresat, vector<Adresat> adresatVector)
@@ -263,9 +262,9 @@ void listaAdresatow(Adresat adresat, vector<Adresat> adresatVector)
             cout << adresatVector[i].id << ". ";
             cout << adresatVector[i].imie << " ";
             cout << adresatVector[i].nazwisko << ", ";
+            cout << adresatVector[i].nrTelefonu << ", ";
             cout << adresatVector[i].email << ", ";
-            cout << adresatVector[i].adres << ", ";
-            cout << adresatVector[i].nrTelefonu << endl;
+            cout << adresatVector[i].adres << "." << endl;
         }
         cout << endl;
         system("pause");
@@ -289,7 +288,7 @@ void nadpisaniePlikuEdycjaAdresata (int idEdytowanegoAdresata, Adresat adresat, 
         if (idEdytowanegoAdresata == atoi(idStringEdytowanegoAdresata.c_str()) && idZalogowanegoUzytkownika == atoi(idStringZalogowanegoUzytkownika.c_str()))
         {
             plikAdresaciTymczasowy << adresat.id << "|" << idZalogowanegoUzytkownika << "|" <<  adresat.imie << "|"
-                                   << adresat.nazwisko << "|" << adresat.email << "|" << adresat.adres << "|" << adresat.nrTelefonu << "|" << endl;
+                                   << adresat.nazwisko << "|" << adresat.nrTelefonu << "|" << adresat.email << "|" << adresat.adres << "|" << endl;
         }
         else
         {
@@ -328,16 +327,16 @@ vector <Adresat> edycjaAdresata (Adresat adresat, vector<Adresat> adresatVector,
                 adresat.id = idEdytowanegoAdresata;
                 adresat.imie = adresatVector[i].imie;
                 adresat.nazwisko = adresatVector[i].nazwisko;
+                adresat.nrTelefonu = adresatVector[i].nrTelefonu;
                 adresat.email = adresatVector[i].email;
                 adresat.adres = adresatVector[i].adres;
-                adresat.nrTelefonu = adresatVector[i].nrTelefonu;
                 znalezionoID = true;
                 system("cls");
                 cout << "1 - imie" << endl;
                 cout << "2 - nazwisko" << endl;
-                cout << "3 - email" << endl;
-                cout << "4 - adres" << endl;
-                cout << "5 - numer telefonu" << endl;
+                cout << "3 - numer telefonu" << endl;
+                cout << "4 - email" << endl;
+                cout << "5 - adres" << endl;
                 cout << "6 - powrot do menu" << endl;
                 cin >> wybor;
                 if (wybor == "1")
@@ -354,23 +353,24 @@ vector <Adresat> edycjaAdresata (Adresat adresat, vector<Adresat> adresatVector,
                 }
                 else if (wybor == "3")
                 {
+                    cout << "Podaj nowy numer telefonu: ";
+                    cin >> adresat.nrTelefonu;
+                    adresatVector[i].nrTelefonu = adresat.nrTelefonu;
+                }
+                else if (wybor == "4")
+                {
                     cout << "Podaj nowy email: ";
                     cin >> adresat.email;
                     adresatVector[i].email = adresat.email;
                 }
-                else if (wybor == "4")
+                else if (wybor == "5")
                 {
                     cout << "Podaj nowy adres: ";
                     cin.sync();
                     getline(cin>>ws, adresat.adres);
                     adresatVector[i].adres = adresat.adres;
                 }
-                else if (wybor == "5")
-                {
-                    cout << "Podaj nowy numer telefonu: ";
-                    cin >> adresat.nrTelefonu;
-                    adresatVector[i].nrTelefonu = adresat.nrTelefonu;
-                }
+
                 else if (wybor == "6")
                 {
                     break;
@@ -514,15 +514,15 @@ vector <Uzytkownik> adresaciMenu(int idZalogowanegoUzytkownika, Uzytkownik uzytk
         }
         else if (licznik == 5)
         {
-            adresat.email = linia;
+            adresat.nrTelefonu = linia;
         }
         else if (licznik == 6)
         {
-            adresat.adres = linia;
+            adresat.email = linia;
         }
         else if (licznik == 7)
         {
-            adresat.nrTelefonu = linia;
+            adresat.adres = linia;
         }
 
         if (licznik == 7 && czyZapisacUzytkownika == true)
