@@ -20,16 +20,16 @@ vector <Uzytkownik> rejestracjaUzytkownika (Uzytkownik uzytkownik, vector <Uzytk
     string nazwaUzytkownika, hasloUzytkownika;
     int idUzytkownika;
     cout << "Podaj nazwe uzytkownika: " << endl;
-    cin >> nazwaUzytkownika;
+    cin >> uzytkownik.nazwaUzytkownika;
     if (uzytkownikVector.size() != 0)
     {
         int i = 0;
         while (i <= uzytkownikVector.size())
         {
-            if (nazwaUzytkownika == uzytkownikVector[i].nazwaUzytkownika)
+            if (uzytkownik.nazwaUzytkownika == uzytkownikVector[i].nazwaUzytkownika)
             {
                 cout << "Taki uzytkownik juz istnieje. Podaj inna nazwe uzytkownika" << endl;
-                cin >> nazwaUzytkownika;
+                cin >> uzytkownik.nazwaUzytkownika;
                 i = 0;
             }
             else
@@ -37,20 +37,17 @@ vector <Uzytkownik> rejestracjaUzytkownika (Uzytkownik uzytkownik, vector <Uzytk
         }
     }
     cout << "Podaj haslo uzytkownika: " << endl;
-    cin >> hasloUzytkownika;
+    cin >> uzytkownik.hasloUzytkownika;
     if (uzytkownikVector.size() == 0)
     {
-        idUzytkownika = 1;
+        uzytkownik.idUzytkownika = 1;
     }
     else
-        idUzytkownika = uzytkownikVector.size() + 1;
-    uzytkownik.idUzytkownika = idUzytkownika;
-    uzytkownik.nazwaUzytkownika = nazwaUzytkownika;
-    uzytkownik.hasloUzytkownika = hasloUzytkownika;
+        uzytkownik.idUzytkownika = uzytkownikVector.size() + 1;
     uzytkownikVector.push_back(uzytkownik);
     fstream plikUzytkownicy;
     plikUzytkownicy.open("Uzytkownicy.txt", ios::out | ios::app);
-    plikUzytkownicy << idUzytkownika << "|" << nazwaUzytkownika << "|" << hasloUzytkownika << "|" << endl;
+    plikUzytkownicy << uzytkownik.idUzytkownika << "|" << uzytkownik.nazwaUzytkownika << "|" << uzytkownik.hasloUzytkownika << "|" << endl;
     cout << "Uzytkownik zostal dodany" << endl;
     system("pause");
 
@@ -95,14 +92,14 @@ int logowanieUzytkownika (Uzytkownik uzytkownik, vector <Uzytkownik> uzytkownikV
 vector <Uzytkownik> zmianaHaslaUzytkownika(Uzytkownik uzytkownik, vector <Uzytkownik> uzytkownikVector, int idZalogowanegoUzytkownika)
 {
     ofstream plikUzytkownicy;
-    string haslo;
+    string noweHaslo;
     cout << "Podaj nowe haslo:" << endl;
-    cin >> haslo;
+    cin >> noweHaslo;
     for (int i = 0; i < uzytkownikVector.size(); i++)
     {
         if (idZalogowanegoUzytkownika == uzytkownikVector[i].idUzytkownika)
         {
-            uzytkownikVector[i].hasloUzytkownika = haslo;
+            uzytkownikVector[i].hasloUzytkownika = noweHaslo;
             plikUzytkownicy.close();
             plikUzytkownicy.open("Uzytkownicy.txt");
             for (int i = 0; i <= uzytkownikVector.size()-1; i++)
