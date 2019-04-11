@@ -54,7 +54,7 @@ vector <Uzytkownik> rejestracjaUzytkownika (Uzytkownik uzytkownik, vector <Uzytk
     return uzytkownikVector;
 }
 
-int logowanieUzytkownika (Uzytkownik uzytkownik, vector <Uzytkownik> uzytkownikVector)
+int logowanieUzytkownika (vector <Uzytkownik> uzytkownikVector)
 {
     string nazwaUzytkownika, hasloUzytkownika;
     cout << "Podaj nazwe uzytkownika: " << endl;
@@ -89,7 +89,7 @@ int logowanieUzytkownika (Uzytkownik uzytkownik, vector <Uzytkownik> uzytkownikV
     return 0;
 }
 
-vector <Uzytkownik> zmianaHaslaUzytkownika(Uzytkownik uzytkownik, vector <Uzytkownik> uzytkownikVector, int idZalogowanegoUzytkownika)
+vector <Uzytkownik> zmianaHaslaUzytkownika(vector <Uzytkownik> uzytkownikVector, int idZalogowanegoUzytkownika)
 {
     ofstream plikUzytkownicy;
     string noweHaslo;
@@ -126,16 +126,16 @@ vector<Adresat> dodajAdresata(Adresat adresat, vector<Adresat>adresatVector, int
     string imie, nazwisko, email, adres, nrTelefonu;
     int id;
     cout << "Podaj imie: " << endl;
-    cin >> imie;
+    cin >> adresat.imie;
     cout << "Podaj nazwisko" << endl;
-    cin >> nazwisko;
+    cin >> adresat.nazwisko;
     cout << "Podaj numer telefonu: " << endl;
-    cin >> nrTelefonu;
+    cin >> adresat.nrTelefonu;
     cout << "Podaj email: " << endl;
-    cin >> email;
+    cin >> adresat.email;
     cout << "Podaj adres: " << endl;
     cin.sync();
-    getline(cin>>ws, adres);
+    getline(cin>>ws, adresat.adres);
 
     fstream plik;
     string linia;
@@ -150,19 +150,14 @@ vector<Adresat> dodajAdresata(Adresat adresat, vector<Adresat>adresatVector, int
     plik.close();
     if (idOstatniegoAdresata == 0)
     {
-        id = 1;
+        adresat.id = 1;
     }
     else
-        id = idOstatniegoAdresata + 1;
-    adresat.imie = imie;
-    adresat.nazwisko = nazwisko;
-    adresat.nrTelefonu = nrTelefonu;
-    adresat.email = email;
-    adresat.adres = adres;
-    adresat.id = id;
+        adresat.id = idOstatniegoAdresata + 1;
     adresatVector.push_back(adresat);
     plik.open("Adresaci.txt", ios::out | ios::app);
-    plik << id << "|" << idZalogowanegoUzytkownika << "|" << imie << "|" << nazwisko << "|" << nrTelefonu << "|" << email << "|" << adres << "|" << endl;
+    plik << adresat.id << "|" << idZalogowanegoUzytkownika << "|" << adresat.imie << "|" << adresat.nazwisko << "|" << adresat.nrTelefonu
+         << "|" << adresat.email << "|" << adresat.adres << "|" << endl;
 
     cout << "Adresat zostal dodany" << endl;
     system("pause");
@@ -170,7 +165,7 @@ vector<Adresat> dodajAdresata(Adresat adresat, vector<Adresat>adresatVector, int
     return adresatVector;
 }
 
-void wyszukajAdresataPoImieniu (Adresat adresat, vector <Adresat> adresatVector)
+void wyszukajAdresataPoImieniu (vector <Adresat> adresatVector)
 {
     system("cls");
     string imie;
@@ -206,7 +201,7 @@ void wyszukajAdresataPoImieniu (Adresat adresat, vector <Adresat> adresatVector)
     }
 }
 
-void wyszukajAdresataPoNazwisku (Adresat adresat, vector <Adresat> adresatVector)
+void wyszukajAdresataPoNazwisku (vector <Adresat> adresatVector)
 {
     system("cls");
     string nazwisko;
@@ -242,13 +237,12 @@ void wyszukajAdresataPoNazwisku (Adresat adresat, vector <Adresat> adresatVector
     }
 }
 
-void listaAdresatow(Adresat adresat, vector<Adresat> adresatVector)
+void listaAdresatow(vector<Adresat> adresatVector)
 {
     if (adresatVector.size() == 0)
     {
         system("cls");
-        cout << "Baza danych jest pusta.";
-        cout << endl;
+        cout << "Baza danych jest pusta." << endl;
         system("pause");
     }
     else
@@ -300,7 +294,7 @@ void nadpisaniePlikuEdycjaAdresata (int idEdytowanegoAdresata, Adresat adresat, 
 
 vector <Adresat> edycjaAdresata (Adresat adresat, vector<Adresat> adresatVector, int idZalogowanegoUzytkownika)
 {
-    string idString;
+    string idEdytowanegoAdresataString;
     string wybor;
     ofstream plik;
     bool znalezionoID = false;
@@ -308,15 +302,14 @@ vector <Adresat> edycjaAdresata (Adresat adresat, vector<Adresat> adresatVector,
     if (adresatVector.size() == 0)
     {
         system("cls");
-        cout << "Baza danych jest pusta.";
-        cout << endl;
+        cout << "Baza danych jest pusta." << endl;
         system("pause");
     }
     else
     {
         cout << "Podaj ID adresata, ktorego chcesz edytowac: ";
-        cin >> idString;
-        int idEdytowanegoAdresata = atoi(idString.c_str());
+        cin >> idEdytowanegoAdresataString;
+        int idEdytowanegoAdresata = atoi(idEdytowanegoAdresataString.c_str());
         for (int i = 0; i <= adresatVector.size()-1; i++)
         {
             if (idEdytowanegoAdresata == adresatVector[i].id)
@@ -390,7 +383,7 @@ vector <Adresat> edycjaAdresata (Adresat adresat, vector<Adresat> adresatVector,
     return adresatVector;
 }
 
-void nadpisaniePlikuUsuniecieAdresata (int idEdytowanegoAdresata, Adresat adresat, int idZalogowanegoUzytkownika)
+void nadpisaniePlikuUsuniecieAdresata (int idEdytowanegoAdresata, int idZalogowanegoUzytkownika)
 {
     fstream plik;
     plik.open("Adresaci.txt", ios::in | ios::out);
@@ -416,7 +409,7 @@ void nadpisaniePlikuUsuniecieAdresata (int idEdytowanegoAdresata, Adresat adresa
     rename ("Adresaci_tymczasowy.txt", "Adresaci.txt");
 }
 
-vector <Adresat> usuniecieAdresata (Adresat adresat, vector<Adresat> adresatVector, int idZalogowanegoUzytkownika)
+vector <Adresat> usuniecieAdresata (vector<Adresat> adresatVector, int idZalogowanegoUzytkownika)
 {
     string idString;
     string wybor;
@@ -452,7 +445,7 @@ vector <Adresat> usuniecieAdresata (Adresat adresat, vector<Adresat> adresatVect
                     break;
                 }
                 plik.close();
-                nadpisaniePlikuUsuniecieAdresata(idUsuwanegoAdresata, adresat, idZalogowanegoUzytkownika);
+                nadpisaniePlikuUsuniecieAdresata(idUsuwanegoAdresata, idZalogowanegoUzytkownika);
             }
             i ++;
         }
@@ -465,7 +458,7 @@ vector <Adresat> usuniecieAdresata (Adresat adresat, vector<Adresat> adresatVect
     return adresatVector;
 }
 
-vector <Uzytkownik> adresaciMenu(int idZalogowanegoUzytkownika, Uzytkownik uzytkownik, vector <Uzytkownik> uzytkownikVector)
+vector <Uzytkownik> adresaciMenu(int idZalogowanegoUzytkownika, vector <Uzytkownik> uzytkownikVector)
 {
     Adresat adresat;
     vector <Adresat> adresatVector;
@@ -555,19 +548,19 @@ vector <Uzytkownik> adresaciMenu(int idZalogowanegoUzytkownika, Uzytkownik uzytk
         }
         else if (wybor == '2')
         {
-            wyszukajAdresataPoImieniu(adresat, adresatVector);
+            wyszukajAdresataPoImieniu(adresatVector);
         }
         else if (wybor == '3')
         {
-            wyszukajAdresataPoNazwisku(adresat, adresatVector);
+            wyszukajAdresataPoNazwisku(adresatVector);
         }
         else if (wybor == '4')
         {
-            listaAdresatow(adresat, adresatVector);
+            listaAdresatow(adresatVector);
         }
         else if (wybor == '5')
         {
-            adresatVector = usuniecieAdresata(adresat, adresatVector, idZalogowanegoUzytkownika);
+            adresatVector = usuniecieAdresata(adresatVector, idZalogowanegoUzytkownika);
         }
         else if (wybor == '6')
         {
@@ -575,7 +568,7 @@ vector <Uzytkownik> adresaciMenu(int idZalogowanegoUzytkownika, Uzytkownik uzytk
         }
         else if (wybor == '7')
         {
-            uzytkownikVector = zmianaHaslaUzytkownika(uzytkownik, uzytkownikVector, idZalogowanegoUzytkownika);
+            uzytkownikVector = zmianaHaslaUzytkownika(uzytkownikVector, idZalogowanegoUzytkownika);
         }
         else if (wybor == '9')
         {
@@ -644,9 +637,9 @@ int main()
 
         if (wyborUzytkownicy == '1')
         {
-            idZalogowanegoUzytkownika = logowanieUzytkownika(uzytkownik, uzytkownikVector);
+            idZalogowanegoUzytkownika = logowanieUzytkownika(uzytkownikVector);
             if (idZalogowanegoUzytkownika != 0)
-                uzytkownikVector = adresaciMenu(idZalogowanegoUzytkownika, uzytkownik, uzytkownikVector);
+                uzytkownikVector = adresaciMenu(idZalogowanegoUzytkownika, uzytkownikVector);
         }
         else if (wyborUzytkownicy == '2')
         {
