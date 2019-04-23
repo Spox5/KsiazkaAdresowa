@@ -1,0 +1,12 @@
+bin/
+obj/
+plan/
+02-ks-obiekt.*
+*.cbp
+ks-strukt.*
+KsiazkaAdresowaKurs.*
+ks-obiekt.*
+Uzytkownicy.txt
+Adresaci.txt
+*.depend
+*.layout

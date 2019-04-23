@@ -10,6 +10,7 @@ vector <Uzytkownik> Uzytkownik::rejestracjaUzytkownika (Uzytkownik uzytkownik, v
 {
     string nazwaUzytkownika, hasloUzytkownika;
     int idUzytkownika;
+
     cout << "Podaj nazwe uzytkownika: " << endl;
     cin >> uzytkownik.nazwaUzytkownika;
     if (uzytkownikVector.size() != 0)
@@ -48,8 +49,10 @@ vector <Uzytkownik> Uzytkownik::rejestracjaUzytkownika (Uzytkownik uzytkownik, v
 int Uzytkownik::logowanieUzytkownika (vector <Uzytkownik> uzytkownikVector)
 {
     string nazwaUzytkownika, hasloUzytkownika;
+
     cout << "Podaj nazwe uzytkownika: " << endl;
     cin >> nazwaUzytkownika;
+
     int i = 0;
     while (i < uzytkownikVector.size())
     {
