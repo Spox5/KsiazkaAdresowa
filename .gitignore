@@ -10,3 +10,4 @@ Uzytkownicy.txt
 Adresaci.txt
 *.depend
 *.layout
+*.cscope_file_list
