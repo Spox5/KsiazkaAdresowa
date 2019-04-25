@@ -25,7 +25,7 @@ vector <Adresat> PlikZAdresatami::wczytaniePlikuZAdresatami(int idZalogowanegoUz
 
         if (licznik == 1)
         {
-            adresat.id = atoi(linia.c_str());
+            adresat.ustawIdAdresata(atoi(linia.c_str()));
         }
         else if (licznik == 2)
         {
@@ -37,23 +37,23 @@ vector <Adresat> PlikZAdresatami::wczytaniePlikuZAdresatami(int idZalogowanegoUz
         }
         else if (licznik == 3)
         {
-            adresat.imie = linia;
+            adresat.ustawImieAdresata(linia);
         }
         else if (licznik == 4)
         {
-            adresat.nazwisko = linia;
+            adresat.ustawNazwiskoAdresata(linia);
         }
         else if (licznik == 5)
         {
-            adresat.nrTelefonu = linia;
+            adresat.ustawNrTelefonuAdresata(linia);
         }
         else if (licznik == 6)
         {
-            adresat.email = linia;
+            adresat.ustawEmailAdresata(linia);
         }
         else if (licznik == 7)
         {
-            adresat.adres = linia;
+            adresat.ustawAdresAdresata(linia);
         }
 
         if (licznik == 7 && czyZapisacUzytkownika == true)

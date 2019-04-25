@@ -16,8 +16,8 @@ class Uzytkownik
 
 public:
 
-    void ustawId(int noweId);
-    int wypiszId();
+    void ustawIdUzytkownika(int noweId);
+    int wypiszIdUzytkownika();
 
     void ustawNazweUzytkownika(string nowaNazwaUzytkownika);
     string wypiszNazweUzytkownika();

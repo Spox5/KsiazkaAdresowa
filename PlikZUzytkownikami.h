@@ -13,6 +13,9 @@ class PlikZUzytkownikami
 {
 public:
     vector <Uzytkownik> wczytaniePlikuZUzytkownikami();
+    //
+    string zamienDaneUzytkownikaNaLinieZDanymiOddzielonaPionowymiKreskami(Uzytkownik uzytkownik);
+    static string konwerjsaIntNaString(int liczba);
 };
 
 #endif // PLIKZUZYTKOWNIKAMI

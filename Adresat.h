@@ -10,9 +10,28 @@ using namespace std;
 
 class Adresat
 {
-public:
     int id;
-    string imie, nazwisko, email, adres, nrTelefonu;
+    string imie, nazwisko, nrTelefonu, email, adres;
+
+public:
+
+    void ustawIdAdresata(int noweIdAdresata);
+    int wypiszIdAdresata();
+
+    void ustawImieAdresata(string noweImieAdresata);
+    string wypiszImieAdresata();
+
+    void ustawNazwiskoAdresata(string noweNazwiskoAdresata);
+    string wypiszNazwiskoAdresata();
+
+    void ustawNrTelefonuAdresata(string nowyNrTelefonuAdresata);
+    string wypiszNrTelefonuAdresata();
+
+    void ustawEmailAdresata(string nowyEmailAdresata);
+    string wypiszEmailAdresata();
+
+    void ustawAdresAdresata(string nowyAdresAdresata);
+    string wypiszAdresAdresata();
 
     vector <Adresat> dodajAdresata(vector<Adresat>adresaci, int idZalogowanegoUzytkownika);
     void listaAdresatow(vector<Adresat> adresaci);

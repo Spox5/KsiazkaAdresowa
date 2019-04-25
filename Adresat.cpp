@@ -1,9 +1,69 @@
 #include "Adresat.h"
 
+void Adresat::ustawIdAdresata(int noweIdAdresata)
+{
+    id = noweIdAdresata;
+}
+
+int Adresat::wypiszIdAdresata()
+{
+    return id;
+}
+
+void Adresat::ustawImieAdresata(string noweImieAdresata)
+{
+    imie = noweImieAdresata;
+}
+
+string Adresat::wypiszImieAdresata()
+{
+    return imie;
+}
+
+void Adresat::ustawNazwiskoAdresata(string noweNazwiskoAdresata)
+{
+    nazwisko = noweNazwiskoAdresata;
+}
+
+string Adresat::wypiszNazwiskoAdresata()
+{
+    return nazwisko;
+}
+
+void Adresat::ustawNrTelefonuAdresata(string nowyNrTelefonuAdresata)
+{
+    nrTelefonu = nowyNrTelefonuAdresata;
+}
+
+string Adresat::wypiszNrTelefonuAdresata()
+{
+    return nrTelefonu;
+}
+
+void Adresat::ustawEmailAdresata(string nowyEmailAdresata)
+{
+    email = nowyEmailAdresata;
+}
+
+string Adresat::wypiszEmailAdresata()
+{
+    return email;
+}
+
+void Adresat::ustawAdresAdresata(string nowyAdresAdresata)
+{
+    adres = nowyAdresAdresata;
+}
+
+string Adresat::wypiszAdresAdresata()
+{
+    return adres;
+}
+
 vector<Adresat> Adresat::dodajAdresata(vector<Adresat>adresaci, int idZalogowanegoUzytkownika)
 {
     Adresat adresat;
-    string imie, nazwisko, email, adres, nrTelefonu;
+    string imie, nazwisko, nrTelefonu, email, adres;
     int id;
     fstream plik;
     string linia;
@@ -11,16 +71,21 @@ vector<Adresat> Adresat::dodajAdresata(vector<Adresat>adresaci, int idZalogowane
     int idOstatniegoAdresata = 0;
 
     cout << "Podaj imie: " << endl;
-    cin >> adresat.imie;
+    cin >> imie;
+    adresat.ustawImieAdresata(imie);
     cout << "Podaj nazwisko" << endl;
-    cin >> adresat.nazwisko;
+    cin >> nazwisko;
+    adresat.ustawNazwiskoAdresata(nazwisko);
     cout << "Podaj numer telefonu: " << endl;
-    cin >> adresat.nrTelefonu;
+    cin >> nrTelefonu;
+    adresat.ustawNrTelefonuAdresata(nrTelefonu);
     cout << "Podaj email: " << endl;
-    cin >> adresat.email;
+    cin >> email;
+    adresat.ustawEmailAdresata(email);
     cout << "Podaj adres: " << endl;
     cin.sync();
-    getline(cin>>ws, adresat.adres);
+    getline(cin>>ws, adres);
+    adresat.ustawAdresAdresata(adres);
 
     plik.open("Adresaci.txt", ios::in | ios:: out);
     while(getline(plik, linia))
@@ -32,16 +97,16 @@ vector<Adresat> Adresat::dodajAdresata(vector<Adresat>adresaci, int idZalogowane
 
     if (idOstatniegoAdresata == 0)
     {
-        adresat.id = 1;
+        adresat.ustawIdAdresata(1);
     }
     else
-        adresat.id = idOstatniegoAdresata + 1;
+        adresat.ustawIdAdresata(idOstatniegoAdresata + 1);
 
     adresaci.push_back(adresat);
 
     plik.open("Adresaci.txt", ios::out | ios::app);
-    plik << adresat.id << "|" << idZalogowanegoUzytkownika << "|" << adresat.imie << "|" << adresat.nazwisko << "|" << adresat.nrTelefonu
-         << "|" << adresat.email << "|" << adresat.adres << "|" << endl;
+    plik << adresat.wypiszIdAdresata() << "|" << idZalogowanegoUzytkownika << "|" << adresat.wypiszImieAdresata() << "|" << adresat.wypiszNazwiskoAdresata() << "|" << adresat.wypiszNrTelefonuAdresata()
+         << "|" << adresat.wypiszEmailAdresata() << "|" << adresat.wypiszAdresAdresata() << "|" << endl;
     cout << "Adresat zostal dodany" << endl;
     system("pause");
     plik.close();

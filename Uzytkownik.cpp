@@ -1,11 +1,11 @@
 #include "Uzytkownik.h"
 
-void Uzytkownik::ustawId(int noweIdUzytkownika)
+void Uzytkownik::ustawIdUzytkownika(int noweIdUzytkownika)
 {
     idUzytkownika = noweIdUzytkownika;
 }
 
-int Uzytkownik::wypiszId()
+int Uzytkownik::wypiszIdUzytkownika()
 {
     return idUzytkownika;
 }
@@ -60,14 +60,14 @@ vector <Uzytkownik> Uzytkownik::rejestracjaUzytkownika (vector <Uzytkownik> uzyt
 
     if (uzytkownicy.size() == 0)
     {
-        uzytkownik.ustawId(1);
+        uzytkownik.ustawIdUzytkownika(1);
     }
     else
-        uzytkownik.ustawId(uzytkownicy.size() + 1);
+        uzytkownik.ustawIdUzytkownika(uzytkownicy.size() + 1);
     uzytkownicy.push_back(uzytkownik);
     fstream plikUzytkownicy;
     plikUzytkownicy.open("Uzytkownicy.txt", ios::out | ios::app);
-    plikUzytkownicy << uzytkownik.wypiszId() << "|" << uzytkownik.wypiszNazweUzytkownika() << "|" << uzytkownik.wypiszHasloUzytkownika() << "|" << endl;
+    plikUzytkownicy << uzytkownik.wypiszIdUzytkownika() << "|" << uzytkownik.wypiszNazweUzytkownika() << "|" << uzytkownik.wypiszHasloUzytkownika() << "|" << endl;
     cout << "Uzytkownik zostal dodany" << endl;
     system("pause");
 
