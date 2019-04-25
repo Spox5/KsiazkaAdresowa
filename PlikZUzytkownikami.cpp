@@ -2,8 +2,8 @@
 
 vector <Uzytkownik> PlikZUzytkownikami::wczytaniePlikuZUzytkownikami()
 {
-    fstream plikUzytkownicy;
     Uzytkownik uzytkownik;
+    fstream plikUzytkownicy;
     vector <Uzytkownik> uzytkownicy;
     string liniaUzytkownicy;
     int licznikUzytkownicy = 0;
@@ -22,15 +22,15 @@ vector <Uzytkownik> PlikZUzytkownikami::wczytaniePlikuZUzytkownikami()
 
         if (licznikUzytkownicy == 1)
         {
-            uzytkownik.idUzytkownika = atoi(liniaUzytkownicy.c_str());
+            uzytkownik.ustawId(atoi(liniaUzytkownicy.c_str()));
         }
         else if (licznikUzytkownicy == 2)
         {
-            uzytkownik.nazwaUzytkownika = liniaUzytkownicy;
+            uzytkownik.ustawNazweUzytkownika(liniaUzytkownicy);
         }
         else if (licznikUzytkownicy == 3)
         {
-            uzytkownik.hasloUzytkownika = liniaUzytkownicy;
+            uzytkownik.ustawHasloUzytkownika(liniaUzytkownicy);
         }
         if (licznikUzytkownicy == 3)
         {

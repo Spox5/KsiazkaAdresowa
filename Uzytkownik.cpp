@@ -1,58 +1,83 @@
 #include "Uzytkownik.h"
 
+void Uzytkownik::ustawId(int noweIdUzytkownika)
+{
+    idUzytkownika = noweIdUzytkownika;
+}
+
+int Uzytkownik::wypiszId()
+{
+    return idUzytkownika;
+}
+
+void Uzytkownik::ustawNazweUzytkownika(string nowaNazwaUzytkownika)
+{
+    nazwaUzytkownika = nowaNazwaUzytkownika;
+}
+
+string Uzytkownik::wypiszNazweUzytkownika()
+{
+    return nazwaUzytkownika;
+}
+
+void Uzytkownik::ustawHasloUzytkownika(string noweHaslouzytkownika)
+{
+    hasloUzytkownika = noweHaslouzytkownika;
+}
+
+string Uzytkownik::wypiszHasloUzytkownika()
+{
+    return hasloUzytkownika;
+}
+
 vector <Uzytkownik> Uzytkownik::rejestracjaUzytkownika (vector <Uzytkownik> uzytkownicy)
 {
     Uzytkownik uzytkownik;
     string nazwaUzytkownika, hasloUzytkownika;
-    int idUzytkownika;
 
     cout << "Podaj nazwe uzytkownika: " << endl;
-    cin >> uzytkownik.nazwaUzytkownika;
+    cin >> nazwaUzytkownika;
     if (uzytkownicy.size() != 0)
     {
         int i = 0;
         while (i <= uzytkownicy.size())
         {
-            if (uzytkownik.nazwaUzytkownika == uzytkownicy[i].nazwaUzytkownika)
+            if (nazwaUzytkownika == uzytkownicy[i].nazwaUzytkownika)
             {
                 cout << "Taki uzytkownik juz istnieje. Podaj inna nazwe uzytkownika" << endl;
-                cin >> uzytkownik.nazwaUzytkownika;
+                cin >> nazwaUzytkownika;
                 i = 0;
             }
             else
                 i++;
         }
     }
+    uzytkownik.ustawNazweUzytkownika(nazwaUzytkownika);
+
     cout << "Podaj haslo uzytkownika: " << endl;
-    cin >> uzytkownik.hasloUzytkownika;
+    cin >> hasloUzytkownika;
+    uzytkownik.ustawHasloUzytkownika(hasloUzytkownika);
+
     if (uzytkownicy.size() == 0)
     {
-        uzytkownik.idUzytkownika = 1;
+        uzytkownik.ustawId(1);
     }
     else
-        uzytkownik.idUzytkownika = uzytkownicy.size() + 1;
+        uzytkownik.ustawId(uzytkownicy.size() + 1);
     uzytkownicy.push_back(uzytkownik);
     fstream plikUzytkownicy;
     plikUzytkownicy.open("Uzytkownicy.txt", ios::out | ios::app);
-    plikUzytkownicy << uzytkownik.idUzytkownika << "|" << uzytkownik.nazwaUzytkownika << "|" << uzytkownik.hasloUzytkownika << "|" << endl;
+    plikUzytkownicy << uzytkownik.wypiszId() << "|" << uzytkownik.wypiszNazweUzytkownika() << "|" << uzytkownik.wypiszHasloUzytkownika() << "|" << endl;
     cout << "Uzytkownik zostal dodany" << endl;
     system("pause");
-    //
-    for (int i = 0; i <= uzytkownicy.size(); i++)
-    {
-        cout << uzytkownicy[i].nazwaUzytkownika << endl;
-    }
-    system("pause");
-    //
+
     return uzytkownicy;
 }
 
 int Uzytkownik::logowanieUzytkownika (vector <Uzytkownik> uzytkownicy)
 {
     string nazwaUzytkownika, hasloUzytkownika;
-    //
-    cout << uzytkownicy.size() << endl;
-    //
+
     cout << "Podaj nazwe uzytkownika: " << endl;
     cin >> nazwaUzytkownika;
 

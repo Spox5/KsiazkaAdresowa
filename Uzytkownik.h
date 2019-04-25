@@ -10,10 +10,20 @@ using namespace std;
 
 class Uzytkownik
 {
-public:
     int idUzytkownika;
-    string nazwaUzytkownika, hasloUzytkownika;
+    string nazwaUzytkownika;
+    string hasloUzytkownika;
 
+public:
+
+    void ustawId(int noweId);
+    int wypiszId();
+
+    void ustawNazweUzytkownika(string nowaNazwaUzytkownika);
+    string wypiszNazweUzytkownika();
+
+    void ustawHasloUzytkownika(string noweHasloUzytkownika);
+    string wypiszHasloUzytkownika();
 
     vector <Uzytkownik> rejestracjaUzytkownika (vector <Uzytkownik> uzytkownicy);
     int logowanieUzytkownika (vector <Uzytkownik> uzytkownicy);
