@@ -42,23 +42,3 @@ vector <Uzytkownik> PlikZUzytkownikami::wczytaniePlikuZUzytkownikami()
 
     return uzytkownicy;
 }
-
-string PlikZUzytkownikami::zamienDaneUzytkownikaNaLinieZDanymiOddzielonaPionowymiKreskami(Uzytkownik uzytkownik)
-{
-    string liniaZDanymiUzytkownika = "";
-
-
-    liniaZDanymiUzytkownika += PlikZUzytkownikami::konwerjsaIntNaString(uzytkownik.wypiszIdUzytkownika())+ '|';
-    liniaZDanymiUzytkownika += uzytkownik.wypiszNazweUzytkownika() + '|';
-    liniaZDanymiUzytkownika += uzytkownik.wypiszHasloUzytkownika() + '|';
-
-    return liniaZDanymiUzytkownika;
-}
-
-string PlikZUzytkownikami::konwerjsaIntNaString(int liczba)
-{
-    ostringstream ss;
-    ss << liczba;
-    string str = ss.str();
-    return str;
-}

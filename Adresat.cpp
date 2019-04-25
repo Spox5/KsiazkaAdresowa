@@ -67,6 +67,7 @@ vector<Adresat> Adresat::dodajAdresata(vector<Adresat>adresaci, int idZalogowane
     int id;
     fstream plik;
     string linia;
+    int liczbaLinii;
     string idOstatniegoAdresataString;
     int idOstatniegoAdresata = 0;
 
@@ -92,6 +93,9 @@ vector<Adresat> Adresat::dodajAdresata(vector<Adresat>adresaci, int idZalogowane
     {
         idOstatniegoAdresataString = linia[0];
     }
+    idOstatniegoAdresata = atoi(idOstatniegoAdresataString.c_str());
+    plik.close();
+
     idOstatniegoAdresata = atoi(idOstatniegoAdresataString.c_str());
     plik.close();
 
