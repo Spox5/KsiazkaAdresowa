@@ -1,11 +1,11 @@
 #include "AdresatMaster.h"
-#include "PlikZAdresatami.h"
+#include "UzytkownikMaster.h"
 
 vector <Uzytkownik> AdresatMaster::adresaciMenu(int idZalogowanegoUzytkownika, vector <Uzytkownik> uzytkownicy)
 {
-    Uzytkownik uzytkownik;
+    UzytkownikMaster uzytkownikMaster;
     PlikZAdresatami plikZAdresatami;
-    Adresat adresat;
+    AdresatMaster adresatMaster;
     vector <Adresat> adresaci = plikZAdresatami.wczytaniePlikuZAdresatami(idZalogowanegoUzytkownika);
 
     while(1)
@@ -14,7 +14,7 @@ vector <Uzytkownik> AdresatMaster::adresaciMenu(int idZalogowanegoUzytkownika, v
 
         if (wybor == '1')
         {
-            adresaci = adresat.dodajAdresata(adresaci, idZalogowanegoUzytkownika);
+            adresaci = adresatMaster.dodajAdresata(adresaci, idZalogowanegoUzytkownika);
         }
         else if (wybor == '2')
         {
@@ -26,7 +26,7 @@ vector <Uzytkownik> AdresatMaster::adresaciMenu(int idZalogowanegoUzytkownika, v
         }
         else if (wybor == '4')
         {
-            adresat.listaAdresatow(adresaci);
+            adresatMaster.listaAdresatow(adresaci);
         }
         else if (wybor == '5')
         {
@@ -38,7 +38,7 @@ vector <Uzytkownik> AdresatMaster::adresaciMenu(int idZalogowanegoUzytkownika, v
         }
         else if (wybor == '7')
         {
-            uzytkownicy = uzytkownik.zmianaHaslaUzytkownika(uzytkownicy, idZalogowanegoUzytkownika);
+            uzytkownicy = uzytkownikMaster.zmianaHaslaUzytkownika(uzytkownicy, idZalogowanegoUzytkownika);
         }
         else if (wybor == '9')
         {
@@ -70,4 +70,83 @@ char AdresatMaster::menuAdresatWybor()
     cin >> wybor;
 
     return wybor;
+}
+
+vector<Adresat> AdresatMaster::dodajAdresata(vector<Adresat>adresaci, int idZalogowanegoUzytkownika)
+{
+    Adresat adresat;
+    string imie, nazwisko, nrTelefonu, email, adres;
+    int id;
+    fstream plik;
+    string linia;
+    string idOstatniegoAdresataString;
+    int idOstatniegoAdresata = 0;
+
+    cout << "Podaj imie: " << endl;
+    cin >> imie;
+    adresat.ustawImieAdresata(imie);
+    cout << "Podaj nazwisko" << endl;
+    cin >> nazwisko;
+    adresat.ustawNazwiskoAdresata(nazwisko);
+    cout << "Podaj numer telefonu: " << endl;
+    cin >> nrTelefonu;
+    adresat.ustawNrTelefonuAdresata(nrTelefonu);
+    cout << "Podaj email: " << endl;
+    cin >> email;
+    adresat.ustawEmailAdresata(email);
+    cout << "Podaj adres: " << endl;
+    cin.sync();
+    getline(cin>>ws, adres);
+    adresat.ustawAdresAdresata(adres);
+
+    plik.open("Adresaci.txt", ios::in | ios:: out);
+    while(getline(plik, linia))
+    {
+        idOstatniegoAdresataString = linia[0];
+    }
+    idOstatniegoAdresata = atoi(idOstatniegoAdresataString.c_str());
+    plik.close();
+
+    if (idOstatniegoAdresata == 0)
+    {
+        adresat.ustawIdAdresata(1);
+    }
+    else
+        adresat.ustawIdAdresata(idOstatniegoAdresata + 1);
+
+    adresaci.push_back(adresat);
+
+    plik.open("Adresaci.txt", ios::out | ios::app);
+    plik << adresat.wypiszIdAdresata() << "|" << idZalogowanegoUzytkownika << "|" << adresat.wypiszImieAdresata() << "|" << adresat.wypiszNazwiskoAdresata() << "|" << adresat.wypiszNrTelefonuAdresata()
+         << "|" << adresat.wypiszEmailAdresata() << "|" << adresat.wypiszAdresAdresata() << "|" << endl;
+    cout << "Adresat zostal dodany" << endl;
+    system("pause");
+    plik.close();
+
+    return adresaci;
+}
+
+void AdresatMaster::listaAdresatow(vector<Adresat> adresaci)
+{
+    if (adresaci.size() == 0)
+    {
+        system("cls");
+        cout << "Baza danych jest pusta." << endl;
+        system("pause");
+    }
+    else
+    {
+        system("cls");
+        for (int i = 0; i <= adresaci.size()-1; i++)
+        {
+            cout << adresaci[i].wypiszIdAdresata() << ". ";
+            cout << adresaci[i].wypiszImieAdresata() << " ";
+            cout << adresaci[i].wypiszNazwiskoAdresata() << ", ";
+            cout << adresaci[i].wypiszNrTelefonuAdresata() << ", ";
+            cout << adresaci[i].wypiszEmailAdresata() << ", ";
+            cout << adresaci[i].wypiszAdresAdresata() << "." << endl;
+        }
+        cout << endl;
+        system("pause");
+    }
 }

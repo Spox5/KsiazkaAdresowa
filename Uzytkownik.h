@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include <vector>
-#include <fstream>
 #include <windows.h>
 
 using namespace std;
@@ -25,9 +24,6 @@ public:
     void ustawHasloUzytkownika(string noweHasloUzytkownika);
     string wypiszHasloUzytkownika();
 
-    vector <Uzytkownik> rejestracjaUzytkownika (vector <Uzytkownik> uzytkownicy);
-    int logowanieUzytkownika (vector <Uzytkownik> uzytkownicy);
-    vector <Uzytkownik> zmianaHaslaUzytkownika(vector <Uzytkownik> uzytkownicy, int idZalogowanegoUzytkownika);
 };
 
 #endif
