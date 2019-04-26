@@ -43,7 +43,16 @@ vector <Uzytkownik> PlikZUzytkownikami::wczytaniePlikuZUzytkownikami()
     return uzytkownicy;
 }
 
-string PlikZUzytkownikami::zamienDaneUzytkownikaNaLinieZDanymiOddzielonaPionowymiKreskami(Uzytkownik uzytkownik)
+void PlikZUzytkownikami::zapisanieUzytkownikaDoPliku(Uzytkownik uzytkownik)
+{
+    fstream plikUzytkownicy;
+    plikUzytkownicy.open("Uzytkownicy.txt", ios::out | ios::app);
+    plikUzytkownicy << uzytkownik.wypiszIdUzytkownika() << "|" << uzytkownik.wypiszNazweUzytkownika() << "|" << uzytkownik.wypiszHasloUzytkownika() << "|" << endl;
+    cout << "Uzytkownik zostal dodany" << endl;
+    system("pause");
+}
+
+/*string PlikZUzytkownikami::zamienDaneUzytkownikaNaLinieZDanymiOddzielonaPionowymiKreskami(Uzytkownik uzytkownik)
 {
     string liniaZDanymiUzytkownika = "";
 
@@ -61,4 +70,4 @@ string PlikZUzytkownikami::konwerjsaIntNaString(int liczba)
     ss << liczba;
     string str = ss.str();
     return str;
-}
+}*/

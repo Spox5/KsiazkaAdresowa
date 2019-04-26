@@ -1,11 +1,8 @@
 #ifndef ADRESATMASTER_H
 #define ADRESATMASTER_H
 
-#include <iostream>
-#include <vector>
-#include <fstream>
-#include <windows.h>
-#include "Uzytkownik.h"
+#include "PlikZUzytkownikami.h"
+#include "PlikZAdresatami.h"
 
 using namespace std;
 
@@ -14,6 +11,8 @@ class AdresatMaster
 public:
     vector <Uzytkownik> adresaciMenu(int idZalogowanegoUzytkownika, vector <Uzytkownik> uzytkownicy);
     char menuAdresatWybor();
+    vector <Adresat> dodajAdresata(vector<Adresat>adresaci, int idZalogowanegoUzytkownika);
+    void listaAdresatow(vector<Adresat> adresaci);
 };
 
 #endif

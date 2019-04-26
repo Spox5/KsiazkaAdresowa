@@ -33,8 +33,6 @@ public:
     void ustawAdresAdresata(string nowyAdresAdresata);
     string wypiszAdresAdresata();
 
-    vector <Adresat> dodajAdresata(vector<Adresat>adresaci, int idZalogowanegoUzytkownika);
-    void listaAdresatow(vector<Adresat> adresaci);
 };
 
 #endif

@@ -4,8 +4,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>10</x>
-      <y>30</y>
+      <x>60</x>
+      <y>20</y>
       <w>350</w>
       <h>80</h>
     </coordinates>
@@ -19,27 +19,30 @@ vector &lt;Uzytkownik&gt; wczytaniePlikuZUzytkownikami()</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>10</x>
-      <y>120</y>
+      <x>60</x>
+      <y>110</y>
       <w>350</w>
-      <h>160</h>
+      <h>190</h>
     </coordinates>
     <panel_attributes>Uzytkownik
 --
-int idUzytkownikka;
-string nazwaUzytkownika;
-string hasloUzytkownika;
+- int idUzytkownikka;
+- string nazwaUzytkownika;
+- string hasloUzytkownika;
 --
-vector &lt;Uzytkownik&gt; rejestracjaUzytkownika();
-int logowanieUzytkownika();
-vector &lt;Uzytkownik&gt; zmianaHasloUzytkownika();</panel_attributes>
++ void ustawIdUzytkownika();
++ int wypiszIdUzytkownika();
++ void ustawNazweUzytkownika();
++ string wypiszNazweUzytkownika();
++ void ustawHasloUzytkownika();
++ string wypiszHasloUzytkownika();</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>10</x>
-      <y>290</y>
+      <x>60</x>
+      <y>310</y>
       <w>350</w>
       <h>110</h>
     </coordinates>
@@ -47,15 +50,18 @@ vector &lt;Uzytkownik&gt; zmianaHasloUzytkownika();</panel_attributes>
 --
 
 --
-vector &lt;Uzytkownik&gt; menuUzytkownicy();
-char menuUzytkownicyWybor();</panel_attributes>
++ vector &lt;Uzytkownik&gt; menuUzytkownicy();
++ char menuUzytkownicyWybor();
++ vector &lt;Uzytkownik&gt; rejestracjaUzytkownika();
++ int logowanieUzytkownika();
++ vector &lt;Uzytkownik&gt; zmianaHasloUzytkownika();</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>440</x>
-      <y>30</y>
+      <x>490</x>
+      <y>20</y>
       <w>350</w>
       <h>80</h>
     </coordinates>
@@ -69,39 +75,51 @@ vector &lt;Adresat&gt; wczytaniePlikuZAdresatami()</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>440</x>
-      <y>120</y>
+      <x>490</x>
+      <y>110</y>
       <w>350</w>
-      <h>160</h>
+      <h>330</h>
     </coordinates>
     <panel_attributes>Adresat
 --
-int id;
-string imie;
-string nazwisko;
-string email;
-string adres;
-string nrTelefonu;
+- int id;
+- string imie;
+- string nazwisko;
+- string email;
+- string adres;
+- string nrTelefonu;
 --
-vector &lt;Adresat&gt; dodajAdresata();
-void listaAdresatow();
-char menuAdresatWybor();</panel_attributes>
++ void ustawIdAdresata();
++ int wypiszIdAdresata();
++ void ustawImieAdresata();
++ string wypiszImieAdresata();
++ void ustawNazwiskoAdresata();
++ string wypiszNazwiskoAdresta();
++ void ustawNrTelefonuAdresata();
++ string wypiszNrTelefonuAdresata();
++ void ustawEmailAdresata();
++ string wypiszEmailAdresata();
++ void ustawAdresAdresata();
++ string wypiszAdresAdresata();</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>440</x>
-      <y>290</y>
+      <x>490</x>
+      <y>450</y>
       <w>350</w>
-      <h>110</h>
+      <h>150</h>
     </coordinates>
     <panel_attributes>AdresatMaster
 --
 
 --
-vector &lt;Uzytkownik&gt; adresaciMenu();
-void menuAdresatWybor();
++ vector &lt;Uzytkownik&gt; adresaciMenu();
++ void menuAdresatWybor();
++ vector &lt;Adresat&gt; dodajAdresata();
++ void listaAdresatow();
++ char menuAdresatWybor();
 </panel_attributes>
     <additional_attributes/>
   </element>
