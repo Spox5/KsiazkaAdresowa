@@ -14,34 +14,6 @@ char UzytkownikMaster::wyswietlenieMenuUzytkownikaiWybor()
     return wyborUzytkownicy;
 }
 
-vector <Uzytkownik> UzytkownikMaster::menuUzytkownicy(char wyborUzytkownicy, vector <Uzytkownik> uzytkownicy)
-{
-    UzytkownikMaster uzytkownikMaster;
-    AdresatMaster adresatMaster;
-    int idZalogowanegoUzytkownika = 0;
-
-    if (wyborUzytkownicy == '1')
-    {
-        idZalogowanegoUzytkownika = uzytkownikMaster.logowanieUzytkownika(uzytkownicy);
-        if (idZalogowanegoUzytkownika != 0)
-            uzytkownicy = adresatMaster.adresaciMenu(idZalogowanegoUzytkownika, uzytkownicy);
-    }
-    else if (wyborUzytkownicy == '2')
-    {
-        uzytkownicy = uzytkownikMaster.rejestracjaUzytkownika(uzytkownicy);
-    }
-    else if (wyborUzytkownicy == '9')
-    {
-        exit(0);
-    }
-    else
-    {
-        cout << "Nieprawidlowy wybor" << endl;;
-        system("pause");
-    }
-    return uzytkownicy;
-}
-
 vector <Uzytkownik> UzytkownikMaster::rejestracjaUzytkownika (vector <Uzytkownik> uzytkownicy)
 {
     Uzytkownik uzytkownik;

@@ -1,58 +1,6 @@
 #include "AdresatMaster.h"
 #include "UzytkownikMaster.h"
 
-vector <Uzytkownik> AdresatMaster::adresaciMenu(int idZalogowanegoUzytkownika, vector <Uzytkownik> uzytkownicy)
-{
-    UzytkownikMaster uzytkownikMaster;
-    PlikZAdresatami plikZAdresatami;
-    AdresatMaster adresatMaster;
-    vector <Adresat> adresaci = plikZAdresatami.wczytaniePlikuZAdresatami(idZalogowanegoUzytkownika);
-
-    while(1)
-    {
-        char wybor = menuAdresatWybor();
-
-        if (wybor == '1')
-        {
-            adresaci = adresatMaster.dodajAdresata(adresaci, idZalogowanegoUzytkownika);
-        }
-        else if (wybor == '2')
-        {
-            //wyszukajAdresataPoImieniu(adresaci);
-        }
-        else if (wybor == '3')
-        {
-            //wyszukajAdresataPoNazwisku(adresaci);
-        }
-        else if (wybor == '4')
-        {
-            adresatMaster.listaAdresatow(adresaci);
-        }
-        else if (wybor == '5')
-        {
-            //adresaci = usuniecieAdresata(adresaci, idZalogowanegoUzytkownika);
-        }
-        else if (wybor == '6')
-        {
-            //adresaci = edycjaAdresata (adresat, adresaci, idZalogowanegoUzytkownika);
-        }
-        else if (wybor == '7')
-        {
-            uzytkownicy = uzytkownikMaster.zmianaHaslaUzytkownika(uzytkownicy, idZalogowanegoUzytkownika);
-        }
-        else if (wybor == '9')
-        {
-            return uzytkownicy;
-        }
-        else
-        {
-            cout << "Nieprawidlowy wybor." << endl;
-            cout << endl;
-            system("pause");
-        }
-    }
-}
-
 char AdresatMaster::menuAdresatWybor()
 {
     char wybor;
@@ -116,12 +64,10 @@ vector<Adresat> AdresatMaster::dodajAdresata(vector<Adresat>adresaci, int idZalo
 
     adresaci.push_back(adresat);
 
-    plik.open("Adresaci.txt", ios::out | ios::app);
-    plik << adresat.wypiszIdAdresata() << "|" << idZalogowanegoUzytkownika << "|" << adresat.wypiszImieAdresata() << "|" << adresat.wypiszNazwiskoAdresata() << "|" << adresat.wypiszNrTelefonuAdresata()
-         << "|" << adresat.wypiszEmailAdresata() << "|" << adresat.wypiszAdresAdresata() << "|" << endl;
-    cout << "Adresat zostal dodany" << endl;
-    system("pause");
-    plik.close();
+
+
+
+
 
     return adresaci;
 }
