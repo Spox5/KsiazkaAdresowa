@@ -9,6 +9,7 @@ class PlikZAdresatami
 {
 public:
     vector <Adresat> wczytaniePlikuZAdresatami(int idZalogowanegoUzytkownika);
+    void zapisanieNowegoAdresataDoPliku(Adresat adresat);
 };
 
 #endif

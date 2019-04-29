@@ -69,3 +69,15 @@ vector <Adresat> PlikZAdresatami::wczytaniePlikuZAdresatami(int idZalogowanegoUz
 
     return adresaci;
 }
+
+void zapisanieNowegoAdresataDoPliku(Adresat adresat)
+{
+    fstream plikAdresaci;
+    plikAdresaci.open("Adresaci.txt", ios::out | ios::app);
+    plikAdresaci << adresat.wypiszIdAdresata() << "|" << adresat.wypiszIdZalogowanegoUzytkownika() << "|" << adresat.wypiszImieAdresata() << "|" << adresat.wypiszNazwiskoAdresata() << "|" << adresat.wypiszNrTelefonuAdresata()
+         << "|" << adresat.wypiszEmailAdresata() << "|" << adresat.wypiszAdresAdresata() << "|" << endl;
+    plikAdresaci.close();
+
+    cout << "Adresat zostal dodany" << endl;
+    system("pause");
+}
