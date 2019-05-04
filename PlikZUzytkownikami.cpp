@@ -3,12 +3,12 @@
 vector <Uzytkownik> PlikZUzytkownikami::wczytaniePlikuZUzytkownikami()
 {
     Uzytkownik uzytkownik;
-    fstream plikUzytkownicy;
     vector <Uzytkownik> uzytkownicy;
+    fstream plikUzytkownicy;
     string liniaUzytkownicy;
     int licznikUzytkownicy = 0;
 
-    plikUzytkownicy.open("Uzytkownicy.txt", ios::in | ios::out);
+    plikUzytkownicy.open(nazwaPlikuZUzytkownikami.c_str(), ios::in);
     if (plikUzytkownicy.good() == false)
     {
         cout << "Baza uzytkownikow jest pusta." << endl;
@@ -46,10 +46,19 @@ vector <Uzytkownik> PlikZUzytkownikami::wczytaniePlikuZUzytkownikami()
 void PlikZUzytkownikami::zapisanieUzytkownikaDoPliku(Uzytkownik uzytkownik)
 {
     fstream plikUzytkownicy;
-    plikUzytkownicy.open("Uzytkownicy.txt", ios::out | ios::app);
-    plikUzytkownicy << uzytkownik.wypiszIdUzytkownika() << "|" << uzytkownik.wypiszNazweUzytkownika() << "|" << uzytkownik.wypiszHasloUzytkownika() << "|" << endl;
+    plikUzytkownicy.open(nazwaPlikuZUzytkownikami.c_str(), ios::app);
+    if (plikUzytkownicy.good() == true)
+    {
+        plikUzytkownicy << uzytkownik.wypiszIdUzytkownika() << "|" << uzytkownik.wypiszNazweUzytkownika() << "|" << uzytkownik.wypiszHasloUzytkownika() << "|" << endl;
     cout << "Uzytkownik zostal dodany" << endl;
     system("pause");
+    }
+    else
+    {
+        cout << "Nie udalo sie otworzyc pliku " << nazwaPlikuZUzytkownikami << " i zapisac uzytkownika." << endl;
+        system("pause");
+    }
+    plikUzytkownicy.close();
 }
 
 /*string PlikZUzytkownikami::zamienDaneUzytkownikaNaLinieZDanymiOddzielonaPionowymiKreskami(Uzytkownik uzytkownik)

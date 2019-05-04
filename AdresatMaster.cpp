@@ -3,7 +3,7 @@
 
 vector <Uzytkownik> AdresatMaster::adresaciMenu(int idZalogowanegoUzytkownika, vector <Uzytkownik> uzytkownicy)
 {
-    UzytkownikMaster uzytkownikMaster;
+    //UzytkownikMaster uzytkownikMaster;
     PlikZAdresatami plikZAdresatami;
     AdresatMaster adresatMaster;
     vector <Adresat> adresaci = plikZAdresatami.wczytaniePlikuZAdresatami(idZalogowanegoUzytkownika);
@@ -38,7 +38,7 @@ vector <Uzytkownik> AdresatMaster::adresaciMenu(int idZalogowanegoUzytkownika, v
         }
         else if (wybor == '7')
         {
-            uzytkownicy = uzytkownikMaster.zmianaHaslaUzytkownika(uzytkownicy, idZalogowanegoUzytkownika);
+            //uzytkownicy = uzytkownikMaster.zmianaHaslaUzytkownika(uzytkownicy, idZalogowanegoUzytkownika);
         }
         else if (wybor == '9')
         {

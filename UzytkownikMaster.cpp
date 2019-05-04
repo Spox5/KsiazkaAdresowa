@@ -16,19 +16,19 @@ char UzytkownikMaster::wyswietlenieMenuUzytkownikaiWybor()
 
 vector <Uzytkownik> UzytkownikMaster::menuUzytkownicy(char wyborUzytkownicy, vector <Uzytkownik> uzytkownicy)
 {
-    UzytkownikMaster uzytkownikMaster;
+    //UzytkownikMaster uzytkownikMaster;
     AdresatMaster adresatMaster;
     int idZalogowanegoUzytkownika = 0;
 
     if (wyborUzytkownicy == '1')
     {
-        idZalogowanegoUzytkownika = uzytkownikMaster.logowanieUzytkownika(uzytkownicy);
+    //    idZalogowanegoUzytkownika = uzytkownikMaster.logowanieUzytkownika(uzytkownicy);
         if (idZalogowanegoUzytkownika != 0)
             uzytkownicy = adresatMaster.adresaciMenu(idZalogowanegoUzytkownika, uzytkownicy);
     }
     else if (wyborUzytkownicy == '2')
     {
-        uzytkownicy = uzytkownikMaster.rejestracjaUzytkownika(uzytkownicy);
+//        uzytkownicy = uzytkownikMaster.rejestracjaUzytkownika();
     }
     else if (wyborUzytkownicy == '9')
     {
@@ -42,10 +42,9 @@ vector <Uzytkownik> UzytkownikMaster::menuUzytkownicy(char wyborUzytkownicy, vec
     return uzytkownicy;
 }
 
-vector <Uzytkownik> UzytkownikMaster::rejestracjaUzytkownika (vector <Uzytkownik> uzytkownicy)
+void UzytkownikMaster::rejestracjaUzytkownika ()
 {
     Uzytkownik uzytkownik;
-    PlikZUzytkownikami plikZUzytkownikami;
     string nazwaUzytkownika, hasloUzytkownika;
 
     cout << "Podaj nazwe uzytkownika: " << endl;
@@ -53,7 +52,7 @@ vector <Uzytkownik> UzytkownikMaster::rejestracjaUzytkownika (vector <Uzytkownik
     if (uzytkownicy.size() != 0)
     {
         int i = 0;
-        while (i <= uzytkownicy.size())
+        while (i < uzytkownicy.size())
         {
             if (nazwaUzytkownika == uzytkownicy[i].wypiszNazweUzytkownika())
             {
@@ -81,7 +80,6 @@ vector <Uzytkownik> UzytkownikMaster::rejestracjaUzytkownika (vector <Uzytkownik
 
     plikZUzytkownikami.zapisanieUzytkownikaDoPliku(uzytkownik);
 
-    return uzytkownicy;
 }
 
 int UzytkownikMaster::logowanieUzytkownika (vector <Uzytkownik> uzytkownicy)
@@ -147,4 +145,21 @@ vector <Uzytkownik> UzytkownikMaster::zmianaHaslaUzytkownika(vector <Uzytkownik>
     }
     plikUzytkownicy.close();
     return uzytkownicy;
+}
+
+void UzytkownikMaster::wypiszWszystkichUzytkownikow()
+{
+    //PlikZUzytkownikami plikZUzytkownikami;
+    //plikZUzytkownikami.wczytaniePlikuZUzytkownikami();
+    for (int i = 0; i < uzytkownicy.size(); i++)
+    {
+        cout << uzytkownicy[i].wypiszIdUzytkownika() << endl;
+        cout << uzytkownicy[i].wypiszNazweUzytkownika() << endl;
+        cout << uzytkownicy[i].wypiszHasloUzytkownika() << endl;
+    }
+}
+
+void UzytkownikMaster::wczytaniePlikuZUzytkownikami()
+{
+    uzytkownicy = plikZUzytkownikami.wczytaniePlikuZUzytkownikami();
 }
