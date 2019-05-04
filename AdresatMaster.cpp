@@ -1,10 +1,6 @@
 #include "AdresatMaster.h"
 #include "UzytkownikMaster.h"
 
-AdresatMaster::AdresatMaster()
-{
-
-}
 
 void AdresatMaster::ustawWektorAdresaci(vector <Adresat> nowyWektorAdresaci)
 {
@@ -16,9 +12,9 @@ vector <Adresat> AdresatMaster::pobierzWektorAdresaci()
     return adresaci;
 }
 
-void AdresatMaster::wczytaniePlikuZAdresatami(int idZalogowanegoAdresata)
+void AdresatMaster::wczytaniePlikuZAdresatami(int idZalogowanegoUzytkownika)
 {
-    adresaci = plikZAdresatami.wczytaniePlikuZAdresatami(idZalogowanegoAdresata);
+    adresaci = plikZAdresatami.wczytaniePlikuZAdresatami(idZalogowanegoUzytkownika);
 }
 
 /*vector <Uzytkownik> AdresatMaster::adresaciMenu(int idZalogowanegoUzytkownika, vector <Uzytkownik> uzytkownicy)
@@ -71,7 +67,7 @@ void AdresatMaster::wczytaniePlikuZAdresatami(int idZalogowanegoAdresata)
             system("pause");
         }
     }
-}*/
+}
 
 char AdresatMaster::menuAdresatWybor()
 {
@@ -90,7 +86,7 @@ char AdresatMaster::menuAdresatWybor()
     cin >> wybor;
 
     return wybor;
-}
+}*/
 
 void AdresatMaster::dodajAdresata(int idZalogowanegoUzytkownika)
 {
@@ -118,7 +114,7 @@ void AdresatMaster::dodajAdresata(int idZalogowanegoUzytkownika)
     getline(cin>>ws, adres);
     adresat.ustawAdresAdresata(adres);
 
-    plik.open("Adresaci.txt", ios::in | ios:: out);
+    plik.open(plikZAdresatami.wypiszNazwePlikuZAdresatami().c_str(), ios::in | ios:: out);
     while(getline(plik, linia))
     {
         idOstatniegoAdresataString = linia[0];
@@ -135,20 +131,13 @@ void AdresatMaster::dodajAdresata(int idZalogowanegoUzytkownika)
 
     adresaci.push_back(adresat);
 
-    plik.open("Adresaci.txt", ios::out | ios::app);
-    plik << adresat.wypiszIdAdresata() << "|" << idZalogowanegoUzytkownika << "|" << adresat.wypiszImieAdresata() << "|" << adresat.wypiszNazwiskoAdresata() << "|" << adresat.wypiszNrTelefonuAdresata()
-         << "|" << adresat.wypiszEmailAdresata() << "|" << adresat.wypiszAdresAdresata() << "|" << endl;
-    cout << "Adresat zostal dodany" << endl;
-    system("pause");
-    plik.close();
+    plikZAdresatami.zapisanieAdresataDoPliku(adresat, idZalogowanegoUzytkownika);
 
 }
 
-void AdresatMaster::listaAdresatow()
+void AdresatMaster::listaAdresatow(int idZalogowanegoUzytkownika)
 {
-    plikZAdresatami.wczytaniePlikuZAdresatami(1);
-    cout << adresaci.size();
-    system("pause");
+    adresaci = plikZAdresatami.wczytaniePlikuZAdresatami(idZalogowanegoUzytkownika);
     if (adresaci.size() == 0)
     {
         system("cls");

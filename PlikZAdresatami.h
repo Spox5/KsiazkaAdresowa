@@ -11,7 +11,10 @@ class PlikZAdresatami
     string nazwaPlikuZAdresatami;
 
 public:
+    PlikZAdresatami();
+    string wypiszNazwePlikuZAdresatami();
     vector <Adresat> wczytaniePlikuZAdresatami(int idZalogowanegoUzytkownika);
+    void zapisanieAdresataDoPliku(Adresat adresat, int idZalogowanegoUzytkownika);
 };
 
 #endif

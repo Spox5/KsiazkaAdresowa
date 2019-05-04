@@ -50,8 +50,6 @@ void PlikZUzytkownikami::zapisanieUzytkownikaDoPliku(Uzytkownik uzytkownik)
     if (plikUzytkownicy.good() == true)
     {
         plikUzytkownicy << uzytkownik.wypiszIdUzytkownika() << "|" << uzytkownik.wypiszNazweUzytkownika() << "|" << uzytkownik.wypiszHasloUzytkownika() << "|" << endl;
-    cout << "Uzytkownik zostal dodany" << endl;
-    system("pause");
     }
     else
     {
@@ -61,22 +59,16 @@ void PlikZUzytkownikami::zapisanieUzytkownikaDoPliku(Uzytkownik uzytkownik)
     plikUzytkownicy.close();
 }
 
-/*string PlikZUzytkownikami::zamienDaneUzytkownikaNaLinieZDanymiOddzielonaPionowymiKreskami(Uzytkownik uzytkownik)
+void PlikZUzytkownikami::zapisanieZmienionegoHaslaDoPliku(vector <Uzytkownik> uzytkownicy)
 {
-    string liniaZDanymiUzytkownika = "";
-
-
-    liniaZDanymiUzytkownika += PlikZUzytkownikami::konwerjsaIntNaString(uzytkownik.wypiszIdUzytkownika())+ '|';
-    liniaZDanymiUzytkownika += uzytkownik.wypiszNazweUzytkownika() + '|';
-    liniaZDanymiUzytkownika += uzytkownik.wypiszHasloUzytkownika() + '|';
-
-    return liniaZDanymiUzytkownika;
+    fstream plikUzytkownicy;
+    plikUzytkownicy.open(nazwaPlikuZUzytkownikami.c_str(), ios::out);
+    for (int j = 0; j <= uzytkownicy.size()-1; j++)
+    {
+        plikUzytkownicy << uzytkownicy[j].wypiszIdUzytkownika() << "|" << uzytkownicy[j].wypiszNazweUzytkownika() << "|"
+                        << uzytkownicy[j].wypiszHasloUzytkownika() << "|" << endl;
+    }
+    cout << "Haslo zostalo zmienione." << endl;
+    system("pause");
+    plikUzytkownicy.close();
 }
-
-string PlikZUzytkownikami::konwerjsaIntNaString(int liczba)
-{
-    ostringstream ss;
-    ss << liczba;
-    string str = ss.str();
-    return str;
-}*/

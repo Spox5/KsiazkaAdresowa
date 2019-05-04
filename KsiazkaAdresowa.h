@@ -15,17 +15,15 @@ class KsiazkaAdresowa
 public:
     KsiazkaAdresowa(string nazwaPlikuZUzytkownikami) : uzytkownikMaster(nazwaPlikuZUzytkownikami) {
     uzytkownikMaster.wczytaniePlikuZUzytkownikami();
-    adresatMaster.wczytaniePlikuZAdresatami(1);
     };
     void rejestracjaUzytkownika ();
     int logowanieUzytkownika();
-    vector <Uzytkownik> zmianaHaslaUzytkownika(int idZalogowanegoUzytkownika);
     void wypiszWszystkichUzytkownikow();
     int wylogowanieUzytkownika();
+    vector <Uzytkownik> zmianaHaslaUzytkownika(int idZalogowanegoUzytkownika);
 
-    //wczytanie pliku z adresatami
     void dodajAdresata(int idZalogowanegoUzytkownika);
-    void listaAdresatow();
+    void listaAdresatow(int idZalogowanegoUzytkownika);
 
 };
 
