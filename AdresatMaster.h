@@ -11,10 +11,10 @@ class AdresatMaster
     PlikZAdresatami plikZAdresatami;
 
 
+
 public:
     vector <Adresat> adresaci;
 
-    AdresatMaster();
     void ustawWektorAdresaci(vector <Adresat> nowyWektorAdresat);
     vector <Adresat> pobierzWektorAdresaci();
 
@@ -23,7 +23,7 @@ public:
 
     void wczytaniePlikuZAdresatami(int idZalogowanegoUzytkownika);
     void dodajAdresata(int idZalogowanegoUzytkownika);
-    void listaAdresatow();
+    void listaAdresatow(int idZalogowanegoUzytkownika);
 };
 
 #endif

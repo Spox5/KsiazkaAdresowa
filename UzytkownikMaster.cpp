@@ -131,26 +131,16 @@ int UzytkownikMaster::logowanieUzytkownika ()
 
 vector <Uzytkownik> UzytkownikMaster::zmianaHaslaUzytkownika(int idZalogowanegoUzytkownika)
 {
-    ofstream plikUzytkownicy;
     string noweHaslo;
 
     cout << "Podaj nowe haslo:" << endl;
     cin >> noweHaslo;
-
     for (int i = 0; i < uzytkownicy.size(); i++)
     {
         if (idZalogowanegoUzytkownika == uzytkownicy[i].wypiszIdUzytkownika())
         {
             uzytkownicy[i].ustawHasloUzytkownika(noweHaslo);
-            plikUzytkownicy.open("Uzytkownicy.txt");
-            for (int j = 0; j <= uzytkownicy.size()-1; j++)
-            {
-                plikUzytkownicy << uzytkownicy[j].wypiszIdUzytkownika() << "|" << uzytkownicy[j].wypiszNazweUzytkownika() << "|"
-                                << uzytkownicy[j].wypiszHasloUzytkownika() << "|" << endl;
-            }
-            cout << "Haslo zostalo zmienione." << endl;
-            system("pause");
-            plikUzytkownicy.close();
+            plikZUzytkownikami.zapisanieZmienionegoHaslaDoPliku(pobierzWektorUzytkownicy());
         }
     }
     return uzytkownicy;

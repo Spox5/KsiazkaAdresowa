@@ -32,7 +32,7 @@ void KsiazkaAdresowa::dodajAdresata(int idZalogowanegoUzytkownika)
     adresatMaster.dodajAdresata(idZalogowanegoUzytkownika);
 }
 
-void KsiazkaAdresowa::listaAdresatow()
+void KsiazkaAdresowa::listaAdresatow(int idZalogowanegoUzytkownika)
 {
-    adresatMaster.listaAdresatow();
+    adresatMaster.listaAdresatow(idZalogowanegoUzytkownika);
 }

@@ -7,7 +7,6 @@ using namespace std;
 
 class UzytkownikMaster
 {
-
     PlikZUzytkownikami plikZUzytkownikami;
     vector <Uzytkownik> uzytkownicy;
 
