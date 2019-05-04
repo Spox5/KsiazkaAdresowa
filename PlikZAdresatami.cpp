@@ -5,13 +5,13 @@ vector <Adresat> PlikZAdresatami::wczytaniePlikuZAdresatami(int idZalogowanegoUz
     Adresat adresat;
     vector <Adresat> adresaci;
     fstream plikZAdresatami;
-    string liniaCalosc;
-    string linia;
-    int idUzytkownikaSprawdzenie;
+    string liniaCalosc = "";
+    string linia = "";
+    int idUzytkownikaSprawdzenie = 0;
     int licznik = 0;
-    bool czyZapisacUzytkownika;
+    bool czyZapisacUzytkownika = false;
 
-    plikZAdresatami.open("Adresaci.txt", ios::in | ios::out);
+    plikZAdresatami.open("Adresaci.txt", ios::in);
     if (plikZAdresatami.good() == false)
     {
         cout << "Baza adresatow jest pusta." << endl;
@@ -66,6 +66,9 @@ vector <Adresat> PlikZAdresatami::wczytaniePlikuZAdresatami(int idZalogowanegoUz
             licznik = 0;
     }
     plikZAdresatami.close();
+
+    cout << adresaci.size();
+    system("pause");
 
     return adresaci;
 }

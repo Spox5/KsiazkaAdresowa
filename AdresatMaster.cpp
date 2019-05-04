@@ -1,7 +1,27 @@
 #include "AdresatMaster.h"
 #include "UzytkownikMaster.h"
 
-vector <Uzytkownik> AdresatMaster::adresaciMenu(int idZalogowanegoUzytkownika, vector <Uzytkownik> uzytkownicy)
+AdresatMaster::AdresatMaster()
+{
+
+}
+
+void AdresatMaster::ustawWektorAdresaci(vector <Adresat> nowyWektorAdresaci)
+{
+    adresaci = nowyWektorAdresaci;
+}
+
+vector <Adresat> AdresatMaster::pobierzWektorAdresaci()
+{
+    return adresaci;
+}
+
+void AdresatMaster::wczytaniePlikuZAdresatami(int idZalogowanegoAdresata)
+{
+    adresaci = plikZAdresatami.wczytaniePlikuZAdresatami(idZalogowanegoAdresata);
+}
+
+/*vector <Uzytkownik> AdresatMaster::adresaciMenu(int idZalogowanegoUzytkownika, vector <Uzytkownik> uzytkownicy)
 {
     //UzytkownikMaster uzytkownikMaster;
     PlikZAdresatami plikZAdresatami;
@@ -14,7 +34,7 @@ vector <Uzytkownik> AdresatMaster::adresaciMenu(int idZalogowanegoUzytkownika, v
 
         if (wybor == '1')
         {
-            adresaci = adresatMaster.dodajAdresata(adresaci, idZalogowanegoUzytkownika);
+            //adresaci = adresatMaster.dodajAdresata(adresaci, idZalogowanegoUzytkownika);
         }
         else if (wybor == '2')
         {
@@ -26,7 +46,7 @@ vector <Uzytkownik> AdresatMaster::adresaciMenu(int idZalogowanegoUzytkownika, v
         }
         else if (wybor == '4')
         {
-            adresatMaster.listaAdresatow(adresaci);
+            //adresatMaster.listaAdresatow(adresaci);
         }
         else if (wybor == '5')
         {
@@ -51,7 +71,7 @@ vector <Uzytkownik> AdresatMaster::adresaciMenu(int idZalogowanegoUzytkownika, v
             system("pause");
         }
     }
-}
+}*/
 
 char AdresatMaster::menuAdresatWybor()
 {
@@ -72,11 +92,10 @@ char AdresatMaster::menuAdresatWybor()
     return wybor;
 }
 
-vector<Adresat> AdresatMaster::dodajAdresata(vector<Adresat>adresaci, int idZalogowanegoUzytkownika)
+void AdresatMaster::dodajAdresata(int idZalogowanegoUzytkownika)
 {
     Adresat adresat;
     string imie, nazwisko, nrTelefonu, email, adres;
-    int id;
     fstream plik;
     string linia;
     string idOstatniegoAdresataString;
@@ -123,11 +142,13 @@ vector<Adresat> AdresatMaster::dodajAdresata(vector<Adresat>adresaci, int idZalo
     system("pause");
     plik.close();
 
-    return adresaci;
 }
 
-void AdresatMaster::listaAdresatow(vector<Adresat> adresaci)
+void AdresatMaster::listaAdresatow()
 {
+    plikZAdresatami.wczytaniePlikuZAdresatami(1);
+    cout << adresaci.size();
+    system("pause");
     if (adresaci.size() == 0)
     {
         system("cls");

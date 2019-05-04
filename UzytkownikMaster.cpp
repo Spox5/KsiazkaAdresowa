@@ -1,7 +1,17 @@
 #include "UzytkownikMaster.h"
 #include "AdresatMaster.h"
 
-char UzytkownikMaster::wyswietlenieMenuUzytkownikaiWybor()
+void UzytkownikMaster::ustawWektorUzytkownicy(vector <Uzytkownik> nowyWektorUzytkownicy)
+{
+    uzytkownicy = nowyWektorUzytkownicy;
+}
+
+vector <Uzytkownik> UzytkownikMaster::pobierzWektorUzytkownicy()
+{
+    return uzytkownicy;
+}
+
+/*char UzytkownikMaster::wyswietlenieMenuUzytkownikaiWybor()
 {
     char wyborUzytkownicy;
 
@@ -40,7 +50,7 @@ vector <Uzytkownik> UzytkownikMaster::menuUzytkownicy(char wyborUzytkownicy, vec
         system("pause");
     }
     return uzytkownicy;
-}
+}*/
 
 void UzytkownikMaster::rejestracjaUzytkownika ()
 {
@@ -82,7 +92,7 @@ void UzytkownikMaster::rejestracjaUzytkownika ()
 
 }
 
-int UzytkownikMaster::logowanieUzytkownika (vector <Uzytkownik> uzytkownicy)
+int UzytkownikMaster::logowanieUzytkownika ()
 {
     string nazwaUzytkownika, hasloUzytkownika;
 
@@ -119,7 +129,7 @@ int UzytkownikMaster::logowanieUzytkownika (vector <Uzytkownik> uzytkownicy)
     return 0;
 }
 
-vector <Uzytkownik> UzytkownikMaster::zmianaHaslaUzytkownika(vector <Uzytkownik> uzytkownicy, int idZalogowanegoUzytkownika)
+vector <Uzytkownik> UzytkownikMaster::zmianaHaslaUzytkownika(int idZalogowanegoUzytkownika)
 {
     ofstream plikUzytkownicy;
     string noweHaslo;
@@ -132,25 +142,36 @@ vector <Uzytkownik> UzytkownikMaster::zmianaHaslaUzytkownika(vector <Uzytkownik>
         if (idZalogowanegoUzytkownika == uzytkownicy[i].wypiszIdUzytkownika())
         {
             uzytkownicy[i].ustawHasloUzytkownika(noweHaslo);
-            plikUzytkownicy.close();
             plikUzytkownicy.open("Uzytkownicy.txt");
-            for (int i = 0; i <= uzytkownicy.size()-1; i++)
+            for (int j = 0; j <= uzytkownicy.size()-1; j++)
             {
-                plikUzytkownicy << uzytkownicy[i].wypiszIdUzytkownika() << "|" << uzytkownicy[i].wypiszNazweUzytkownika() << "|"
-                                << uzytkownicy[i].wypiszHasloUzytkownika() << "|" << endl;
+                plikUzytkownicy << uzytkownicy[j].wypiszIdUzytkownika() << "|" << uzytkownicy[j].wypiszNazweUzytkownika() << "|"
+                                << uzytkownicy[j].wypiszHasloUzytkownika() << "|" << endl;
             }
             cout << "Haslo zostalo zmienione." << endl;
             system("pause");
+            plikUzytkownicy.close();
         }
     }
-    plikUzytkownicy.close();
     return uzytkownicy;
+}
+
+void UzytkownikMaster::wczytaniePlikuZUzytkownikami()
+{
+    uzytkownicy = plikZUzytkownikami.wczytaniePlikuZUzytkownikami();
+}
+
+int UzytkownikMaster::wylogowanieUzytkownika()
+{
+    AdresatMaster adresatMaster;
+    adresatMaster.adresaci.clear();
+    int idZalogowanegoUzytkownika;
+    return idZalogowanegoUzytkownika = 0;
 }
 
 void UzytkownikMaster::wypiszWszystkichUzytkownikow()
 {
-    //PlikZUzytkownikami plikZUzytkownikami;
-    //plikZUzytkownikami.wczytaniePlikuZUzytkownikami();
+    plikZUzytkownikami.wczytaniePlikuZUzytkownikami();
     for (int i = 0; i < uzytkownicy.size(); i++)
     {
         cout << uzytkownicy[i].wypiszIdUzytkownika() << endl;
@@ -159,7 +180,4 @@ void UzytkownikMaster::wypiszWszystkichUzytkownikow()
     }
 }
 
-void UzytkownikMaster::wczytaniePlikuZUzytkownikami()
-{
-    uzytkownicy = plikZUzytkownikami.wczytaniePlikuZUzytkownikami();
-}
+
