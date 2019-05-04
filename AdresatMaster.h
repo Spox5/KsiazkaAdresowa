@@ -8,11 +8,22 @@ using namespace std;
 
 class AdresatMaster
 {
+    PlikZAdresatami plikZAdresatami;
+
+
 public:
+    vector <Adresat> adresaci;
+
+    AdresatMaster();
+    void ustawWektorAdresaci(vector <Adresat> nowyWektorAdresat);
+    vector <Adresat> pobierzWektorAdresaci();
+
     vector <Uzytkownik> adresaciMenu(int idZalogowanegoUzytkownika, vector <Uzytkownik> uzytkownicy);
     char menuAdresatWybor();
-    vector <Adresat> dodajAdresata(vector<Adresat>adresaci, int idZalogowanegoUzytkownika);
-    void listaAdresatow(vector<Adresat> adresaci);
+
+    void wczytaniePlikuZAdresatami(int idZalogowanegoUzytkownika);
+    void dodajAdresata(int idZalogowanegoUzytkownika);
+    void listaAdresatow();
 };
 
 #endif

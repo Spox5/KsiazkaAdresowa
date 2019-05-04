@@ -5,33 +5,15 @@ using namespace std;
 
 int main()
 {
-    KsiazkaAdresowa ksiazkaAdresowa("Uzytkownicy2.txt");
-
-    ksiazkaAdresowa.wypiszWszystkichUzytkownikow();
-    ksiazkaAdresowa.rejestracjaUzytkownika();
-    ksiazkaAdresowa.rejestracjaUzytkownika();
-    ksiazkaAdresowa.wypiszWszystkichUzytkownikow();
+    KsiazkaAdresowa ksiazkaAdresowa("Uzytkownicy.txt");
 
 
-    /*PlikZUzytkownikami plikZUzytkownikami;
-    PlikZAdresatami plikZAdresatami;
-    AdresatMaster adresatMaster;
-    UzytkownikMaster uzytkownikMaster;
+    ksiazkaAdresowa.listaAdresatow();
+    ksiazkaAdresowa.dodajAdresata(1);
+    ksiazkaAdresowa.listaAdresatow();
 
-    plikZUzytkownikami.wczytaniePlikuZUzytkownikami();
-    adresatMaster.listaAdresatow(plikZAdresatami.wczytaniePlikuZAdresatami(1));
-    ///////////
+    //ksiazkaAdresowa.zmianaHaslaUzytkownika(1); - do poprawy
+    ksiazkaAdresowa.wylogowanieUzytkownika();
 
-    PlikZUzytkownikami plikZUzytkownikami;
-    UzytkownikMaster uzytkownikMaster;
-    vector <Uzytkownik> uzytkownicy;
-
-    uzytkownicy = plikZUzytkownikami.wczytaniePlikuZUzytkownikami();
-
-    while (1)
-    {
-        char wyborUzytkownicy = uzytkownikMaster.menuUzytkownicyWybor();
-        uzytkownicy = uzytkownikMaster.menuUzytkownicy(wyborUzytkownicy, uzytkownicy);
-    }*/
     return 0;
 }
