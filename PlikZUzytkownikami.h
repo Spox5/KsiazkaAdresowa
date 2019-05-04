@@ -8,7 +8,11 @@ using namespace std;
 
 class PlikZUzytkownikami
 {
+    const string nazwaPlikuZUzytkownikami;
+
+
 public:
+    PlikZUzytkownikami(string NAZWAPLIKUZUZYTKOWNIKAMI) : nazwaPlikuZUzytkownikami(NAZWAPLIKUZUZYTKOWNIKAMI) {};
     vector <Uzytkownik> wczytaniePlikuZUzytkownikami();
     void zapisanieUzytkownikaDoPliku(Uzytkownik uzytkownik);
     //

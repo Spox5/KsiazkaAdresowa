@@ -1,21 +1,28 @@
 #include <iostream>
-#include "UzytkownikMaster.h"
-#include "AdresatMaster.h"
+#include "KsiazkaAdresowa.h"
 
 using namespace std;
 
 int main()
 {
-    PlikZUzytkownikami plikZUzytkownikami;
+    KsiazkaAdresowa ksiazkaAdresowa("Uzytkownicy2.txt");
+
+    ksiazkaAdresowa.wypiszWszystkichUzytkownikow();
+    ksiazkaAdresowa.rejestracjaUzytkownika();
+    ksiazkaAdresowa.rejestracjaUzytkownika();
+    ksiazkaAdresowa.wypiszWszystkichUzytkownikow();
+
+
+    /*PlikZUzytkownikami plikZUzytkownikami;
     PlikZAdresatami plikZAdresatami;
     AdresatMaster adresatMaster;
     UzytkownikMaster uzytkownikMaster;
 
     plikZUzytkownikami.wczytaniePlikuZUzytkownikami();
     adresatMaster.listaAdresatow(plikZAdresatami.wczytaniePlikuZAdresatami(1));
-    uzytkownikMaster.wyswietlenieMenuUzytkownikaiWybor();
+    ///////////
 
-    /*PlikZUzytkownikami plikZUzytkownikami;
+    PlikZUzytkownikami plikZUzytkownikami;
     UzytkownikMaster uzytkownikMaster;
     vector <Uzytkownik> uzytkownicy;
 
