@@ -11,12 +11,13 @@ class UzytkownikMaster
     vector <Uzytkownik> uzytkownicy;
 
 public:
-    UzytkownikMaster(string nazwaPlikuZUzytkownikami) : plikZUzytkownikami(nazwaPlikuZUzytkownikami) {};
+    UzytkownikMaster(string nazwaPlikuZUzytkownikami) : plikZUzytkownikami(nazwaPlikuZUzytkownikami) {
+    uzytkownicy = plikZUzytkownikami.wczytaniePlikuZUzytkownikami();
+    };
 
     void ustawWektorUzytkownicy(vector <Uzytkownik> nowyWektorUzytkownicy);
     vector <Uzytkownik> pobierzWektorUzytkownicy();
     vector <Uzytkownik> menuUzytkownicy(char wyborUzytkownicy, vector <Uzytkownik> uzytkownicy);
-    void wczytaniePlikuZUzytkownikami();
     char wyswietlenieMenuUzytkownikaiWybor();
     void rejestracjaUzytkownika();
     int logowanieUzytkownika ();

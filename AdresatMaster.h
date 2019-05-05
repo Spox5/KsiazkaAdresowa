@@ -9,11 +9,13 @@ using namespace std;
 class AdresatMaster
 {
     PlikZAdresatami plikZAdresatami;
-
-
+    int idZalogowanegoUzytkownika;
+    vector <Adresat> adresaci;
 
 public:
-    vector <Adresat> adresaci;
+    AdresatMaster(string nazwaPlikuZAdresatami) : plikZAdresatami(nazwaPlikuZAdresatami) {
+    adresaci = plikZAdresatami.wczytaniePlikuZAdresatami(idZalogowanegoUzytkownika);
+    };
 
     void ustawWektorAdresaci(vector <Adresat> nowyWektorAdresat);
     vector <Adresat> pobierzWektorAdresaci();

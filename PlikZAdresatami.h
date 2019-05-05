@@ -8,10 +8,11 @@ using namespace std;
 
 class PlikZAdresatami
 {
-    string nazwaPlikuZAdresatami;
+    const string NAZWA_PLIKU_Z_ADRESATAMI;
+
 
 public:
-    PlikZAdresatami();
+    PlikZAdresatami(string nazwaPlikuZAdresatami) : NAZWA_PLIKU_Z_ADRESATAMI(nazwaPlikuZAdresatami) {};
     string wypiszNazwePlikuZAdresatami();
     vector <Adresat> wczytaniePlikuZAdresatami(int idZalogowanegoUzytkownika);
     void zapisanieAdresataDoPliku(Adresat adresat, int idZalogowanegoUzytkownika);

@@ -146,15 +146,10 @@ vector <Uzytkownik> UzytkownikMaster::zmianaHaslaUzytkownika(int idZalogowanegoU
     return uzytkownicy;
 }
 
-void UzytkownikMaster::wczytaniePlikuZUzytkownikami()
-{
-    uzytkownicy = plikZUzytkownikami.wczytaniePlikuZUzytkownikami();
-}
-
 int UzytkownikMaster::wylogowanieUzytkownika()
 {
-    AdresatMaster adresatMaster;
-    adresatMaster.adresaci.clear();
+    //AdresatMaster adresatMaster;
+    //adresaci.clear();
     int idZalogowanegoUzytkownika;
     return idZalogowanegoUzytkownika = 0;
 }

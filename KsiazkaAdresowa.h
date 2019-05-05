@@ -12,9 +12,11 @@ class KsiazkaAdresowa
     UzytkownikMaster uzytkownikMaster;
     AdresatMaster adresatMaster;
 
+
 public:
-    KsiazkaAdresowa(string nazwaPlikuZUzytkownikami) : uzytkownikMaster(nazwaPlikuZUzytkownikami) {
-    uzytkownikMaster.wczytaniePlikuZUzytkownikami();
+    KsiazkaAdresowa(string nazwaPlikuZUzytkownikami, string nazwaPlikuZAdresatami)
+    : uzytkownikMaster(nazwaPlikuZUzytkownikami), adresatMaster(nazwaPlikuZAdresatami) {
+
     };
     void rejestracjaUzytkownika ();
     int logowanieUzytkownika();
