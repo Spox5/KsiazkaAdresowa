@@ -12,7 +12,7 @@ int KsiazkaAdresowa::logowanieUzytkownika()
     uzytkownikMaster.logowanieUzytkownika();
 }
 
-vector <Uzytkownik> KsiazkaAdresowa::zmianaHaslaUzytkownika(int idZalogowanegoUzytkownika)
+void KsiazkaAdresowa::zmianaHaslaUzytkownika(int idZalogowanegoUzytkownika)
 {
     uzytkownikMaster.zmianaHaslaUzytkownika(idZalogowanegoUzytkownika);
 }

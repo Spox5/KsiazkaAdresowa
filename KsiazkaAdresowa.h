@@ -20,7 +20,7 @@ public:
     int logowanieUzytkownika();
     void wypiszWszystkichUzytkownikow();
     int wylogowanieUzytkownika();
-    vector <Uzytkownik> zmianaHaslaUzytkownika(int idZalogowanegoUzytkownika);
+    void zmianaHaslaUzytkownika(int idZalogowanegoUzytkownika);
 
     void dodajAdresata(int idZalogowanegoUzytkownika);
     void listaAdresatow(int idZalogowanegoUzytkownika);
