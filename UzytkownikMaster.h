@@ -17,8 +17,8 @@ public:
 
     void ustawWektorUzytkownicy(vector <Uzytkownik> nowyWektorUzytkownicy);
     vector <Uzytkownik> pobierzWektorUzytkownicy();
-    vector <Uzytkownik> menuUzytkownicy(char wyborUzytkownicy, vector <Uzytkownik> uzytkownicy);
-    char wyswietlenieMenuUzytkownikaiWybor();
+    //vector <Uzytkownik> menuUzytkownicy(char wyborUzytkownicy, vector <Uzytkownik> uzytkownicy);
+    //char wyswietlenieMenuUzytkownikaiWybor();
     void rejestracjaUzytkownika();
     int logowanieUzytkownika ();
     vector <Uzytkownik> zmianaHaslaUzytkownika(int idZalogowanegoUzytkownika);

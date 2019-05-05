@@ -16,9 +16,6 @@ public:
     vector <Uzytkownik> wczytaniePlikuZUzytkownikami();
     void zapisanieUzytkownikaDoPliku(Uzytkownik uzytkownik);
     void zapisanieZmienionegoHaslaDoPliku(vector <Uzytkownik> uzytkownicy);
-    //
-    string zamienDaneUzytkownikaNaLinieZDanymiOddzielonaPionowymiKreskami();
-    static string konwerjsaIntNaString(int liczba);
 };
 
 #endif // PLIKZUZYTKOWNIKAMI

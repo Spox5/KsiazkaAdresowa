@@ -20,8 +20,8 @@ public:
     void ustawWektorAdresaci(vector <Adresat> nowyWektorAdresat);
     vector <Adresat> pobierzWektorAdresaci();
 
-    vector <Uzytkownik> adresaciMenu(int idZalogowanegoUzytkownika, vector <Uzytkownik> uzytkownicy);
-    char menuAdresatWybor();
+    //vector <Uzytkownik> adresaciMenu(int idZalogowanegoUzytkownika, vector <Uzytkownik> uzytkownicy);
+    //char menuAdresatWybor();
 
     void wczytaniePlikuZAdresatami(int idZalogowanegoUzytkownika);
     void dodajAdresata(int idZalogowanegoUzytkownika);
