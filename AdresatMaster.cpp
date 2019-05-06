@@ -12,6 +12,16 @@ vector <Adresat> AdresatMaster::pobierzWektorAdresaci()
     return adresaci;
 }
 
+void AdresatMaster::ustawIdZalogowanegoUzytkownika(int noweIdZalogowanegoUzytkownika)
+{
+    idZalogowanegoUzytkownika = noweIdZalogowanegoUzytkownika;
+}
+
+int AdresatMaster::pobierzIdZalogowanegoUzytkownika()
+{
+    return idZalogowanegoUzytkownika;
+}
+
 void AdresatMaster::wczytaniePlikuZAdresatami(int idZalogowanegoUzytkownika)
 {
     adresaci = plikZAdresatami.wczytaniePlikuZAdresatami(idZalogowanegoUzytkownika);
@@ -130,6 +140,8 @@ void AdresatMaster::dodajAdresata(int idZalogowanegoUzytkownika)
         adresat.ustawIdAdresata(idOstatniegoAdresata + 1);
 
     adresaci.push_back(adresat);
+    cout << "Adresat zostal dodany" << endl;
+    system("pause");
 
     plikZAdresatami.zapisanieAdresataDoPliku(adresat, idZalogowanegoUzytkownika);
 

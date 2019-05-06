@@ -87,6 +87,8 @@ void UzytkownikMaster::rejestracjaUzytkownika ()
     else
         uzytkownik.ustawIdUzytkownika(uzytkownicy.size() + 1);
     uzytkownicy.push_back(uzytkownik);
+    cout << "Nowy uzytkownik zostal utworzony" << endl;
+    system("pause");
 
     plikZUzytkownikami.zapisanieUzytkownikaDoPliku(uzytkownik);
 

@@ -15,10 +15,14 @@ class AdresatMaster
 public:
     AdresatMaster(string nazwaPlikuZAdresatami) : plikZAdresatami(nazwaPlikuZAdresatami) {
     adresaci = plikZAdresatami.wczytaniePlikuZAdresatami(idZalogowanegoUzytkownika);
+    idZalogowanegoUzytkownika = 0;
     };
 
     void ustawWektorAdresaci(vector <Adresat> nowyWektorAdresat);
     vector <Adresat> pobierzWektorAdresaci();
+
+    void ustawIdZalogowanegoUzytkownika(int noweIdZalogowanegoUzytkownika);
+    int pobierzIdZalogowanegoUzytkownika();
 
     //vector <Uzytkownik> adresaciMenu(int idZalogowanegoUzytkownika, vector <Uzytkownik> uzytkownicy);
     //char menuAdresatWybor();

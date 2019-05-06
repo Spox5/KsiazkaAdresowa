@@ -12,6 +12,16 @@ int KsiazkaAdresowa::logowanieUzytkownika()
     uzytkownikMaster.logowanieUzytkownika();
 }
 
+int KsiazkaAdresowa::pobierzIdZalogowanegoUzytkownika()
+{
+    adresatMaster.pobierzIdZalogowanegoUzytkownika();
+}
+
+void KsiazkaAdresowa::ustawIdZalogowanegoUzytkownika(int idZalogowanegoUzytkownika)
+{
+    adresatMaster.ustawIdZalogowanegoUzytkownika(idZalogowanegoUzytkownika);
+}
+
 void KsiazkaAdresowa::zmianaHaslaUzytkownika(int idZalogowanegoUzytkownika)
 {
     uzytkownikMaster.zmianaHaslaUzytkownika(idZalogowanegoUzytkownika);
