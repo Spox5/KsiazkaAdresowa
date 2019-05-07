@@ -1,17 +1,24 @@
 #include "PlikZAdresatami.h"
 
+
+
+string PlikZAdresatami::wypiszNazwePlikuZAdresatami()
+{
+    return NAZWA_PLIKU_Z_ADRESATAMI;
+}
+
 vector <Adresat> PlikZAdresatami::wczytaniePlikuZAdresatami(int idZalogowanegoUzytkownika)
 {
     Adresat adresat;
     vector <Adresat> adresaci;
     fstream plikZAdresatami;
-    string liniaCalosc;
-    string linia;
-    int idUzytkownikaSprawdzenie;
+    string liniaCalosc = "";
+    string linia = "";
+    int idUzytkownikaSprawdzenie = 0;
     int licznik = 0;
-    bool czyZapisacUzytkownika;
+    bool czyZapisacUzytkownika = false;
 
-    plikZAdresatami.open("Adresaci.txt", ios::in | ios::out);
+    plikZAdresatami.open(NAZWA_PLIKU_Z_ADRESATAMI.c_str(), ios::in);
     if (plikZAdresatami.good() == false)
     {
         cout << "Baza adresatow jest pusta." << endl;
@@ -70,6 +77,7 @@ vector <Adresat> PlikZAdresatami::wczytaniePlikuZAdresatami(int idZalogowanegoUz
     return adresaci;
 }
 
+<<<<<<< HEAD
 void zapisanieNowegoAdresataDoPliku(Adresat adresat)
 {
     fstream plikAdresaci;
@@ -80,4 +88,22 @@ void zapisanieNowegoAdresataDoPliku(Adresat adresat)
 
     cout << "Adresat zostal dodany" << endl;
     system("pause");
+=======
+void PlikZAdresatami::zapisanieAdresataDoPliku(Adresat adresat, int idZalogowanegoUzytkownika)
+{
+    fstream plik;
+    plik.open(NAZWA_PLIKU_Z_ADRESATAMI.c_str(), ios::app);
+    if (plik.good() == true)
+    {
+        plik << adresat.wypiszIdAdresata() << "|" << idZalogowanegoUzytkownika << "|" << adresat.wypiszImieAdresata() << "|" << adresat.wypiszNazwiskoAdresata() << "|" << adresat.wypiszNrTelefonuAdresata()
+         << "|" << adresat.wypiszEmailAdresata() << "|" << adresat.wypiszAdresAdresata() << "|" << endl;
+    cout << "Adresat zostal dodany" << endl;
+    }
+    else
+    {
+        cout << "Nie udalo sie otworzyc pliku " << NAZWA_PLIKU_Z_ADRESATAMI << " i zapisac adresata." << endl;
+        system("pause");
+    }
+    plik.close();
+>>>>>>> 6989526f2abf72d8bfd9fa948d9d9679d16812b9
 }

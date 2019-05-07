@@ -1,6 +1,87 @@
 #include "AdresatMaster.h"
 #include "UzytkownikMaster.h"
 
+<<<<<<< HEAD
+=======
+
+void AdresatMaster::ustawWektorAdresaci(vector <Adresat> nowyWektorAdresaci)
+{
+    adresaci = nowyWektorAdresaci;
+}
+
+vector <Adresat> AdresatMaster::pobierzWektorAdresaci()
+{
+    return adresaci;
+}
+
+void AdresatMaster::ustawIdZalogowanegoUzytkownika(int noweIdZalogowanegoUzytkownika)
+{
+    idZalogowanegoUzytkownika = noweIdZalogowanegoUzytkownika;
+}
+
+int AdresatMaster::pobierzIdZalogowanegoUzytkownika()
+{
+    return idZalogowanegoUzytkownika;
+}
+
+void AdresatMaster::wczytaniePlikuZAdresatami(int idZalogowanegoUzytkownika)
+{
+    adresaci = plikZAdresatami.wczytaniePlikuZAdresatami(idZalogowanegoUzytkownika);
+}
+
+/*vector <Uzytkownik> AdresatMaster::adresaciMenu(int idZalogowanegoUzytkownika, vector <Uzytkownik> uzytkownicy)
+{
+    //UzytkownikMaster uzytkownikMaster;
+    PlikZAdresatami plikZAdresatami;
+    AdresatMaster adresatMaster;
+    vector <Adresat> adresaci = plikZAdresatami.wczytaniePlikuZAdresatami(idZalogowanegoUzytkownika);
+
+    while(1)
+    {
+        char wybor = menuAdresatWybor();
+
+        if (wybor == '1')
+        {
+            //adresaci = adresatMaster.dodajAdresata(adresaci, idZalogowanegoUzytkownika);
+        }
+        else if (wybor == '2')
+        {
+            //wyszukajAdresataPoImieniu(adresaci);
+        }
+        else if (wybor == '3')
+        {
+            //wyszukajAdresataPoNazwisku(adresaci);
+        }
+        else if (wybor == '4')
+        {
+            //adresatMaster.listaAdresatow(adresaci);
+        }
+        else if (wybor == '5')
+        {
+            //adresaci = usuniecieAdresata(adresaci, idZalogowanegoUzytkownika);
+        }
+        else if (wybor == '6')
+        {
+            //adresaci = edycjaAdresata (adresat, adresaci, idZalogowanegoUzytkownika);
+        }
+        else if (wybor == '7')
+        {
+            //uzytkownicy = uzytkownikMaster.zmianaHaslaUzytkownika(uzytkownicy, idZalogowanegoUzytkownika);
+        }
+        else if (wybor == '9')
+        {
+            return uzytkownicy;
+        }
+        else
+        {
+            cout << "Nieprawidlowy wybor." << endl;
+            cout << endl;
+            system("pause");
+        }
+    }
+}
+
+>>>>>>> 6989526f2abf72d8bfd9fa948d9d9679d16812b9
 char AdresatMaster::menuAdresatWybor()
 {
     char wybor;
@@ -18,13 +99,12 @@ char AdresatMaster::menuAdresatWybor()
     cin >> wybor;
 
     return wybor;
-}
+}*/
 
-vector<Adresat> AdresatMaster::dodajAdresata(vector<Adresat>adresaci, int idZalogowanegoUzytkownika)
+void AdresatMaster::dodajAdresata(int idZalogowanegoUzytkownika)
 {
     Adresat adresat;
     string imie, nazwisko, nrTelefonu, email, adres;
-    int id;
     fstream plik;
     string linia;
     string idOstatniegoAdresataString;
@@ -47,7 +127,7 @@ vector<Adresat> AdresatMaster::dodajAdresata(vector<Adresat>adresaci, int idZalo
     getline(cin>>ws, adres);
     adresat.ustawAdresAdresata(adres);
 
-    plik.open("Adresaci.txt", ios::in | ios:: out);
+    plik.open(plikZAdresatami.wypiszNazwePlikuZAdresatami().c_str(), ios::in | ios:: out);
     while(getline(plik, linia))
     {
         idOstatniegoAdresataString = linia[0];
@@ -63,17 +143,24 @@ vector<Adresat> AdresatMaster::dodajAdresata(vector<Adresat>adresaci, int idZalo
         adresat.ustawIdAdresata(idOstatniegoAdresata + 1);
 
     adresaci.push_back(adresat);
+<<<<<<< HEAD
 
 
 
 
 
+=======
+    cout << "Adresat zostal dodany" << endl;
+    system("pause");
+>>>>>>> 6989526f2abf72d8bfd9fa948d9d9679d16812b9
 
-    return adresaci;
+    plikZAdresatami.zapisanieAdresataDoPliku(adresat, idZalogowanegoUzytkownika);
+
 }
 
-void AdresatMaster::listaAdresatow(vector<Adresat> adresaci)
+void AdresatMaster::listaAdresatow(int idZalogowanegoUzytkownika)
 {
+    adresaci = plikZAdresatami.wczytaniePlikuZAdresatami(idZalogowanegoUzytkownika);
     if (adresaci.size() == 0)
     {
         system("cls");

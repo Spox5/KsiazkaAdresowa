@@ -1,5 +1,6 @@
 #include "KsiazkaAdresowa.h"
 
+<<<<<<< HEAD
 vector <Uzytkownik> KsiazkaAdresowa::menuUzytkownicy(char wyborUzytkownicy, vector <Uzytkownik> uzytkownicy)
 {
     UzytkownikMaster uzytkownikMaster;
@@ -78,4 +79,51 @@ vector <Uzytkownik> KsiazkaAdresowa::adresaciMenu(int idZalogowanegoUzytkownika,
             system("pause");
         }
     }
+=======
+using namespace std;
+
+void KsiazkaAdresowa::rejestracjaUzytkownika()
+{
+    uzytkownikMaster.rejestracjaUzytkownika();
+}
+
+int KsiazkaAdresowa::logowanieUzytkownika()
+{
+    uzytkownikMaster.logowanieUzytkownika();
+}
+
+int KsiazkaAdresowa::pobierzIdZalogowanegoUzytkownika()
+{
+    adresatMaster.pobierzIdZalogowanegoUzytkownika();
+}
+
+void KsiazkaAdresowa::ustawIdZalogowanegoUzytkownika(int idZalogowanegoUzytkownika)
+{
+    adresatMaster.ustawIdZalogowanegoUzytkownika(idZalogowanegoUzytkownika);
+}
+
+void KsiazkaAdresowa::zmianaHaslaUzytkownika(int idZalogowanegoUzytkownika)
+{
+    uzytkownikMaster.zmianaHaslaUzytkownika(idZalogowanegoUzytkownika);
+}
+
+void KsiazkaAdresowa::wypiszWszystkichUzytkownikow()
+{
+    uzytkownikMaster.wypiszWszystkichUzytkownikow();
+}
+
+int KsiazkaAdresowa::wylogowanieUzytkownika()
+{
+    uzytkownikMaster.wylogowanieUzytkownika();
+}
+
+void KsiazkaAdresowa::dodajAdresata(int idZalogowanegoUzytkownika)
+{
+    adresatMaster.dodajAdresata(idZalogowanegoUzytkownika);
+}
+
+void KsiazkaAdresowa::listaAdresatow(int idZalogowanegoUzytkownika)
+{
+    adresatMaster.listaAdresatow(idZalogowanegoUzytkownika);
+>>>>>>> 6989526f2abf72d8bfd9fa948d9d9679d16812b9
 }

@@ -4,81 +4,64 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>60</x>
-      <y>20</y>
+      <x>40</x>
+      <y>180</y>
       <w>350</w>
-      <h>80</h>
-    </coordinates>
-    <panel_attributes>PlikZUzytkownikami
---
-
---
-vector &lt;Uzytkownik&gt; wczytaniePlikuZUzytkownikami()</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>60</x>
-      <y>110</y>
-      <w>350</w>
-      <h>190</h>
+      <h>90</h>
     </coordinates>
     <panel_attributes>Uzytkownik
 --
-- int idUzytkownikka;
-- string nazwaUzytkownika;
-- string hasloUzytkownika;
---
-+ void ustawIdUzytkownika();
-+ int wypiszIdUzytkownika();
-+ void ustawNazweUzytkownika();
-+ string wypiszNazweUzytkownika();
-+ void ustawHasloUzytkownika();
-+ string wypiszHasloUzytkownika();</panel_attributes>
+- int idUzytkownikka
+- string nazwaUzytkownika
+- string hasloUzytkownika</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>60</x>
-      <y>310</y>
+      <x>40</x>
+      <y>280</y>
       <w>350</w>
-      <h>110</h>
+      <h>180</h>
     </coordinates>
     <panel_attributes>UzytkownikMaster
 --
-
+- PlikZUzytkownikami plikZUzytkownikami
+- vector &lt;Uzytkownik&gt; uzytkownicy
 --
-+ vector &lt;Uzytkownik&gt; menuUzytkownicy();
-+ char menuUzytkownicyWybor();
-+ vector &lt;Uzytkownik&gt; rejestracjaUzytkownika();
-+ int logowanieUzytkownika();
-+ vector &lt;Uzytkownik&gt; zmianaHasloUzytkownika();</panel_attributes>
+UzytkownikMaster()
++ void rejestracjaUzytkownika()
++ int logowanieUzytkownika()
++ vector &lt;Uzytkownik&gt; zmianaHasloUzytkownika()
++ int wylogowanieUzytkownika
++ void wypiszWszystkichUzytkownikow</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>490</x>
-      <y>20</y>
+      <x>470</x>
+      <y>40</y>
       <w>350</w>
-      <h>80</h>
+      <h>130</h>
     </coordinates>
     <panel_attributes>PlikZAdresatami
 --
-
+- string NAZWA_PLIKU_Z_ADRESATAMI
 --
-vector &lt;Adresat&gt; wczytaniePlikuZAdresatami()</panel_attributes>
+PliZAdresatami()
++ string wypiszNazwePlikuZAdresatami()
+vector &lt;Adresat&gt; wczytaniePlikuZAdresatami()
+void zapisanieAdresataDoPliku()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>490</x>
-      <y>110</y>
+      <x>470</x>
+      <y>180</y>
       <w>350</w>
-      <h>330</h>
+      <h>140</h>
     </coordinates>
     <panel_attributes>Adresat
 --
@@ -88,39 +71,69 @@ vector &lt;Adresat&gt; wczytaniePlikuZAdresatami()</panel_attributes>
 - string email;
 - string adres;
 - string nrTelefonu;
---
-+ void ustawIdAdresata();
-+ int wypiszIdAdresata();
-+ void ustawImieAdresata();
-+ string wypiszImieAdresata();
-+ void ustawNazwiskoAdresata();
-+ string wypiszNazwiskoAdresta();
-+ void ustawNrTelefonuAdresata();
-+ string wypiszNrTelefonuAdresata();
-+ void ustawEmailAdresata();
-+ string wypiszEmailAdresata();
-+ void ustawAdresAdresata();
-+ string wypiszAdresAdresata();</panel_attributes>
+--</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>490</x>
-      <y>450</y>
+      <x>470</x>
+      <y>330</y>
       <w>350</w>
       <h>150</h>
     </coordinates>
     <panel_attributes>AdresatMaster
 --
-
+- PlikZAdresatami pliZAdresatami
+- int idZalogowanegoUzytkownika
+- vector &lt;Adresat&gt; adresaci
 --
-+ vector &lt;Uzytkownik&gt; adresaciMenu();
-+ void menuAdresatWybor();
-+ vector &lt;Adresat&gt; dodajAdresata();
-+ void listaAdresatow();
-+ char menuAdresatWybor();
+AdresatMaster()
++ void wczytaniePlikuZAdresatami()
++ void  dodajAdresata()
++ void listaAdresatow()
 </panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>40</x>
+      <y>40</y>
+      <w>350</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>PlikZUzytkownikami
+--
+- string NAZWA_PLIKU_Z_UZYTKOWNIKAMI
+--
++ vector &lt;Uzytkownik&gt; wczytaniePlikuZUzytkownikami()
++ PlikZUzytkownikami()
++ void zapisanieUzytkownikaDoPliku()
++ void zapisanieZmienionegoHaslaDoPliku</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>220</x>
+      <y>490</y>
+      <w>310</w>
+      <h>220</h>
+    </coordinates>
+    <panel_attributes>KsiazkaAdresowa
+--
+- UzytkownikMaster uzytkownikMaster
+- AdresatMaster adresatMaster
+--
+KsiazkaAdresowa()
++ void rejestracjaUzytkownika
++ int logowanieUzytkownika
++ void wypiszWszystkichUzytkownikow
++ int wylogowanieUzytkownika
++ void zmianaHaslaUzytkownika
++ void dodajAdresata
++ void listaAdresatow</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>

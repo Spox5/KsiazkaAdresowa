@@ -8,12 +8,14 @@ using namespace std;
 
 class PlikZUzytkownikami
 {
+    const string NAZWA_PLIKU_Z_UZYTKOWNIKAMI;
+
+
 public:
+    PlikZUzytkownikami(string nazwaPlikuZUzytkownikami) : NAZWA_PLIKU_Z_UZYTKOWNIKAMI(nazwaPlikuZUzytkownikami) {};
     vector <Uzytkownik> wczytaniePlikuZUzytkownikami();
     void zapisanieUzytkownikaDoPliku(Uzytkownik uzytkownik);
-    //
-    string zamienDaneUzytkownikaNaLinieZDanymiOddzielonaPionowymiKreskami();
-    static string konwerjsaIntNaString(int liczba);
+    void zapisanieZmienionegoHaslaDoPliku(vector <Uzytkownik> uzytkownicy);
 };
 
 #endif // PLIKZUZYTKOWNIKAMI

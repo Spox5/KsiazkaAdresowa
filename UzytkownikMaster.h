@@ -7,13 +7,24 @@ using namespace std;
 
 class UzytkownikMaster
 {
-public:
+    PlikZUzytkownikami plikZUzytkownikami;
+    vector <Uzytkownik> uzytkownicy;
 
-    vector <Uzytkownik> menuUzytkownicy(char wyborUzytkownicy, vector <Uzytkownik> uzytkownicy);
-    char wyswietlenieMenuUzytkownikaiWybor();
-    vector <Uzytkownik> rejestracjaUzytkownika (vector <Uzytkownik> uzytkownicy);
-    int logowanieUzytkownika (vector <Uzytkownik> uzytkownicy);
-    vector <Uzytkownik> zmianaHaslaUzytkownika(vector <Uzytkownik> uzytkownicy, int idZalogowanegoUzytkownika);
+public:
+    UzytkownikMaster(string nazwaPlikuZUzytkownikami) : plikZUzytkownikami(nazwaPlikuZUzytkownikami) {
+    uzytkownicy = plikZUzytkownikami.wczytaniePlikuZUzytkownikami();
+    };
+
+    void ustawWektorUzytkownicy(vector <Uzytkownik> nowyWektorUzytkownicy);
+    vector <Uzytkownik> pobierzWektorUzytkownicy();
+    //vector <Uzytkownik> menuUzytkownicy(char wyborUzytkownicy, vector <Uzytkownik> uzytkownicy);
+    //char wyswietlenieMenuUzytkownikaiWybor();
+    void rejestracjaUzytkownika();
+    int logowanieUzytkownika ();
+    vector <Uzytkownik> zmianaHaslaUzytkownika(int idZalogowanegoUzytkownika);
+    int wylogowanieUzytkownika();
+
+    void wypiszWszystkichUzytkownikow();
 };
 
 #endif

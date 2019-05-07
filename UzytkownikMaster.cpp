@@ -1,7 +1,17 @@
 #include "UzytkownikMaster.h"
 #include "AdresatMaster.h"
 
-char UzytkownikMaster::wyswietlenieMenuUzytkownikaiWybor()
+void UzytkownikMaster::ustawWektorUzytkownicy(vector <Uzytkownik> nowyWektorUzytkownicy)
+{
+    uzytkownicy = nowyWektorUzytkownicy;
+}
+
+vector <Uzytkownik> UzytkownikMaster::pobierzWektorUzytkownicy()
+{
+    return uzytkownicy;
+}
+
+/*char UzytkownikMaster::wyswietlenieMenuUzytkownikaiWybor()
 {
     char wyborUzytkownicy;
 
@@ -14,10 +24,41 @@ char UzytkownikMaster::wyswietlenieMenuUzytkownikaiWybor()
     return wyborUzytkownicy;
 }
 
+<<<<<<< HEAD
 vector <Uzytkownik> UzytkownikMaster::rejestracjaUzytkownika (vector <Uzytkownik> uzytkownicy)
+=======
+vector <Uzytkownik> UzytkownikMaster::menuUzytkownicy(char wyborUzytkownicy, vector <Uzytkownik> uzytkownicy)
+{
+    //UzytkownikMaster uzytkownikMaster;
+    AdresatMaster adresatMaster;
+    int idZalogowanegoUzytkownika = 0;
+
+    if (wyborUzytkownicy == '1')
+    {
+    //    idZalogowanegoUzytkownika = uzytkownikMaster.logowanieUzytkownika(uzytkownicy);
+        if (idZalogowanegoUzytkownika != 0)
+            uzytkownicy = adresatMaster.adresaciMenu(idZalogowanegoUzytkownika, uzytkownicy);
+    }
+    else if (wyborUzytkownicy == '2')
+    {
+//        uzytkownicy = uzytkownikMaster.rejestracjaUzytkownika();
+    }
+    else if (wyborUzytkownicy == '9')
+    {
+        exit(0);
+    }
+    else
+    {
+        cout << "Nieprawidlowy wybor" << endl;;
+        system("pause");
+    }
+    return uzytkownicy;
+}*/
+
+void UzytkownikMaster::rejestracjaUzytkownika ()
+>>>>>>> 6989526f2abf72d8bfd9fa948d9d9679d16812b9
 {
     Uzytkownik uzytkownik;
-    PlikZUzytkownikami plikZUzytkownikami;
     string nazwaUzytkownika, hasloUzytkownika;
 
     cout << "Podaj nazwe uzytkownika: " << endl;
@@ -25,7 +66,7 @@ vector <Uzytkownik> UzytkownikMaster::rejestracjaUzytkownika (vector <Uzytkownik
     if (uzytkownicy.size() != 0)
     {
         int i = 0;
-        while (i <= uzytkownicy.size())
+        while (i < uzytkownicy.size())
         {
             if (nazwaUzytkownika == uzytkownicy[i].wypiszNazweUzytkownika())
             {
@@ -50,13 +91,14 @@ vector <Uzytkownik> UzytkownikMaster::rejestracjaUzytkownika (vector <Uzytkownik
     else
         uzytkownik.ustawIdUzytkownika(uzytkownicy.size() + 1);
     uzytkownicy.push_back(uzytkownik);
+    cout << "Nowy uzytkownik zostal utworzony" << endl;
+    system("pause");
 
     plikZUzytkownikami.zapisanieUzytkownikaDoPliku(uzytkownik);
 
-    return uzytkownicy;
 }
 
-int UzytkownikMaster::logowanieUzytkownika (vector <Uzytkownik> uzytkownicy)
+int UzytkownikMaster::logowanieUzytkownika ()
 {
     string nazwaUzytkownika, hasloUzytkownika;
 
@@ -93,30 +135,40 @@ int UzytkownikMaster::logowanieUzytkownika (vector <Uzytkownik> uzytkownicy)
     return 0;
 }
 
-vector <Uzytkownik> UzytkownikMaster::zmianaHaslaUzytkownika(vector <Uzytkownik> uzytkownicy, int idZalogowanegoUzytkownika)
+vector <Uzytkownik> UzytkownikMaster::zmianaHaslaUzytkownika(int idZalogowanegoUzytkownika)
 {
-    ofstream plikUzytkownicy;
     string noweHaslo;
 
     cout << "Podaj nowe haslo:" << endl;
     cin >> noweHaslo;
-
     for (int i = 0; i < uzytkownicy.size(); i++)
     {
         if (idZalogowanegoUzytkownika == uzytkownicy[i].wypiszIdUzytkownika())
         {
             uzytkownicy[i].ustawHasloUzytkownika(noweHaslo);
-            plikUzytkownicy.close();
-            plikUzytkownicy.open("Uzytkownicy.txt");
-            for (int i = 0; i <= uzytkownicy.size()-1; i++)
-            {
-                plikUzytkownicy << uzytkownicy[i].wypiszIdUzytkownika() << "|" << uzytkownicy[i].wypiszNazweUzytkownika() << "|"
-                                << uzytkownicy[i].wypiszHasloUzytkownika() << "|" << endl;
-            }
-            cout << "Haslo zostalo zmienione." << endl;
-            system("pause");
+            plikZUzytkownikami.zapisanieZmienionegoHaslaDoPliku(pobierzWektorUzytkownicy());
         }
     }
-    plikUzytkownicy.close();
     return uzytkownicy;
 }
+
+int UzytkownikMaster::wylogowanieUzytkownika()
+{
+    //AdresatMaster adresatMaster;
+    //adresaci.clear();
+    int idZalogowanegoUzytkownika;
+    return idZalogowanegoUzytkownika = 0;
+}
+
+void UzytkownikMaster::wypiszWszystkichUzytkownikow()
+{
+    plikZUzytkownikami.wczytaniePlikuZUzytkownikami();
+    for (int i = 0; i < uzytkownicy.size(); i++)
+    {
+        cout << uzytkownicy[i].wypiszIdUzytkownika() << endl;
+        cout << uzytkownicy[i].wypiszNazweUzytkownika() << endl;
+        cout << uzytkownicy[i].wypiszHasloUzytkownika() << endl;
+    }
+}
+
+
