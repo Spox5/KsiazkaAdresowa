@@ -14,12 +14,6 @@ class Adresat
     string imie, nazwisko, nrTelefonu, email, adres;
 
 public:
-<<<<<<< HEAD
-
-    void ustawIdZalogowanegoUzytkownika(int noweIdZalogowanegoUzytkownika);
-    int wypiszIdZalogowanegoUzytkownika();
-
-=======
     Adresat (int id = 0, string imie = "", string nazwisko = "", string nrTelefonu = "", string email = "", string adres = "")
     {
         this->id = id;
@@ -29,7 +23,9 @@ public:
         this->email = email;
         this->adres = adres;
     }
->>>>>>> 6989526f2abf72d8bfd9fa948d9d9679d16812b9
+    void ustawIdZalogowanegoUzytkownika(int noweIdZalogowanegoUzytkownika);
+    int wypiszIdZalogowanegoUzytkownika();
+
     void ustawIdAdresata(int noweIdAdresata);
     int wypiszIdAdresata();
 

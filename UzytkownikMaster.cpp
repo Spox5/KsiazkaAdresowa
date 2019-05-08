@@ -24,9 +24,6 @@ vector <Uzytkownik> UzytkownikMaster::pobierzWektorUzytkownicy()
     return wyborUzytkownicy;
 }
 
-<<<<<<< HEAD
-vector <Uzytkownik> UzytkownikMaster::rejestracjaUzytkownika (vector <Uzytkownik> uzytkownicy)
-=======
 vector <Uzytkownik> UzytkownikMaster::menuUzytkownicy(char wyborUzytkownicy, vector <Uzytkownik> uzytkownicy)
 {
     //UzytkownikMaster uzytkownikMaster;
@@ -56,7 +53,6 @@ vector <Uzytkownik> UzytkownikMaster::menuUzytkownicy(char wyborUzytkownicy, vec
 }*/
 
 void UzytkownikMaster::rejestracjaUzytkownika ()
->>>>>>> 6989526f2abf72d8bfd9fa948d9d9679d16812b9
 {
     Uzytkownik uzytkownik;
     string nazwaUzytkownika, hasloUzytkownika;

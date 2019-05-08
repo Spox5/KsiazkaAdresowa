@@ -1,8 +1,6 @@
 #include "AdresatMaster.h"
 #include "UzytkownikMaster.h"
 
-<<<<<<< HEAD
-=======
 
 void AdresatMaster::ustawWektorAdresaci(vector <Adresat> nowyWektorAdresaci)
 {
@@ -81,7 +79,6 @@ void AdresatMaster::wczytaniePlikuZAdresatami(int idZalogowanegoUzytkownika)
     }
 }
 
->>>>>>> 6989526f2abf72d8bfd9fa948d9d9679d16812b9
 char AdresatMaster::menuAdresatWybor()
 {
     char wybor;
@@ -143,16 +140,9 @@ void AdresatMaster::dodajAdresata(int idZalogowanegoUzytkownika)
         adresat.ustawIdAdresata(idOstatniegoAdresata + 1);
 
     adresaci.push_back(adresat);
-<<<<<<< HEAD
 
-
-
-
-
-=======
     cout << "Adresat zostal dodany" << endl;
     system("pause");
->>>>>>> 6989526f2abf72d8bfd9fa948d9d9679d16812b9
 
     plikZAdresatami.zapisanieAdresataDoPliku(adresat, idZalogowanegoUzytkownika);
 

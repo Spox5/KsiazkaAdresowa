@@ -32,7 +32,7 @@ vector <Adresat> PlikZAdresatami::wczytaniePlikuZAdresatami(int idZalogowanegoUz
 
         if (licznik == 1)
         {
-            adresat.ustawIdAdresata(atoi(linia.c_str()));
+            adresat.ustawIdZalogowanegoUzytkownika(atoi(linia.c_str()));
         }
         else if (licznik == 2)
         {
@@ -77,18 +77,6 @@ vector <Adresat> PlikZAdresatami::wczytaniePlikuZAdresatami(int idZalogowanegoUz
     return adresaci;
 }
 
-<<<<<<< HEAD
-void zapisanieNowegoAdresataDoPliku(Adresat adresat)
-{
-    fstream plikAdresaci;
-    plikAdresaci.open("Adresaci.txt", ios::out | ios::app);
-    plikAdresaci << adresat.wypiszIdAdresata() << "|" << adresat.wypiszIdZalogowanegoUzytkownika() << "|" << adresat.wypiszImieAdresata() << "|" << adresat.wypiszNazwiskoAdresata() << "|" << adresat.wypiszNrTelefonuAdresata()
-         << "|" << adresat.wypiszEmailAdresata() << "|" << adresat.wypiszAdresAdresata() << "|" << endl;
-    plikAdresaci.close();
-
-    cout << "Adresat zostal dodany" << endl;
-    system("pause");
-=======
 void PlikZAdresatami::zapisanieAdresataDoPliku(Adresat adresat, int idZalogowanegoUzytkownika)
 {
     fstream plik;
@@ -105,5 +93,4 @@ void PlikZAdresatami::zapisanieAdresataDoPliku(Adresat adresat, int idZalogowane
         system("pause");
     }
     plik.close();
->>>>>>> 6989526f2abf72d8bfd9fa948d9d9679d16812b9
 }
