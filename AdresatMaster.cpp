@@ -172,3 +172,41 @@ void AdresatMaster::listaAdresatow(int idZalogowanegoUzytkownika)
         system("pause");
     }
 }
+
+void AdresatMaster::wyszukajAdresataPoImieniu (int idZalogowanegoUzytkownika)
+{
+    adresaci = plikZAdresatami.wczytaniePlikuZAdresatami(idZalogowanegoUzytkownika);
+    system("cls");
+    string imie;
+    bool licznikImion = false;
+
+    system("cls");
+    if (adresaci.size() == 0)
+    {
+        cout << "Baza danych jest pusta" << endl;
+        system("pause");
+    }
+    else
+    {
+        cout << "Wpisz imie:" << endl;
+        cin >> imie;
+        for (int i = 0; i <= adresaci.size()-1; i++)
+        {
+            if (imie == adresaci[i].wypiszImieAdresata())
+            {
+                licznikImion = true;
+                cout << adresaci[i].wypiszImieAdresata() << " ";
+                cout << adresaci[i].wypiszNazwiskoAdresata() << ", ";
+                cout << adresaci[i].wypiszNrTelefonuAdresata() << ", ";
+                cout << adresaci[i].wypiszEmailAdresata() << ", ";
+                cout << adresaci[i].wypiszAdresAdresata() << "." << endl;
+            }
+        }
+        if (licznikImion == false)
+        {
+            cout << "W bazie nie ma osoby o takim imieniu";
+        }
+        cout << endl;
+        system("pause");
+    }
+}
