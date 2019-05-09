@@ -176,7 +176,6 @@ void AdresatMaster::listaAdresatow(int idZalogowanegoUzytkownika)
 void AdresatMaster::wyszukajAdresataPoImieniu (int idZalogowanegoUzytkownika)
 {
     adresaci = plikZAdresatami.wczytaniePlikuZAdresatami(idZalogowanegoUzytkownika);
-    system("cls");
     string imie;
     bool licznikImion = false;
 
@@ -205,6 +204,43 @@ void AdresatMaster::wyszukajAdresataPoImieniu (int idZalogowanegoUzytkownika)
         if (licznikImion == false)
         {
             cout << "W bazie nie ma osoby o takim imieniu";
+        }
+        cout << endl;
+        system("pause");
+    }
+}
+
+void AdresatMaster::wyszukajAdresataPoNazwisku (int idZalogowanegoUzytkownika)
+{
+    adresaci = plikZAdresatami.wczytaniePlikuZAdresatami(idZalogowanegoUzytkownika);
+    string nazwisko;
+    bool licznikNazwisk = false;
+
+    system("cls");
+    if (adresaci.size() == 0)
+    {
+        cout << "Baza danych jest pusta" << endl;
+        system("pause");
+    }
+    else
+    {
+        cout << "Wpisz nazwisko:" << endl;
+        cin >> nazwisko;
+        for (int i = 0; i <= adresaci.size()-1; i++)
+        {
+            if (nazwisko == adresaci[i].wypiszNazwiskoAdresata())
+            {
+                licznikNazwisk = true;
+                cout << adresaci[i].wypiszImieAdresata() << " ";
+                cout << adresaci[i].wypiszNazwiskoAdresata() << ", ";
+                cout << adresaci[i].wypiszNrTelefonuAdresata() << ", ";
+                cout << adresaci[i].wypiszEmailAdresata() << ", ";
+                cout << adresaci[i].wypiszAdresAdresata() << "." << endl;
+            }
+        }
+        if (licznikNazwisk == false)
+        {
+            cout << "W bazie nie ma osoby o takim nazwisku.";
         }
         cout << endl;
         system("pause");

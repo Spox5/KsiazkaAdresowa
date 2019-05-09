@@ -70,7 +70,7 @@ int main()
                 ksiazkaAdresowa.wyszukajAdresataPoImieniu(ksiazkaAdresowa.pobierzIdZalogowanegoUzytkownika());
                 break;
             case '3':
-
+                ksiazkaAdresowa.wyszukajAdresataPoNazwisku(ksiazkaAdresowa.pobierzIdZalogowanegoUzytkownika());
                 break;
             case '4':
                 ksiazkaAdresowa.listaAdresatow(ksiazkaAdresowa.pobierzIdZalogowanegoUzytkownika());
