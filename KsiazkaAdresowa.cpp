@@ -51,3 +51,8 @@ void KsiazkaAdresowa::wyszukajAdresataPoImieniu(int idZalogowanegoUzytkownika)
 {
     adresatMaster.wyszukajAdresataPoImieniu(idZalogowanegoUzytkownika);
 }
+
+void KsiazkaAdresowa::wyszukajAdresataPoNazwisku(int idZalogowanegoUzytkownika)
+{
+    adresatMaster.wyszukajAdresataPoNazwisku(idZalogowanegoUzytkownika);
+}
