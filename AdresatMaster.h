@@ -30,6 +30,7 @@ public:
     void wczytaniePlikuZAdresatami(int idZalogowanegoUzytkownika);
     void dodajAdresata(int idZalogowanegoUzytkownika);
     void listaAdresatow(int idZalogowanegoUzytkownika);
+    void wyszukajAdresataPoImieniu (int idZalogowanegoUzytkownika);
 };
 
 #endif
