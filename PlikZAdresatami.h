@@ -17,6 +17,7 @@ public:
     vector <Adresat> wczytaniePlikuZAdresatami(int idZalogowanegoUzytkownika);
     void zapisanieAdresataDoPliku(Adresat adresat, int idZalogowanegoUzytkownika);
     void nadpisaniePlikuUsuniecieAdresata (int idEdytowanegoAdresata, int idZalogowanegoUzytkownika);
+    void nadpisaniePlikuEdycjaAdresata (Adresat adresat, int idEdytowanegoAdresata, int idZalogowanegoUzytkownika);
 };
 
 #endif

@@ -120,3 +120,35 @@ void PlikZAdresatami::nadpisaniePlikuUsuniecieAdresata (int idEdytowanegoAdresat
     remove(NAZWA_PLIKU_Z_ADRESATAMI.c_str());
     rename ("Adresaci_tymczasowy.txt", NAZWA_PLIKU_Z_ADRESATAMI.c_str());
 }
+
+void PlikZAdresatami::nadpisaniePlikuEdycjaAdresata (Adresat adresat, int idEdytowanegoAdresata, int idZalogowanegoUzytkownika)
+{
+
+    fstream plik;
+    fstream plikAdresaciTymczasowy;
+    string linia;
+    string idStringEdytowanegoAdresata;
+    string idStringZalogowanegoUzytkownika;
+
+    plik.open(NAZWA_PLIKU_Z_ADRESATAMI.c_str(), ios::in | ios::out);
+    plikAdresaciTymczasowy.open("Adresaci_tymczasowy.txt", ios::in | ios::app);
+    while(getline(plik, linia))
+    {
+        idStringEdytowanegoAdresata = linia[0];
+        idStringZalogowanegoUzytkownika = linia[2];
+        if (idEdytowanegoAdresata == atoi(idStringEdytowanegoAdresata.c_str()) && idZalogowanegoUzytkownika == atoi(idStringZalogowanegoUzytkownika.c_str()))
+        {
+            plikAdresaciTymczasowy << adresat.wypiszIdAdresata() << "|" << idZalogowanegoUzytkownika << "|" <<  adresat.wypiszImieAdresata() << "|"
+                                   << adresat.wypiszNazwiskoAdresata() << "|" << adresat.wypiszNrTelefonuAdresata() << "|"
+                                   << adresat.wypiszEmailAdresata() << "|" << adresat.wypiszAdresAdresata() << "|" << endl;
+        }
+        else
+        {
+            plikAdresaciTymczasowy << linia << endl;
+        }
+    }
+    plik.close();
+    plikAdresaciTymczasowy.close();
+    remove(NAZWA_PLIKU_Z_ADRESATAMI.c_str());
+    rename ("Adresaci_tymczasowy.txt", NAZWA_PLIKU_Z_ADRESATAMI.c_str());
+}

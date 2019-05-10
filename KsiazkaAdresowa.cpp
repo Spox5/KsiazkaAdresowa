@@ -61,3 +61,8 @@ void KsiazkaAdresowa::usuniecieAdresata(int idZalogowanegoUzytkownika)
 {
     adresatMaster.usuniecieAdresata(idZalogowanegoUzytkownika);
 }
+
+void KsiazkaAdresowa::edycjaAdresata (int idZalogowanegoUzytkownika)
+{
+    adresatMaster.edycjaAdresata(idZalogowanegoUzytkownika);
+}

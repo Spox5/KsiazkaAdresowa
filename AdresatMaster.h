@@ -33,6 +33,7 @@ public:
     void wyszukajAdresataPoImieniu (int idZalogowanegoUzytkownika);
     void wyszukajAdresataPoNazwisku (int idZalogowanegoUzytkownika);
     void usuniecieAdresata (int idZalogowanegoUzytkownika);
+    void edycjaAdresata (int idZalogowanegoUzytkownika);
 };
 
 #endif

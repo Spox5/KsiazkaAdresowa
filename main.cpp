@@ -79,7 +79,7 @@ int main()
                 ksiazkaAdresowa.usuniecieAdresata(ksiazkaAdresowa.pobierzIdZalogowanegoUzytkownika());
                 break;
             case '6':
-
+                ksiazkaAdresowa.edycjaAdresata(ksiazkaAdresowa.pobierzIdZalogowanegoUzytkownika());
                 break;
             case '7':
                 ksiazkaAdresowa.zmianaHaslaUzytkownika(ksiazkaAdresowa.pobierzIdZalogowanegoUzytkownika());

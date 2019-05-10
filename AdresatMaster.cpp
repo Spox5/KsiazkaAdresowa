@@ -295,3 +295,94 @@ void AdresatMaster::usuniecieAdresata (int idZalogowanegoUzytkownika)
         }
     }
 }
+
+void AdresatMaster::edycjaAdresata (int idZalogowanegoUzytkownika)
+{
+    Adresat adresat;
+    string idEdytowanegoAdresataString;
+    string wybor, imie, nazwisko, nrTelefonu, email, adres;
+    ofstream plik;
+    bool znalezionoID = false;
+
+    if (adresaci.size() == 0)
+    {
+        system("cls");
+        cout << "Baza danych jest pusta." << endl;
+        system("pause");
+    }
+    else
+    {
+        cout << "Podaj ID adresata, ktorego chcesz edytowac: ";
+        cin >> idEdytowanegoAdresataString;
+        int idEdytowanegoAdresata = atoi(idEdytowanegoAdresataString.c_str());
+        for (int i = 0; i <= adresaci.size()-1; i++)
+        {
+            if (idEdytowanegoAdresata == adresaci[i].wypiszIdAdresata())
+            {
+                adresat.ustawIdAdresata(idEdytowanegoAdresata);
+                adresat.ustawImieAdresata(adresaci[i].wypiszImieAdresata());
+                adresat.ustawNazwiskoAdresata(adresaci[i].wypiszNazwiskoAdresata());
+                adresat.ustawNrTelefonuAdresata(adresaci[i].wypiszNrTelefonuAdresata());
+                adresat.ustawEmailAdresata(adresaci[i].wypiszEmailAdresata());
+                adresat.ustawAdresAdresata(adresaci[i].wypiszAdresAdresata());
+                znalezionoID = true;
+                system("cls");
+                cout << "1 - imie" << endl;
+                cout << "2 - nazwisko" << endl;
+                cout << "3 - numer telefonu" << endl;
+                cout << "4 - email" << endl;
+                cout << "5 - adres" << endl;
+                cout << "6 - powrot do menu" << endl;
+                cin >> wybor;
+                if (wybor == "1")
+                {
+                    cout << "Podaj nowe imie: ";
+                    cin >> imie;
+                    adresat.ustawImieAdresata(imie);
+                }
+                else if (wybor == "2")
+                {
+                    cout << "Podaj nowe nazwisko: ";
+                    cin >> nazwisko;
+                    adresat.ustawNazwiskoAdresata(nazwisko);
+                }
+                else if (wybor == "3")
+                {
+                    cout << "Podaj nowy numer telefonu: ";
+                    cin >> nrTelefonu;
+                    adresat.ustawNrTelefonuAdresata(nrTelefonu);
+                }
+                else if (wybor == "4")
+                {
+                    cout << "Podaj nowy email: ";
+                    cin >> email;
+                    adresat.ustawEmailAdresata(email);
+                }
+                else if (wybor == "5")
+                {
+                    cout << "Podaj nowy adres: ";
+                    cin.sync();
+                    getline(cin>>ws, adres);
+                    adresat.ustawAdresAdresata(adres);
+                }
+
+                else if (wybor == "6")
+                {
+                    break;
+                }
+                else
+                {
+                    cout << "Nieprawidlowy wybor." << endl;
+                    system("pause");
+                }
+                plik.close();
+                plikZAdresatami.nadpisaniePlikuEdycjaAdresata(adresat, idEdytowanegoAdresata, idZalogowanegoUzytkownika);
+            }
+        }
+        if (znalezionoID == false)
+        {
+            cout << "Nieprawidlowe ID" << endl;
+            system("pause");
+        }
+    }
+}
