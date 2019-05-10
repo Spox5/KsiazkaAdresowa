@@ -56,3 +56,8 @@ void KsiazkaAdresowa::wyszukajAdresataPoNazwisku(int idZalogowanegoUzytkownika)
 {
     adresatMaster.wyszukajAdresataPoNazwisku(idZalogowanegoUzytkownika);
 }
+
+void KsiazkaAdresowa::usuniecieAdresata(int idZalogowanegoUzytkownika)
+{
+    adresatMaster.usuniecieAdresata(idZalogowanegoUzytkownika);
+}

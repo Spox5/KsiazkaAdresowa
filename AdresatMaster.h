@@ -32,6 +32,7 @@ public:
     void listaAdresatow(int idZalogowanegoUzytkownika);
     void wyszukajAdresataPoImieniu (int idZalogowanegoUzytkownika);
     void wyszukajAdresataPoNazwisku (int idZalogowanegoUzytkownika);
+    void usuniecieAdresata (int idZalogowanegoUzytkownika);
 };
 
 #endif
