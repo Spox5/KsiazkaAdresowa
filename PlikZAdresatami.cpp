@@ -94,3 +94,29 @@ void PlikZAdresatami::zapisanieAdresataDoPliku(Adresat adresat, int idZalogowane
     }
     plik.close();
 }
+
+void PlikZAdresatami::nadpisaniePlikuUsuniecieAdresata (int idEdytowanegoAdresata, int idZalogowanegoUzytkownika)
+{
+    fstream plik;
+    fstream plikAdresaciTymczasowy;
+    string linia;
+    string idStringUsuwanegoAdresata;
+    string idStringZalogowanegoUzytkownika;
+
+    plik.open(NAZWA_PLIKU_Z_ADRESATAMI.c_str(), ios::in);
+    plikAdresaciTymczasowy.open("Adresaci_tymczasowy.txt", ios::app);
+    while(getline(plik, linia))
+    {
+        idStringUsuwanegoAdresata = linia[0];
+        idStringZalogowanegoUzytkownika = linia[2];
+        if (idEdytowanegoAdresata == atoi(idStringUsuwanegoAdresata.c_str()) && idZalogowanegoUzytkownika == atoi(idStringZalogowanegoUzytkownika.c_str()));
+        else
+        {
+            plikAdresaciTymczasowy << linia << endl;
+        }
+    }
+    plik.close();
+    plikAdresaciTymczasowy.close();
+    remove(NAZWA_PLIKU_Z_ADRESATAMI.c_str());
+    rename ("Adresaci_tymczasowy.txt", NAZWA_PLIKU_Z_ADRESATAMI.c_str());
+}

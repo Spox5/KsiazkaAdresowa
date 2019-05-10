@@ -246,3 +246,52 @@ void AdresatMaster::wyszukajAdresataPoNazwisku (int idZalogowanegoUzytkownika)
         system("pause");
     }
 }
+
+void AdresatMaster::usuniecieAdresata (int idZalogowanegoUzytkownika)
+{
+    ofstream plik;
+    string idString;
+    string wybor;
+    bool znalezionoID = false;
+    int i = 0;
+
+    if (adresaci.size() == 0)
+    {
+        system("cls");
+        cout << "Baza danych jest pusta";
+        cout << endl;
+        system("pause");
+    }
+    else
+    {
+        cout << "Podaj ID adresata, ktorego chcesz usunac: ";
+        cin >> idString;
+        int idUsuwanegoAdresata = atoi(idString.c_str());
+        for (vector<Adresat>::iterator it = adresaci.begin(), koniec = adresaci.end(); it != koniec; it++)
+        {
+            if (idUsuwanegoAdresata == adresaci[i].wypiszIdAdresata())
+            {
+                znalezionoID = true;
+                system("cls");
+                cout << "Czy na pewno chcesz usunac adresata? (t/n)" << endl;
+                cin >> wybor;
+                if (wybor == "t")
+                {
+                    adresaci.erase(it);
+                }
+                else
+                {
+                    break;
+                }
+                plik.close();
+                plikZAdresatami.nadpisaniePlikuUsuniecieAdresata(idUsuwanegoAdresata, idZalogowanegoUzytkownika);
+            }
+            i ++;
+        }
+        if (znalezionoID == false)
+        {
+            cout << "Nieprawidlowe ID" << endl;
+            system("pause");
+        }
+    }
+}

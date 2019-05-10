@@ -76,7 +76,7 @@ int main()
                 ksiazkaAdresowa.listaAdresatow(ksiazkaAdresowa.pobierzIdZalogowanegoUzytkownika());
                 break;
             case '5':
-
+                ksiazkaAdresowa.usuniecieAdresata(ksiazkaAdresowa.pobierzIdZalogowanegoUzytkownika());
                 break;
             case '6':
 
