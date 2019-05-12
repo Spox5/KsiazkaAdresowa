@@ -19,12 +19,6 @@ vector <Adresat> PlikZAdresatami::wczytaniePlikuZAdresatami(int idZalogowanegoUz
     bool czyZapisacUzytkownika = false;
 
     plikZAdresatami.open(NAZWA_PLIKU_Z_ADRESATAMI.c_str(), ios::in);
-    if (plikZAdresatami.good() == false)
-    {
-        cout << "Baza adresatow jest pusta." << endl;
-        system("pause");
-        system("cls");
-    }
 
     while(getline(plikZAdresatami, linia, '|'))
     {
