@@ -29,7 +29,7 @@ int main()
                 ksiazkaAdresowa.rejestracjaUzytkownika();
                 break;
             case '2':
-                ksiazkaAdresowa.ustawIdZalogowanegoUzytkownika(ksiazkaAdresowa.logowanieUzytkownika());
+                ksiazkaAdresowa.logowanieUzytkownika();
                 break;
             case '9':
                 exit(0);
@@ -64,28 +64,28 @@ int main()
             switch (wyborMenuUzytkownika)
             {
             case '1':
-                ksiazkaAdresowa.dodajAdresata(ksiazkaAdresowa.pobierzIdZalogowanegoUzytkownika());
+                ksiazkaAdresowa.dodajAdresata();
                 break;
             case '2':
-                ksiazkaAdresowa.wyszukajAdresataPoImieniu(ksiazkaAdresowa.pobierzIdZalogowanegoUzytkownika());
+                ksiazkaAdresowa.wyszukajAdresataPoImieniu();
                 break;
             case '3':
-                ksiazkaAdresowa.wyszukajAdresataPoNazwisku(ksiazkaAdresowa.pobierzIdZalogowanegoUzytkownika());
+                ksiazkaAdresowa.wyszukajAdresataPoNazwisku();
                 break;
             case '4':
-                ksiazkaAdresowa.listaAdresatow(ksiazkaAdresowa.pobierzIdZalogowanegoUzytkownika());
+                ksiazkaAdresowa.listaAdresatow();
                 break;
             case '5':
-                ksiazkaAdresowa.usuniecieAdresata(ksiazkaAdresowa.pobierzIdZalogowanegoUzytkownika());
+                ksiazkaAdresowa.usuniecieAdresata();
                 break;
             case '6':
-                ksiazkaAdresowa.edycjaAdresata(ksiazkaAdresowa.pobierzIdZalogowanegoUzytkownika());
+                ksiazkaAdresowa.edycjaAdresata();
                 break;
             case '7':
-                ksiazkaAdresowa.zmianaHaslaUzytkownika(ksiazkaAdresowa.pobierzIdZalogowanegoUzytkownika());
+                ksiazkaAdresowa.zmianaHaslaUzytkownika();
                 break;
             case '8':
-                ksiazkaAdresowa.ustawIdZalogowanegoUzytkownika(ksiazkaAdresowa.wylogowanieUzytkownika());
+                ksiazkaAdresowa.wylogowanieUzytkownika();
                 break;
             }
         }

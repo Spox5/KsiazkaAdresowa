@@ -9,22 +9,24 @@ class UzytkownikMaster
 {
     PlikZUzytkownikami plikZUzytkownikami;
     vector <Uzytkownik> uzytkownicy;
+    int idZalogowanegoUzytkownika;
 
 public:
     UzytkownikMaster(string nazwaPlikuZUzytkownikami) : plikZUzytkownikami(nazwaPlikuZUzytkownikami) {
+        idZalogowanegoUzytkownika = 0;
     uzytkownicy = plikZUzytkownikami.wczytaniePlikuZUzytkownikami();
     };
 
     void ustawWektorUzytkownicy(vector <Uzytkownik> nowyWektorUzytkownicy);
     vector <Uzytkownik> pobierzWektorUzytkownicy();
-    //vector <Uzytkownik> menuUzytkownicy(char wyborUzytkownicy, vector <Uzytkownik> uzytkownicy);
-    //char wyswietlenieMenuUzytkownikaiWybor();
     void rejestracjaUzytkownika();
     int logowanieUzytkownika ();
-    vector <Uzytkownik> zmianaHaslaUzytkownika(int idZalogowanegoUzytkownika);
+    vector <Uzytkownik> zmianaHaslaUzytkownika();
     int wylogowanieUzytkownika();
 
     void wypiszWszystkichUzytkownikow();
+    bool czyUzytkownikJestZalogowany();
+    int pobierzIdZalogowanegoUzytkownika();
 };
 
 #endif

@@ -10,28 +10,34 @@ using namespace std;
 class KsiazkaAdresowa
 {
     UzytkownikMaster uzytkownikMaster;
-    AdresatMaster adresatMaster;
+    AdresatMaster *adresatMaster;
+    const string NAZWA_PLIKU_Z_ADRESATAMI;
 
 
 public:
     KsiazkaAdresowa(string nazwaPlikuZUzytkownikami, string nazwaPlikuZAdresatami)
-    : uzytkownikMaster(nazwaPlikuZUzytkownikami), adresatMaster(nazwaPlikuZAdresatami) {
-
+    : uzytkownikMaster(nazwaPlikuZUzytkownikami), NAZWA_PLIKU_Z_ADRESATAMI(nazwaPlikuZAdresatami)
+    {
+        adresatMaster = NULL;
     };
+    ~KsiazkaAdresowa()
+    {
+        delete adresatMaster;
+        adresatMaster = NULL;
+    }
     void rejestracjaUzytkownika ();
     int logowanieUzytkownika();
     void wypiszWszystkichUzytkownikow();
     int wylogowanieUzytkownika();
-    void zmianaHaslaUzytkownika(int idZalogowanegoUzytkownika);
+    void zmianaHaslaUzytkownika();
     int pobierzIdZalogowanegoUzytkownika();
-    void ustawIdZalogowanegoUzytkownika(int idZalogowanegoUzytkownika);
 
-    void dodajAdresata(int idZalogowanegoUzytkownika);
-    void listaAdresatow(int idZalogowanegoUzytkownika);
-    void wyszukajAdresataPoImieniu(int idZalogowanegoUzytkownika);
-    void wyszukajAdresataPoNazwisku(int idZalogowanegoUzytkownika);
-    void usuniecieAdresata (int idZalogowanegoAdresata);
-    void edycjaAdresata (int idZalogowanegoUzytkownika);
+    void dodajAdresata();
+    void listaAdresatow();
+    void wyszukajAdresataPoImieniu();
+    void wyszukajAdresataPoNazwisku();
+    void usuniecieAdresata ();
+    void edycjaAdresata ();
 
 };
 

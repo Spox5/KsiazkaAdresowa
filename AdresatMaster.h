@@ -8,32 +8,27 @@ using namespace std;
 
 class AdresatMaster
 {
+    const int ID_ZALOGOWANEGO_UZYTKOWNIKA;
     PlikZAdresatami plikZAdresatami;
-    int idZalogowanegoUzytkownika;
     vector <Adresat> adresaci;
 
 public:
-    AdresatMaster(string nazwaPlikuZAdresatami) : plikZAdresatami(nazwaPlikuZAdresatami) {
-    adresaci = plikZAdresatami.wczytaniePlikuZAdresatami(idZalogowanegoUzytkownika);
-    idZalogowanegoUzytkownika = 0;
+    AdresatMaster(string nazwaPlikuZAdresatami, int idZalogowanegoUzytkownika)
+    : plikZAdresatami(nazwaPlikuZAdresatami),  ID_ZALOGOWANEGO_UZYTKOWNIKA(idZalogowanegoUzytkownika)
+    {
+    adresaci = plikZAdresatami.wczytaniePlikuZAdresatami(ID_ZALOGOWANEGO_UZYTKOWNIKA);
     };
 
     void ustawWektorAdresaci(vector <Adresat> nowyWektorAdresat);
     vector <Adresat> pobierzWektorAdresaci();
 
-    void ustawIdZalogowanegoUzytkownika(int noweIdZalogowanegoUzytkownika);
-    int pobierzIdZalogowanegoUzytkownika();
-
-    //vector <Uzytkownik> adresaciMenu(int idZalogowanegoUzytkownika, vector <Uzytkownik> uzytkownicy);
-    //char menuAdresatWybor();
-
-    void wczytaniePlikuZAdresatami(int idZalogowanegoUzytkownika);
-    void dodajAdresata(int idZalogowanegoUzytkownika);
-    void listaAdresatow(int idZalogowanegoUzytkownika);
-    void wyszukajAdresataPoImieniu (int idZalogowanegoUzytkownika);
-    void wyszukajAdresataPoNazwisku (int idZalogowanegoUzytkownika);
-    void usuniecieAdresata (int idZalogowanegoUzytkownika);
-    void edycjaAdresata (int idZalogowanegoUzytkownika);
+    void wczytaniePlikuZAdresatami();
+    void dodajAdresata();
+    void listaAdresatow();
+    void wyszukajAdresataPoImieniu ();
+    void wyszukajAdresataPoNazwisku ();
+    void usuniecieAdresata ();
+    void edycjaAdresata ();
 };
 
 #endif
