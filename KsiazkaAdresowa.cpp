@@ -10,21 +10,20 @@ void KsiazkaAdresowa::rejestracjaUzytkownika()
 int KsiazkaAdresowa::logowanieUzytkownika()
 {
     uzytkownikMaster.logowanieUzytkownika();
+    if (uzytkownikMaster.czyUzytkownikJestZalogowany())
+    {
+        adresatMaster = new AdresatMaster(NAZWA_PLIKU_Z_ADRESATAMI, uzytkownikMaster.pobierzIdZalogowanegoUzytkownika());
+    }
 }
 
 int KsiazkaAdresowa::pobierzIdZalogowanegoUzytkownika()
 {
-    adresatMaster.pobierzIdZalogowanegoUzytkownika();
+    uzytkownikMaster.pobierzIdZalogowanegoUzytkownika();
 }
 
-void KsiazkaAdresowa::ustawIdZalogowanegoUzytkownika(int idZalogowanegoUzytkownika)
+void KsiazkaAdresowa::zmianaHaslaUzytkownika()
 {
-    adresatMaster.ustawIdZalogowanegoUzytkownika(idZalogowanegoUzytkownika);
-}
-
-void KsiazkaAdresowa::zmianaHaslaUzytkownika(int idZalogowanegoUzytkownika)
-{
-    uzytkownikMaster.zmianaHaslaUzytkownika(idZalogowanegoUzytkownika);
+    uzytkownikMaster.zmianaHaslaUzytkownika();
 }
 
 void KsiazkaAdresowa::wypiszWszystkichUzytkownikow()
@@ -35,34 +34,36 @@ void KsiazkaAdresowa::wypiszWszystkichUzytkownikow()
 int KsiazkaAdresowa::wylogowanieUzytkownika()
 {
     uzytkownikMaster.wylogowanieUzytkownika();
+    delete adresatMaster;
+    adresatMaster = NULL;
 }
 
-void KsiazkaAdresowa::dodajAdresata(int idZalogowanegoUzytkownika)
+void KsiazkaAdresowa::dodajAdresata()
 {
-    adresatMaster.dodajAdresata(idZalogowanegoUzytkownika);
+    adresatMaster->dodajAdresata();
 }
 
-void KsiazkaAdresowa::listaAdresatow(int idZalogowanegoUzytkownika)
+void KsiazkaAdresowa::listaAdresatow()
 {
-    adresatMaster.listaAdresatow(idZalogowanegoUzytkownika);
+    adresatMaster->listaAdresatow();
 }
 
-void KsiazkaAdresowa::wyszukajAdresataPoImieniu(int idZalogowanegoUzytkownika)
+void KsiazkaAdresowa::wyszukajAdresataPoImieniu()
 {
-    adresatMaster.wyszukajAdresataPoImieniu(idZalogowanegoUzytkownika);
+    adresatMaster->wyszukajAdresataPoImieniu();
 }
 
-void KsiazkaAdresowa::wyszukajAdresataPoNazwisku(int idZalogowanegoUzytkownika)
+void KsiazkaAdresowa::wyszukajAdresataPoNazwisku()
 {
-    adresatMaster.wyszukajAdresataPoNazwisku(idZalogowanegoUzytkownika);
+    adresatMaster->wyszukajAdresataPoNazwisku();
 }
 
-void KsiazkaAdresowa::usuniecieAdresata(int idZalogowanegoUzytkownika)
+void KsiazkaAdresowa::usuniecieAdresata()
 {
-    adresatMaster.usuniecieAdresata(idZalogowanegoUzytkownika);
+    adresatMaster->usuniecieAdresata();
 }
 
-void KsiazkaAdresowa::edycjaAdresata (int idZalogowanegoUzytkownika)
+void KsiazkaAdresowa::edycjaAdresata ()
 {
-    adresatMaster.edycjaAdresata(idZalogowanegoUzytkownika);
+    adresatMaster->edycjaAdresata();
 }

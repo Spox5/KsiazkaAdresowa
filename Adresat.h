@@ -10,7 +10,7 @@ using namespace std;
 
 class Adresat
 {
-    int id;
+    int id, idZalogowanegoUzytkownika;
     string imie, nazwisko, nrTelefonu, email, adres;
 
 public:
@@ -23,6 +23,8 @@ public:
         this->email = email;
         this->adres = adres;
     }
+    int wypiszIdZalogowanegoUzytkownika();
+
     void ustawIdAdresata(int noweIdAdresata);
     int wypiszIdAdresata();
 

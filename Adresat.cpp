@@ -1,5 +1,10 @@
 #include "Adresat.h"
 
+int Adresat::wypiszIdZalogowanegoUzytkownika()
+{
+    return idZalogowanegoUzytkownika;
+}
+
 void Adresat::ustawIdAdresata(int noweIdAdresata)
 {
     id = noweIdAdresata;

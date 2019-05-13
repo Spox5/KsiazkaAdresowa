@@ -12,22 +12,12 @@ vector <Adresat> AdresatMaster::pobierzWektorAdresaci()
     return adresaci;
 }
 
-void AdresatMaster::ustawIdZalogowanegoUzytkownika(int noweIdZalogowanegoUzytkownika)
+void AdresatMaster::wczytaniePlikuZAdresatami()
 {
-    idZalogowanegoUzytkownika = noweIdZalogowanegoUzytkownika;
+    adresaci = plikZAdresatami.wczytaniePlikuZAdresatami(ID_ZALOGOWANEGO_UZYTKOWNIKA);
 }
 
-int AdresatMaster::pobierzIdZalogowanegoUzytkownika()
-{
-    return idZalogowanegoUzytkownika;
-}
-
-void AdresatMaster::wczytaniePlikuZAdresatami(int idZalogowanegoUzytkownika)
-{
-    adresaci = plikZAdresatami.wczytaniePlikuZAdresatami(idZalogowanegoUzytkownika);
-}
-
-void AdresatMaster::dodajAdresata(int idZalogowanegoUzytkownika)
+void AdresatMaster::dodajAdresata()
 {
     Adresat adresat;
     string imie, nazwisko, nrTelefonu, email, adres;
@@ -72,13 +62,12 @@ void AdresatMaster::dodajAdresata(int idZalogowanegoUzytkownika)
     cout << "Adresat zostal dodany" << endl;
     system("pause");
 
-    plikZAdresatami.zapisanieAdresataDoPliku(adresat, idZalogowanegoUzytkownika);
+    plikZAdresatami.zapisanieAdresataDoPliku(adresat, ID_ZALOGOWANEGO_UZYTKOWNIKA);
 
 }
 
-void AdresatMaster::listaAdresatow(int idZalogowanegoUzytkownika)
+void AdresatMaster::listaAdresatow()
 {
-    adresaci = plikZAdresatami.wczytaniePlikuZAdresatami(idZalogowanegoUzytkownika);
     if (adresaci.size() == 0)
     {
         system("cls");
@@ -102,9 +91,8 @@ void AdresatMaster::listaAdresatow(int idZalogowanegoUzytkownika)
     }
 }
 
-void AdresatMaster::wyszukajAdresataPoImieniu (int idZalogowanegoUzytkownika)
+void AdresatMaster::wyszukajAdresataPoImieniu ()
 {
-    adresaci = plikZAdresatami.wczytaniePlikuZAdresatami(idZalogowanegoUzytkownika);
     string imie;
     bool licznikImion = false;
 
@@ -139,9 +127,8 @@ void AdresatMaster::wyszukajAdresataPoImieniu (int idZalogowanegoUzytkownika)
     }
 }
 
-void AdresatMaster::wyszukajAdresataPoNazwisku (int idZalogowanegoUzytkownika)
+void AdresatMaster::wyszukajAdresataPoNazwisku ()
 {
-    adresaci = plikZAdresatami.wczytaniePlikuZAdresatami(idZalogowanegoUzytkownika);
     string nazwisko;
     bool licznikNazwisk = false;
 
@@ -176,7 +163,7 @@ void AdresatMaster::wyszukajAdresataPoNazwisku (int idZalogowanegoUzytkownika)
     }
 }
 
-void AdresatMaster::usuniecieAdresata (int idZalogowanegoUzytkownika)
+void AdresatMaster::usuniecieAdresata ()
 {
     ofstream plik;
     string idString;
@@ -213,7 +200,7 @@ void AdresatMaster::usuniecieAdresata (int idZalogowanegoUzytkownika)
                     break;
                 }
                 plik.close();
-                plikZAdresatami.nadpisaniePlikuUsuniecieAdresata(idUsuwanegoAdresata, idZalogowanegoUzytkownika);
+                plikZAdresatami.nadpisaniePlikuUsuniecieAdresata(idUsuwanegoAdresata, ID_ZALOGOWANEGO_UZYTKOWNIKA);
             }
             i ++;
         }
@@ -225,7 +212,7 @@ void AdresatMaster::usuniecieAdresata (int idZalogowanegoUzytkownika)
     }
 }
 
-void AdresatMaster::edycjaAdresata (int idZalogowanegoUzytkownika)
+void AdresatMaster::edycjaAdresata ()
 {
     Adresat adresat;
     string idEdytowanegoAdresataString;
@@ -268,24 +255,28 @@ void AdresatMaster::edycjaAdresata (int idZalogowanegoUzytkownika)
                     cout << "Podaj nowe imie: ";
                     cin >> imie;
                     adresat.ustawImieAdresata(imie);
+                    adresaci[i].ustawImieAdresata(imie);
                 }
                 else if (wybor == "2")
                 {
                     cout << "Podaj nowe nazwisko: ";
                     cin >> nazwisko;
                     adresat.ustawNazwiskoAdresata(nazwisko);
+                    adresaci[i].ustawNazwiskoAdresata(nazwisko);
                 }
                 else if (wybor == "3")
                 {
                     cout << "Podaj nowy numer telefonu: ";
                     cin >> nrTelefonu;
                     adresat.ustawNrTelefonuAdresata(nrTelefonu);
+                    adresaci[i].ustawNrTelefonuAdresata(nrTelefonu);
                 }
                 else if (wybor == "4")
                 {
                     cout << "Podaj nowy email: ";
                     cin >> email;
                     adresat.ustawEmailAdresata(email);
+                    adresaci[i].ustawEmailAdresata(email);
                 }
                 else if (wybor == "5")
                 {
@@ -293,6 +284,7 @@ void AdresatMaster::edycjaAdresata (int idZalogowanegoUzytkownika)
                     cin.sync();
                     getline(cin>>ws, adres);
                     adresat.ustawAdresAdresata(adres);
+                    adresaci[i].ustawAdresAdresata(adres);
                 }
 
                 else if (wybor == "6")
@@ -305,7 +297,8 @@ void AdresatMaster::edycjaAdresata (int idZalogowanegoUzytkownika)
                     system("pause");
                 }
                 plik.close();
-                plikZAdresatami.nadpisaniePlikuEdycjaAdresata(adresat, idEdytowanegoAdresata, idZalogowanegoUzytkownika);
+                plikZAdresatami.nadpisaniePlikuEdycjaAdresata(adresat, idEdytowanegoAdresata, ID_ZALOGOWANEGO_UZYTKOWNIKA);
+
             }
         }
         if (znalezionoID == false)

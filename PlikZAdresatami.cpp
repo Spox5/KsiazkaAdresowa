@@ -16,7 +16,7 @@ vector <Adresat> PlikZAdresatami::wczytaniePlikuZAdresatami(int idZalogowanegoUz
     string linia = "";
     int idUzytkownikaSprawdzenie = 0;
     int licznik = 0;
-    bool czyZapisacUzytkownika = false;
+    bool czyZapisacAdresata = false;
 
     plikZAdresatami.open(NAZWA_PLIKU_Z_ADRESATAMI.c_str(), ios::in);
 
@@ -32,9 +32,9 @@ vector <Adresat> PlikZAdresatami::wczytaniePlikuZAdresatami(int idZalogowanegoUz
         {
             idUzytkownikaSprawdzenie = atoi(linia.c_str());
             if (idUzytkownikaSprawdzenie != idZalogowanegoUzytkownika)
-                czyZapisacUzytkownika = false;
+                czyZapisacAdresata = false;
             else
-                czyZapisacUzytkownika = true;
+                czyZapisacAdresata = true;
         }
         else if (licznik == 3)
         {
@@ -57,10 +57,10 @@ vector <Adresat> PlikZAdresatami::wczytaniePlikuZAdresatami(int idZalogowanegoUz
             adresat.ustawAdresAdresata(linia);
         }
 
-        if (licznik == 7 && czyZapisacUzytkownika == true)
+        if (licznik == 7 && czyZapisacAdresata == true)
         {
             licznik = 0;
-            czyZapisacUzytkownika = false;
+            czyZapisacAdresata = false;
             adresaci.push_back(adresat);
         }
         else if (licznik == 7)

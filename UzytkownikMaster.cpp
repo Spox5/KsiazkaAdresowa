@@ -115,6 +115,7 @@ int UzytkownikMaster::logowanieUzytkownika ()
                     cout << "Zalogowales sie." << endl;
                     system("pause");
                     system("cls");
+                    idZalogowanegoUzytkownika = uzytkownicy[i].wypiszIdUzytkownika();
                     return uzytkownicy[i].wypiszIdUzytkownika();
                 }
                 else
@@ -131,7 +132,7 @@ int UzytkownikMaster::logowanieUzytkownika ()
     return 0;
 }
 
-vector <Uzytkownik> UzytkownikMaster::zmianaHaslaUzytkownika(int idZalogowanegoUzytkownika)
+vector <Uzytkownik> UzytkownikMaster::zmianaHaslaUzytkownika()
 {
     string noweHaslo;
 
@@ -150,9 +151,6 @@ vector <Uzytkownik> UzytkownikMaster::zmianaHaslaUzytkownika(int idZalogowanegoU
 
 int UzytkownikMaster::wylogowanieUzytkownika()
 {
-    //AdresatMaster adresatMaster;
-    //adresaci.clear();
-    int idZalogowanegoUzytkownika;
     return idZalogowanegoUzytkownika = 0;
 }
 
@@ -167,4 +165,15 @@ void UzytkownikMaster::wypiszWszystkichUzytkownikow()
     }
 }
 
+bool UzytkownikMaster::czyUzytkownikJestZalogowany()
+{
+    if (idZalogowanegoUzytkownika > 0)
+        return true;
+    else
+        return false;
+}
 
+int UzytkownikMaster::pobierzIdZalogowanegoUzytkownika()
+{
+    return idZalogowanegoUzytkownika;
+}
