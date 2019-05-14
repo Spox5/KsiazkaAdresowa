@@ -13,7 +13,6 @@ class Uzytkownik
     string nazwaUzytkownika;
     string hasloUzytkownika;
 
-
 public:
 
     void ustawIdUzytkownika(int noweId);

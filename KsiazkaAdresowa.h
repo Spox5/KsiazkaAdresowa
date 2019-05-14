@@ -27,8 +27,6 @@ public:
     }
     void rejestracjaUzytkownika ();
     int logowanieUzytkownika();
-    void wypiszWszystkichUzytkownikow();
-    int wylogowanieUzytkownika();
     void zmianaHaslaUzytkownika();
     int pobierzIdZalogowanegoUzytkownika();
 
@@ -38,6 +36,7 @@ public:
     void wyszukajAdresataPoNazwisku();
     void usuniecieAdresata ();
     void edycjaAdresata ();
+    int wylogowanieUzytkownika();
 
 };
 

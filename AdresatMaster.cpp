@@ -2,21 +2,6 @@
 #include "UzytkownikMaster.h"
 
 
-void AdresatMaster::ustawWektorAdresaci(vector <Adresat> nowyWektorAdresaci)
-{
-    adresaci = nowyWektorAdresaci;
-}
-
-vector <Adresat> AdresatMaster::pobierzWektorAdresaci()
-{
-    return adresaci;
-}
-
-void AdresatMaster::wczytaniePlikuZAdresatami()
-{
-    adresaci = plikZAdresatami.wczytaniePlikuZAdresatami(ID_ZALOGOWANEGO_UZYTKOWNIKA);
-}
-
 void AdresatMaster::dodajAdresata()
 {
     Adresat adresat;

@@ -23,7 +23,7 @@ public:
         this->email = email;
         this->adres = adres;
     }
-    int wypiszIdZalogowanegoUzytkownika();
+
 
     void ustawIdAdresata(int noweIdAdresata);
     int wypiszIdAdresata();
