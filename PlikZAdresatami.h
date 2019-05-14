@@ -1,17 +1,32 @@
 #ifndef PLIKZADRESATAMI_H
 #define PLIKZADRESATAMI_H
 
+#include "PlikTekstowy.h"
 #include "Adresat.h"
 #include <fstream>
 
 using namespace std;
 
-class PlikZAdresatami
+class PlikZAdresatami: public PlikTekstowy
 {
-    const string NAZWA_PLIKU_Z_ADRESATAMI;
+    //const string NAZWA_PLIKU_Z_ADRESATAMI;
 
 public:
-    PlikZAdresatami(string nazwaPlikuZAdresatami) : NAZWA_PLIKU_Z_ADRESATAMI(nazwaPlikuZAdresatami) {};
+    PlikZAdresatami(string nazwaPliku) : PlikTekstowy(nazwaPliku) {};
+    dopisz(string tekst)
+    {
+        fstream plikTekstowy;
+        plikTekstowy.open(pobierzNazwePliku().c_str(), ios::app);
+
+        if (plikTekstowy.good() == true)
+        {
+            if (czyPlikJestPusty())
+                plikTekstowy << "To jest poczatek pliku" << endl;
+            plikTekstowy << tekst << endl;
+        }
+
+        plikTekstowy.close();
+    }
     string wypiszNazwePlikuZAdresatami();
     vector <Adresat> wczytaniePlikuZAdresatami(int idZalogowanegoUzytkownika);
     void zapisanieAdresataDoPliku(Adresat adresat, int idZalogowanegoUzytkownika);

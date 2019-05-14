@@ -220,12 +220,6 @@ void AdresatMaster::edycjaAdresata ()
         {
             if (idEdytowanegoAdresata == adresaci[i].wypiszIdAdresata())
             {
-                adresat.ustawIdAdresata(idEdytowanegoAdresata);
-                adresat.ustawImieAdresata(adresaci[i].wypiszImieAdresata());
-                adresat.ustawNazwiskoAdresata(adresaci[i].wypiszNazwiskoAdresata());
-                adresat.ustawNrTelefonuAdresata(adresaci[i].wypiszNrTelefonuAdresata());
-                adresat.ustawEmailAdresata(adresaci[i].wypiszEmailAdresata());
-                adresat.ustawAdresAdresata(adresaci[i].wypiszAdresAdresata());
                 znalezionoID = true;
                 system("cls");
                 cout << "1 - imie" << endl;
@@ -239,28 +233,24 @@ void AdresatMaster::edycjaAdresata ()
                 {
                     cout << "Podaj nowe imie: ";
                     cin >> imie;
-                    adresat.ustawImieAdresata(imie);
                     adresaci[i].ustawImieAdresata(imie);
                 }
                 else if (wybor == "2")
                 {
                     cout << "Podaj nowe nazwisko: ";
                     cin >> nazwisko;
-                    adresat.ustawNazwiskoAdresata(nazwisko);
                     adresaci[i].ustawNazwiskoAdresata(nazwisko);
                 }
                 else if (wybor == "3")
                 {
                     cout << "Podaj nowy numer telefonu: ";
                     cin >> nrTelefonu;
-                    adresat.ustawNrTelefonuAdresata(nrTelefonu);
                     adresaci[i].ustawNrTelefonuAdresata(nrTelefonu);
                 }
                 else if (wybor == "4")
                 {
                     cout << "Podaj nowy email: ";
                     cin >> email;
-                    adresat.ustawEmailAdresata(email);
                     adresaci[i].ustawEmailAdresata(email);
                 }
                 else if (wybor == "5")
@@ -268,7 +258,6 @@ void AdresatMaster::edycjaAdresata ()
                     cout << "Podaj nowy adres: ";
                     cin.sync();
                     getline(cin>>ws, adres);
-                    adresat.ustawAdresAdresata(adres);
                     adresaci[i].ustawAdresAdresata(adres);
                 }
 
@@ -282,8 +271,7 @@ void AdresatMaster::edycjaAdresata ()
                     system("pause");
                 }
                 plik.close();
-                plikZAdresatami.nadpisaniePlikuEdycjaAdresata(adresat, idEdytowanegoAdresata, ID_ZALOGOWANEGO_UZYTKOWNIKA);
-
+                plikZAdresatami.nadpisaniePlikuEdycjaAdresata(adresaci[i], idEdytowanegoAdresata, ID_ZALOGOWANEGO_UZYTKOWNIKA);
             }
         }
         if (znalezionoID == false)

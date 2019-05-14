@@ -2,7 +2,7 @@
 
 string PlikZAdresatami::wypiszNazwePlikuZAdresatami()
 {
-    return NAZWA_PLIKU_Z_ADRESATAMI;
+    return PlikTekstowy::pobierzNazwePliku();
 }
 
 vector <Adresat> PlikZAdresatami::wczytaniePlikuZAdresatami(int idZalogowanegoUzytkownika)
@@ -16,7 +16,7 @@ vector <Adresat> PlikZAdresatami::wczytaniePlikuZAdresatami(int idZalogowanegoUz
     int licznik = 0;
     bool czyZapisacAdresata = false;
 
-    plikZAdresatami.open(NAZWA_PLIKU_Z_ADRESATAMI.c_str(), ios::in);
+    plikZAdresatami.open(PlikTekstowy::pobierzNazwePliku().c_str(), ios::in);
 
     while(getline(plikZAdresatami, linia, '|'))
     {
@@ -72,7 +72,7 @@ vector <Adresat> PlikZAdresatami::wczytaniePlikuZAdresatami(int idZalogowanegoUz
 void PlikZAdresatami::zapisanieAdresataDoPliku(Adresat adresat, int idZalogowanegoUzytkownika)
 {
     fstream plik;
-    plik.open(NAZWA_PLIKU_Z_ADRESATAMI.c_str(), ios::app);
+    plik.open(PlikTekstowy::pobierzNazwePliku().c_str(), ios::app);
     if (plik.good() == true)
     {
         plik << adresat.wypiszIdAdresata() << "|" << idZalogowanegoUzytkownika << "|" << adresat.wypiszImieAdresata() << "|" << adresat.wypiszNazwiskoAdresata() << "|" << adresat.wypiszNrTelefonuAdresata()
@@ -81,7 +81,7 @@ void PlikZAdresatami::zapisanieAdresataDoPliku(Adresat adresat, int idZalogowane
     }
     else
     {
-        cout << "Nie udalo sie otworzyc pliku " << NAZWA_PLIKU_Z_ADRESATAMI << " i zapisac adresata." << endl;
+        cout << "Nie udalo sie otworzyc pliku " << PlikTekstowy::pobierzNazwePliku() << " i zapisac adresata." << endl;
         system("pause");
     }
     plik.close();
@@ -95,7 +95,7 @@ void PlikZAdresatami::nadpisaniePlikuUsuniecieAdresata (int idEdytowanegoAdresat
     string idStringUsuwanegoAdresata;
     string idStringZalogowanegoUzytkownika;
 
-    plik.open(NAZWA_PLIKU_Z_ADRESATAMI.c_str(), ios::in);
+    plik.open(PlikTekstowy::pobierzNazwePliku().c_str(), ios::in);
     plikAdresaciTymczasowy.open("Adresaci_tymczasowy.txt", ios::app);
     while(getline(plik, linia))
     {
@@ -109,8 +109,8 @@ void PlikZAdresatami::nadpisaniePlikuUsuniecieAdresata (int idEdytowanegoAdresat
     }
     plik.close();
     plikAdresaciTymczasowy.close();
-    remove(NAZWA_PLIKU_Z_ADRESATAMI.c_str());
-    rename ("Adresaci_tymczasowy.txt", NAZWA_PLIKU_Z_ADRESATAMI.c_str());
+    remove(PlikTekstowy::pobierzNazwePliku().c_str());
+    rename ("Adresaci_tymczasowy.txt", PlikTekstowy::pobierzNazwePliku().c_str());
 }
 
 void PlikZAdresatami::nadpisaniePlikuEdycjaAdresata (Adresat adresat, int idEdytowanegoAdresata, int idZalogowanegoUzytkownika)
@@ -122,7 +122,7 @@ void PlikZAdresatami::nadpisaniePlikuEdycjaAdresata (Adresat adresat, int idEdyt
     string idStringEdytowanegoAdresata;
     string idStringZalogowanegoUzytkownika;
 
-    plik.open(NAZWA_PLIKU_Z_ADRESATAMI.c_str(), ios::in | ios::out);
+    plik.open(PlikTekstowy::pobierzNazwePliku().c_str(), ios::in | ios::out);
     plikAdresaciTymczasowy.open("Adresaci_tymczasowy.txt", ios::in | ios::app);
     while(getline(plik, linia))
     {
@@ -141,6 +141,6 @@ void PlikZAdresatami::nadpisaniePlikuEdycjaAdresata (Adresat adresat, int idEdyt
     }
     plik.close();
     plikAdresaciTymczasowy.close();
-    remove(NAZWA_PLIKU_Z_ADRESATAMI.c_str());
-    rename ("Adresaci_tymczasowy.txt", NAZWA_PLIKU_Z_ADRESATAMI.c_str());
+    remove(PlikTekstowy::pobierzNazwePliku().c_str());
+    rename ("Adresaci_tymczasowy.txt", PlikTekstowy::pobierzNazwePliku().c_str());
 }

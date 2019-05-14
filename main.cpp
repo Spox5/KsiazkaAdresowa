@@ -6,6 +6,8 @@ using namespace std;
 int main()
 {
     KsiazkaAdresowa ksiazkaAdresowa("Uzytkownicy.txt", "Adresaci.txt");
+    PlikZAdresatami plikZAdresatami ("Adresaci.txt");
+    plikZAdresatami.dopisz("");
 
     while (true)
     {
