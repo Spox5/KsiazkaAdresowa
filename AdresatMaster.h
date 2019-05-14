@@ -12,6 +12,7 @@ class AdresatMaster
     PlikZAdresatami plikZAdresatami;
     vector <Adresat> adresaci;
 
+
 public:
     AdresatMaster(string nazwaPlikuZAdresatami, int idZalogowanegoUzytkownika)
     : plikZAdresatami(nazwaPlikuZAdresatami),  ID_ZALOGOWANEGO_UZYTKOWNIKA(idZalogowanegoUzytkownika)
@@ -19,10 +20,6 @@ public:
     adresaci = plikZAdresatami.wczytaniePlikuZAdresatami(ID_ZALOGOWANEGO_UZYTKOWNIKA);
     };
 
-    void ustawWektorAdresaci(vector <Adresat> nowyWektorAdresat);
-    vector <Adresat> pobierzWektorAdresaci();
-
-    void wczytaniePlikuZAdresatami();
     void dodajAdresata();
     void listaAdresatow();
     void wyszukajAdresataPoImieniu ();

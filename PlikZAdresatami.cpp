@@ -1,7 +1,5 @@
 #include "PlikZAdresatami.h"
 
-
-
 string PlikZAdresatami::wypiszNazwePlikuZAdresatami()
 {
     return NAZWA_PLIKU_Z_ADRESATAMI;

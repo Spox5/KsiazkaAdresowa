@@ -26,11 +26,6 @@ void KsiazkaAdresowa::zmianaHaslaUzytkownika()
     uzytkownikMaster.zmianaHaslaUzytkownika();
 }
 
-void KsiazkaAdresowa::wypiszWszystkichUzytkownikow()
-{
-    uzytkownikMaster.wypiszWszystkichUzytkownikow();
-}
-
 int KsiazkaAdresowa::wylogowanieUzytkownika()
 {
     uzytkownikMaster.wylogowanieUzytkownika();

@@ -11,20 +11,18 @@ class UzytkownikMaster
     vector <Uzytkownik> uzytkownicy;
     int idZalogowanegoUzytkownika;
 
+
 public:
     UzytkownikMaster(string nazwaPlikuZUzytkownikami) : plikZUzytkownikami(nazwaPlikuZUzytkownikami) {
         idZalogowanegoUzytkownika = 0;
     uzytkownicy = plikZUzytkownikami.wczytaniePlikuZUzytkownikami();
     };
 
-    void ustawWektorUzytkownicy(vector <Uzytkownik> nowyWektorUzytkownicy);
-    vector <Uzytkownik> pobierzWektorUzytkownicy();
     void rejestracjaUzytkownika();
-    int logowanieUzytkownika ();
+    int logowanieUzytkownika();
     vector <Uzytkownik> zmianaHaslaUzytkownika();
     int wylogowanieUzytkownika();
 
-    void wypiszWszystkichUzytkownikow();
     bool czyUzytkownikJestZalogowany();
     int pobierzIdZalogowanegoUzytkownika();
 };

@@ -1,57 +1,6 @@
 #include "UzytkownikMaster.h"
 #include "AdresatMaster.h"
 
-void UzytkownikMaster::ustawWektorUzytkownicy(vector <Uzytkownik> nowyWektorUzytkownicy)
-{
-    uzytkownicy = nowyWektorUzytkownicy;
-}
-
-vector <Uzytkownik> UzytkownikMaster::pobierzWektorUzytkownicy()
-{
-    return uzytkownicy;
-}
-
-/*char UzytkownikMaster::wyswietlenieMenuUzytkownikaiWybor()
-{
-    char wyborUzytkownicy;
-
-    system("cls");
-    cout << "1. Logowanie." << endl;
-    cout << "2. Rejestracja." << endl;
-    cout << "9. Zamknij program." << endl;
-    cin >> wyborUzytkownicy;
-
-    return wyborUzytkownicy;
-}
-
-vector <Uzytkownik> UzytkownikMaster::menuUzytkownicy(char wyborUzytkownicy, vector <Uzytkownik> uzytkownicy)
-{
-    //UzytkownikMaster uzytkownikMaster;
-    AdresatMaster adresatMaster;
-    int idZalogowanegoUzytkownika = 0;
-
-    if (wyborUzytkownicy == '1')
-    {
-    //    idZalogowanegoUzytkownika = uzytkownikMaster.logowanieUzytkownika(uzytkownicy);
-        if (idZalogowanegoUzytkownika != 0)
-            uzytkownicy = adresatMaster.adresaciMenu(idZalogowanegoUzytkownika, uzytkownicy);
-    }
-    else if (wyborUzytkownicy == '2')
-    {
-//        uzytkownicy = uzytkownikMaster.rejestracjaUzytkownika();
-    }
-    else if (wyborUzytkownicy == '9')
-    {
-        exit(0);
-    }
-    else
-    {
-        cout << "Nieprawidlowy wybor" << endl;;
-        system("pause");
-    }
-    return uzytkownicy;
-}*/
-
 void UzytkownikMaster::rejestracjaUzytkownika ()
 {
     Uzytkownik uzytkownik;
@@ -143,7 +92,7 @@ vector <Uzytkownik> UzytkownikMaster::zmianaHaslaUzytkownika()
         if (idZalogowanegoUzytkownika == uzytkownicy[i].wypiszIdUzytkownika())
         {
             uzytkownicy[i].ustawHasloUzytkownika(noweHaslo);
-            plikZUzytkownikami.zapisanieZmienionegoHaslaDoPliku(pobierzWektorUzytkownicy());
+            plikZUzytkownikami.zapisanieZmienionegoHaslaDoPliku(uzytkownicy);
         }
     }
     return uzytkownicy;
@@ -152,17 +101,6 @@ vector <Uzytkownik> UzytkownikMaster::zmianaHaslaUzytkownika()
 int UzytkownikMaster::wylogowanieUzytkownika()
 {
     return idZalogowanegoUzytkownika = 0;
-}
-
-void UzytkownikMaster::wypiszWszystkichUzytkownikow()
-{
-    plikZUzytkownikami.wczytaniePlikuZUzytkownikami();
-    for (int i = 0; i < uzytkownicy.size(); i++)
-    {
-        cout << uzytkownicy[i].wypiszIdUzytkownika() << endl;
-        cout << uzytkownicy[i].wypiszNazweUzytkownika() << endl;
-        cout << uzytkownicy[i].wypiszHasloUzytkownika() << endl;
-    }
 }
 
 bool UzytkownikMaster::czyUzytkownikJestZalogowany()
