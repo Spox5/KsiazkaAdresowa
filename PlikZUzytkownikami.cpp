@@ -8,7 +8,7 @@ vector <Uzytkownik> PlikZUzytkownikami::wczytaniePlikuZUzytkownikami()
     string liniaUzytkownicy;
     int licznikUzytkownicy = 0;
 
-    plikUzytkownicy.open(NAZWA_PLIKU_Z_UZYTKOWNIKAMI.c_str(), ios::in);
+    plikUzytkownicy.open(PlikTekstowy::pobierzNazwePliku().c_str(), ios::in);
     if (plikUzytkownicy.good() == false)
     {
         cout << "Baza uzytkownikow jest pusta." << endl;
@@ -46,14 +46,14 @@ vector <Uzytkownik> PlikZUzytkownikami::wczytaniePlikuZUzytkownikami()
 void PlikZUzytkownikami::zapisanieUzytkownikaDoPliku(Uzytkownik uzytkownik)
 {
     fstream plikUzytkownicy;
-    plikUzytkownicy.open(NAZWA_PLIKU_Z_UZYTKOWNIKAMI.c_str(), ios::app);
+    plikUzytkownicy.open(PlikTekstowy::pobierzNazwePliku().c_str(), ios::app);
     if (plikUzytkownicy.good() == true)
     {
         plikUzytkownicy << uzytkownik.wypiszIdUzytkownika() << "|" << uzytkownik.wypiszNazweUzytkownika() << "|" << uzytkownik.wypiszHasloUzytkownika() << "|" << endl;
     }
     else
     {
-        cout << "Nie udalo sie otworzyc pliku " << NAZWA_PLIKU_Z_UZYTKOWNIKAMI << " i zapisac uzytkownika." << endl;
+        cout << "Nie udalo sie otworzyc pliku " << PlikTekstowy::pobierzNazwePliku().c_str() << " i zapisac uzytkownika." << endl;
         system("pause");
     }
     plikUzytkownicy.close();
@@ -62,7 +62,7 @@ void PlikZUzytkownikami::zapisanieUzytkownikaDoPliku(Uzytkownik uzytkownik)
 void PlikZUzytkownikami::zapisanieZmienionegoHaslaDoPliku(vector <Uzytkownik> uzytkownicy)
 {
     fstream plikUzytkownicy;
-    plikUzytkownicy.open(NAZWA_PLIKU_Z_UZYTKOWNIKAMI.c_str(), ios::out);
+    plikUzytkownicy.open(PlikTekstowy::pobierzNazwePliku().c_str(), ios::out);
     for (int j = 0; j <= uzytkownicy.size()-1; j++)
     {
         plikUzytkownicy << uzytkownicy[j].wypiszIdUzytkownika() << "|" << uzytkownicy[j].wypiszNazweUzytkownika() << "|"
