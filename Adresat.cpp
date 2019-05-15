@@ -10,6 +10,16 @@ int Adresat::wypiszIdAdresata()
     return id;
 }
 
+void Adresat::ustawIdZalogowanegoUzytkownika(int noweIdZalogowanegoUzytkownika)
+{
+    idZalogowanegoUzytkownika = noweIdZalogowanegoUzytkownika;
+}
+
+int Adresat::wypiszIdZalogowanegoUzytkownika()
+{
+    return idZalogowanegoUzytkownika;
+}
+
 void Adresat::ustawImieAdresata(string noweImieAdresata)
 {
     imie = noweImieAdresata;

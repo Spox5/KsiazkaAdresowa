@@ -5,6 +5,51 @@ string PlikZAdresatami::wypiszNazwePlikuZAdresatami()
     return PlikTekstowy::pobierzNazwePliku();
 }
 
+Adresat PlikZAdresatami::pobierzDaneAdresata(string daneAdresataOddzielonePionowymiKreskami)
+{
+    Adresat adresat;
+    string pojedynczaDanaAdresata = "";
+    int numerPojedynczejDanejAdresata = 1;
+
+    for (int pozycjaZnaku = 0; pozycjaZnaku < daneAdresataOddzielonePionowymiKreskami.length(); pozycjaZnaku++)
+    {
+        if (daneAdresataOddzielonePionowymiKreskami[pozycjaZnaku] != '|')
+        {
+            pojedynczaDanaAdresata += daneAdresataOddzielonePionowymiKreskami[pozycjaZnaku];
+        }
+        else
+        {
+            switch(numerPojedynczejDanejAdresata)
+            {
+            case 1:
+                adresat.ustawIdAdresata(atoi(pojedynczaDanaAdresata.c_str()));
+                break;
+            case 2:
+                adresat.ustawIdZalogowanegoUzytkownika(atoi(pojedynczaDanaAdresata.c_str()));
+                break;
+            case 3:
+                adresat.ustawImieAdresata(pojedynczaDanaAdresata);
+                break;
+            case 4:
+                adresat.ustawNazwiskoAdresata(pojedynczaDanaAdresata);
+                break;
+            case 5:
+                adresat.ustawNrTelefonuAdresata(pojedynczaDanaAdresata);
+                break;
+            case 6:
+                adresat.ustawEmailAdresata(pojedynczaDanaAdresata);
+                break;
+            case 7:
+                adresat.ustawAdresAdresata(pojedynczaDanaAdresata);
+                break;
+            }
+            pojedynczaDanaAdresata = "";
+            numerPojedynczejDanejAdresata++;
+        }
+    }
+    return adresat;
+}
+
 vector <Adresat> PlikZAdresatami::wczytaniePlikuZAdresatami(int idZalogowanegoUzytkownika)
 {
     Adresat adresat;
@@ -18,52 +63,22 @@ vector <Adresat> PlikZAdresatami::wczytaniePlikuZAdresatami(int idZalogowanegoUz
 
     plikZAdresatami.open(PlikTekstowy::pobierzNazwePliku().c_str(), ios::in);
 
-    while(getline(plikZAdresatami, linia, '|'))
+    if (plikZAdresatami.good() == true)
     {
-        licznik = licznik + 1;
+        while(getline(plikZAdresatami, linia))
+        {
+            cout << linia[2];
+            if (idZalogowanegoUzytkownika == linia[2] - '0' && linia != "")
+            {
+                adresat = pobierzDaneAdresata(linia);
+                adresaci.push_back(adresat);
 
-        if (licznik == 1)
-        {
-            adresat.ustawIdAdresata(atoi(linia.c_str()));
+            }
+            cin.sync();
+            linia = "";
         }
-        else if (licznik == 2)
-        {
-            idUzytkownikaSprawdzenie = atoi(linia.c_str());
-            if (idUzytkownikaSprawdzenie != idZalogowanegoUzytkownika)
-                czyZapisacAdresata = false;
-            else
-                czyZapisacAdresata = true;
-        }
-        else if (licznik == 3)
-        {
-            adresat.ustawImieAdresata(linia);
-        }
-        else if (licznik == 4)
-        {
-            adresat.ustawNazwiskoAdresata(linia);
-        }
-        else if (licznik == 5)
-        {
-            adresat.ustawNrTelefonuAdresata(linia);
-        }
-        else if (licznik == 6)
-        {
-            adresat.ustawEmailAdresata(linia);
-        }
-        else if (licznik == 7)
-        {
-            adresat.ustawAdresAdresata(linia);
-        }
-
-        if (licznik == 7 && czyZapisacAdresata == true)
-        {
-            licznik = 0;
-            czyZapisacAdresata = false;
-            adresaci.push_back(adresat);
-        }
-        else if (licznik == 7)
-            licznik = 0;
     }
+
     plikZAdresatami.close();
 
     return adresaci;
@@ -76,8 +91,8 @@ void PlikZAdresatami::zapisanieAdresataDoPliku(Adresat adresat, int idZalogowane
     if (plik.good() == true)
     {
         plik << adresat.wypiszIdAdresata() << "|" << idZalogowanegoUzytkownika << "|" << adresat.wypiszImieAdresata() << "|" << adresat.wypiszNazwiskoAdresata() << "|" << adresat.wypiszNrTelefonuAdresata()
-         << "|" << adresat.wypiszEmailAdresata() << "|" << adresat.wypiszAdresAdresata() << "|" << endl;
-    cout << "Adresat zostal dodany" << endl;
+             << "|" << adresat.wypiszEmailAdresata() << "|" << adresat.wypiszAdresAdresata() << "|" << endl;
+        cout << "Adresat zostal dodany" << endl;
     }
     else
     {
@@ -143,4 +158,19 @@ void PlikZAdresatami::nadpisaniePlikuEdycjaAdresata (Adresat adresat, int idEdyt
     plikAdresaciTymczasowy.close();
     remove(PlikTekstowy::pobierzNazwePliku().c_str());
     rename ("Adresaci_tymczasowy.txt", PlikTekstowy::pobierzNazwePliku().c_str());
+}
+
+void PlikZAdresatami::dopisz(string tekst)
+{
+    fstream plikTekstowy;
+    plikTekstowy.open(pobierzNazwePliku().c_str(), ios::app);
+
+    if (plikTekstowy.good() == true)
+    {
+        if (czyPlikJestPusty())
+            plikTekstowy << "To jest poczatek pliku" << endl;
+        plikTekstowy << tekst << endl;
+    }
+
+    plikTekstowy.close();
 }

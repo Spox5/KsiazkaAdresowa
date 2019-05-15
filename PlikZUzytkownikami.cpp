@@ -72,3 +72,18 @@ void PlikZUzytkownikami::zapisanieZmienionegoHaslaDoPliku(vector <Uzytkownik> uz
     system("pause");
     plikUzytkownicy.close();
 }
+
+void PlikZUzytkownikami::dopisz(string tekst)
+    {
+        fstream plikTekstowy;
+        plikTekstowy.open(pobierzNazwePliku().c_str(), ios::app);
+
+        if (plikTekstowy.good() == true)
+        {
+            if (czyPlikJestPusty())
+                plikTekstowy << "To jest poczatek pliku" << endl;
+            plikTekstowy << tekst << endl;
+        }
+
+        plikTekstowy.close();
+    }
