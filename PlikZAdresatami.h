@@ -4,6 +4,7 @@
 #include "PlikTekstowy.h"
 #include "Adresat.h"
 #include <fstream>
+#include <sstream>
 
 using namespace std;
 
@@ -18,6 +19,9 @@ public:
     vector <Adresat> wczytaniePlikuZAdresatami(int idZalogowanegoUzytkownika);
 
     Adresat pobierzDaneAdresata(string daneAdresataOddzielonePionowymiKreskami);
+    int pobierzIdUzytkownikaZDanychOddzielonychPionowymiKreskami(string daneJednegoAdresataOddzielonePionowymiKreskami);
+    int konwersjaStringNaInt(string liczba);
+    string pobierzLiczbe(string tekst, int pozycjaZnaku);
 
     void zapisanieAdresataDoPliku(Adresat adresat, int idZalogowanegoUzytkownika);
     void nadpisaniePlikuUsuniecieAdresata (int idEdytowanegoAdresata, int idZalogowanegoUzytkownika);
