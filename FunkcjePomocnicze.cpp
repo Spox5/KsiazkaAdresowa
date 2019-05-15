@@ -1,4 +1,5 @@
 #include "FunkcjePomocnicze.h"
+#include "PlikZAdresatami.h"
 
 int FunkcjePomocnicze::pobierzIdUzytkownikaZDanychOddzielonychPionowymiKreskami(string daneJednegoAdresataOddzielonePionowymiKreskami)
 {
@@ -26,4 +27,11 @@ string FunkcjePomocnicze::pobierzLiczbe(string tekst, int pozycjaZnaku)
         pozycjaZnaku ++;
     }
     return liczba;
+}
+
+int FunkcjePomocnicze::pobierzIdAdresataZDanychOddzielonychPionowymiKreskami(string daneJednegoAdresataOddzielonePionowymiKreskami)
+{
+    int pozycjaRozpoczeciaIdAdresata = 0;
+    int idAdresata = konwersjaStringNaInt(pobierzLiczbe(daneJednegoAdresataOddzielonePionowymiKreskami, pozycjaRozpoczeciaIdAdresata));
+    return idAdresata;
 }

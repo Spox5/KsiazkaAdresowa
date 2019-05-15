@@ -10,6 +10,9 @@ class AdresatMaster
 {
     const int ID_ZALOGOWANEGO_UZYTKOWNIKA;
     PlikZAdresatami plikZAdresatami;
+    FunkcjePomocnicze funkcjePomocnicze;
+    int pobierzZPlikuIdOstatniegoAdresata();
+    int pobierzIdAdresataZDanychOddzielonychPionowymiKreskami(string daneJednegoAdresataOddzielonePionowymiKreskami);
     vector <Adresat> adresaci;
 
 

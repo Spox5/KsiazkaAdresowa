@@ -1,8 +1,39 @@
 #include "PlikZAdresatami.h"
+#include "FunkcjePomocnicze.h"
 
 string PlikZAdresatami::wypiszNazwePlikuZAdresatami()
 {
     return PlikTekstowy::pobierzNazwePliku();
+}
+
+int PlikZAdresatami::pobierzZPlikuIdOstatniegoAdresata()
+{
+    FunkcjePomocnicze funkcjePomocnicze;
+    int idOstatniegoAdresata = 0;
+    string daneJednegoAdresataOddzielonePionowymiKreskami = "";
+    string daneOstaniegoAdresataWPliku = "";
+    fstream plikTekstowy;
+
+    plikTekstowy.open(wypiszNazwePlikuZAdresatami().c_str(), ios::in);
+
+    if (plikTekstowy.good() == true)
+    {
+        while (getline(plikTekstowy, daneJednegoAdresataOddzielonePionowymiKreskami))
+        {
+            daneOstaniegoAdresataWPliku = daneJednegoAdresataOddzielonePionowymiKreskami;
+        }
+        plikTekstowy.close();
+    }
+    else
+        cout << "Nie udalo sie otworzyc pliku i wczytac danych." << endl;
+
+    if (daneOstaniegoAdresataWPliku != "")
+    {
+        idOstatniegoAdresata = funkcjePomocnicze.pobierzIdAdresataZDanychOddzielonychPionowymiKreskami(daneOstaniegoAdresataWPliku);
+        return idOstatniegoAdresata;
+    }
+    else
+        return 0;
 }
 
 Adresat PlikZAdresatami::pobierzDaneAdresata(string daneAdresataOddzielonePionowymiKreskami)
@@ -55,11 +86,7 @@ vector <Adresat> PlikZAdresatami::wczytaniePlikuZAdresatami(int idZalogowanegoUz
     Adresat adresat;
     vector <Adresat> adresaci;
     fstream plikZAdresatami;
-    string liniaCalosc = "";
     string linia = "";
-    int idUzytkownikaSprawdzenie = 0;
-    int licznik = 0;
-    bool czyZapisacAdresata = false;
 
     plikZAdresatami.open(PlikTekstowy::pobierzNazwePliku().c_str(), ios::in);
 
@@ -72,9 +99,7 @@ vector <Adresat> PlikZAdresatami::wczytaniePlikuZAdresatami(int idZalogowanegoUz
             {
                 adresat = pobierzDaneAdresata(linia);
                 adresaci.push_back(adresat);
-
             }
-
         }
     }
 
@@ -106,16 +131,16 @@ void PlikZAdresatami::nadpisaniePlikuUsuniecieAdresata (int idEdytowanegoAdresat
     fstream plik;
     fstream plikAdresaciTymczasowy;
     string linia;
-    string idStringUsuwanegoAdresata;
-    string idStringZalogowanegoUzytkownika;
+    int idUsuwanegoAdresata;
+    int idZalogowanegoUzytkownikaSprawdzenie;
 
     plik.open(PlikTekstowy::pobierzNazwePliku().c_str(), ios::in);
     plikAdresaciTymczasowy.open("Adresaci_tymczasowy.txt", ios::app);
     while(getline(plik, linia))
     {
-        idStringUsuwanegoAdresata = linia[0];
-        idStringZalogowanegoUzytkownika = linia[2];
-        if (idEdytowanegoAdresata == atoi(idStringUsuwanegoAdresata.c_str()) && idZalogowanegoUzytkownika == atoi(idStringZalogowanegoUzytkownika.c_str()));
+        idUsuwanegoAdresata = funkcjePomocnicze.pobierzIdAdresataZDanychOddzielonychPionowymiKreskami(linia);
+        idZalogowanegoUzytkownikaSprawdzenie = funkcjePomocnicze.pobierzIdUzytkownikaZDanychOddzielonychPionowymiKreskami(linia);
+        if (idEdytowanegoAdresata == idUsuwanegoAdresata && idZalogowanegoUzytkownika == idZalogowanegoUzytkownikaSprawdzenie);
         else
         {
             plikAdresaciTymczasowy << linia << endl;
@@ -133,16 +158,16 @@ void PlikZAdresatami::nadpisaniePlikuEdycjaAdresata (Adresat adresat, int idEdyt
     fstream plik;
     fstream plikAdresaciTymczasowy;
     string linia;
-    string idStringEdytowanegoAdresata;
-    string idStringZalogowanegoUzytkownika;
+    int idEdytowanegoAdresataSprawdzenie;
+    int idZalogowanegoUzytkownikaSprawdzenie;
 
-    plik.open(PlikTekstowy::pobierzNazwePliku().c_str(), ios::in | ios::out);
-    plikAdresaciTymczasowy.open("Adresaci_tymczasowy.txt", ios::in | ios::app);
+    plik.open(PlikTekstowy::pobierzNazwePliku().c_str(), ios::in);
+    plikAdresaciTymczasowy.open("Adresaci_tymczasowy.txt", ios::app);
     while(getline(plik, linia))
     {
-        idStringEdytowanegoAdresata = linia[0];
-        idStringZalogowanegoUzytkownika = linia[2];
-        if (idEdytowanegoAdresata == atoi(idStringEdytowanegoAdresata.c_str()) && idZalogowanegoUzytkownika == atoi(idStringZalogowanegoUzytkownika.c_str()))
+        idEdytowanegoAdresataSprawdzenie = funkcjePomocnicze.pobierzIdAdresataZDanychOddzielonychPionowymiKreskami(linia);
+        idZalogowanegoUzytkownikaSprawdzenie = funkcjePomocnicze.pobierzIdUzytkownikaZDanychOddzielonychPionowymiKreskami(linia);
+        if (idEdytowanegoAdresata == idEdytowanegoAdresataSprawdzenie && idZalogowanegoUzytkownika == idZalogowanegoUzytkownikaSprawdzenie)
         {
             plikAdresaciTymczasowy << adresat.wypiszIdAdresata() << "|" << idZalogowanegoUzytkownika << "|" <<  adresat.wypiszImieAdresata() << "|"
                                    << adresat.wypiszNazwiskoAdresata() << "|" << adresat.wypiszNrTelefonuAdresata() << "|"

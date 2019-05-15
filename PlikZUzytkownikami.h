@@ -15,6 +15,9 @@ public:
     PlikZUzytkownikami(string nazwaPliku) : PlikTekstowy(nazwaPliku) {};
     void dopisz(string tekst);
     vector <Uzytkownik> wczytaniePlikuZUzytkownikami();
+
+    Uzytkownik pobierzDaneUzytkownika(string daneJednegoUzytkownikaOddzielonePionowymiKreskami);
+
     void zapisanieUzytkownikaDoPliku(Uzytkownik uzytkownik);
     void zapisanieZmienionegoHaslaDoPliku(vector <Uzytkownik> uzytkownicy);
 

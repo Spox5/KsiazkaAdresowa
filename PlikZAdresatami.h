@@ -5,7 +5,6 @@
 #include "Adresat.h"
 #include "FunkcjePomocnicze.h"
 #include <fstream>
-#include <sstream>
 
 using namespace std;
 
@@ -28,6 +27,8 @@ public:
     void zapisanieAdresataDoPliku(Adresat adresat, int idZalogowanegoUzytkownika);
     void nadpisaniePlikuUsuniecieAdresata (int idEdytowanegoAdresata, int idZalogowanegoUzytkownika);
     void nadpisaniePlikuEdycjaAdresata (Adresat adresat, int idEdytowanegoAdresata, int idZalogowanegoUzytkownika);
+
+    int pobierzZPlikuIdOstatniegoAdresata();
 };
 
 #endif
