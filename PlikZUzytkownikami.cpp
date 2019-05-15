@@ -1,44 +1,63 @@
 #include "PlikZUzytkownikami.h"
 
+Uzytkownik PlikZUzytkownikami::pobierzDaneUzytkownika(string daneJednegoUzytkownikaOddzielonePionowymiKreskami)
+{
+    Uzytkownik uzytkownik;
+    string pojedynczaDanaUzytkownika = "";
+    int numerPojedynczejDanejUzytkownika = 1;
+
+    for (int pozycjaZnaku = 0; pozycjaZnaku < daneJednegoUzytkownikaOddzielonePionowymiKreskami.length(); pozycjaZnaku++)
+    {
+        if (daneJednegoUzytkownikaOddzielonePionowymiKreskami[pozycjaZnaku] != '|')
+        {
+            pojedynczaDanaUzytkownika += daneJednegoUzytkownikaOddzielonePionowymiKreskami[pozycjaZnaku];
+        }
+        else
+        {
+            switch(numerPojedynczejDanejUzytkownika)
+            {
+            case 1:
+                uzytkownik.ustawIdUzytkownika(atoi(pojedynczaDanaUzytkownika.c_str()));
+                break;
+            case 2:
+                uzytkownik.ustawNazweUzytkownika(pojedynczaDanaUzytkownika);
+                break;
+            case 3:
+                uzytkownik.ustawHasloUzytkownika(pojedynczaDanaUzytkownika);
+                break;
+            }
+            pojedynczaDanaUzytkownika = "";
+            numerPojedynczejDanejUzytkownika++;
+        }
+    }
+    return uzytkownik;
+}
+
 vector <Uzytkownik> PlikZUzytkownikami::wczytaniePlikuZUzytkownikami()
 {
     Uzytkownik uzytkownik;
     vector <Uzytkownik> uzytkownicy;
     fstream plikUzytkownicy;
-    string liniaUzytkownicy;
+    string linia;
     int licznikUzytkownicy = 0;
 
     plikUzytkownicy.open(PlikTekstowy::pobierzNazwePliku().c_str(), ios::in);
-    if (plikUzytkownicy.good() == false)
+
+    if (plikUzytkownicy.good() == true)
+    {
+        while (getline(plikUzytkownicy, linia))
+        {
+            uzytkownik = pobierzDaneUzytkownika(linia);
+            uzytkownicy.push_back(uzytkownik);
+        }
+        plikUzytkownicy.close();
+    }
+    else
     {
         cout << "Baza uzytkownikow jest pusta." << endl;
         system("pause");
         system("cls");
     }
-
-    while (getline (plikUzytkownicy, liniaUzytkownicy, '|'))
-    {
-        licznikUzytkownicy = licznikUzytkownicy + 1;
-
-        if (licznikUzytkownicy == 1)
-        {
-            uzytkownik.ustawIdUzytkownika(atoi(liniaUzytkownicy.c_str()));
-        }
-        else if (licznikUzytkownicy == 2)
-        {
-            uzytkownik.ustawNazweUzytkownika(liniaUzytkownicy);
-        }
-        else if (licznikUzytkownicy == 3)
-        {
-            uzytkownik.ustawHasloUzytkownika(liniaUzytkownicy);
-        }
-        if (licznikUzytkownicy == 3)
-        {
-            licznikUzytkownicy = 0;
-            uzytkownicy.push_back(uzytkownik);
-        }
-    }
-    plikUzytkownicy.close();
 
     return uzytkownicy;
 }

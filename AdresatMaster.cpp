@@ -1,6 +1,41 @@
 #include "AdresatMaster.h"
 #include "UzytkownikMaster.h"
 
+int AdresatMaster::pobierzZPlikuIdOstatniegoAdresata()
+{
+    int idOstatniegoAdresata = 0;
+    string daneJednegoAdresataOddzielonePionowymiKreskami = "";
+    string daneOstaniegoAdresataWPliku = "";
+    fstream plikTekstowy;
+
+    plikTekstowy.open(plikZAdresatami.wypiszNazwePlikuZAdresatami().c_str(), ios::in);
+
+    if (plikTekstowy.good() == true)
+    {
+        while (getline(plikTekstowy, daneJednegoAdresataOddzielonePionowymiKreskami))
+        {
+            daneOstaniegoAdresataWPliku = daneJednegoAdresataOddzielonePionowymiKreskami;
+        }
+        plikTekstowy.close();
+    }
+    else
+        cout << "Nie udalo sie otworzyc pliku i wczytac danych." << endl;
+
+    if (daneOstaniegoAdresataWPliku != "")
+    {
+        idOstatniegoAdresata = pobierzIdAdresataZDanychOddzielonychPionowymiKreskami(daneOstaniegoAdresataWPliku);
+        return idOstatniegoAdresata;
+    }
+    else
+        return 0;
+}
+
+int AdresatMaster::pobierzIdAdresataZDanychOddzielonychPionowymiKreskami(string daneJednegoAdresataOddzielonePionowymiKreskami)
+{
+    int pozycjaRozpoczeciaIdAdresata = 0;
+    int idAdresata = funkcjePomocnicze.konwersjaStringNaInt(funkcjePomocnicze.pobierzLiczbe(daneJednegoAdresataOddzielonePionowymiKreskami, pozycjaRozpoczeciaIdAdresata));
+    return idAdresata;
+}
 
 void AdresatMaster::dodajAdresata()
 {
@@ -8,8 +43,6 @@ void AdresatMaster::dodajAdresata()
     string imie, nazwisko, nrTelefonu, email, adres;
     fstream plik;
     string linia;
-    string idOstatniegoAdresataString;
-    int idOstatniegoAdresata = 0;
 
     cout << "Podaj imie: " << endl;
     cin >> imie;
@@ -27,21 +60,7 @@ void AdresatMaster::dodajAdresata()
     cin.sync();
     getline(cin>>ws, adres);
     adresat.ustawAdresAdresata(adres);
-
-    plik.open(plikZAdresatami.wypiszNazwePlikuZAdresatami().c_str(), ios::in | ios:: out);
-    while(getline(plik, linia))
-    {
-        idOstatniegoAdresataString = linia[0];
-    }
-    idOstatniegoAdresata = atoi(idOstatniegoAdresataString.c_str());
-    plik.close();
-
-    if (idOstatniegoAdresata == 0)
-    {
-        adresat.ustawIdAdresata(1);
-    }
-    else
-        adresat.ustawIdAdresata(idOstatniegoAdresata + 1);
+    adresat.ustawIdAdresata(pobierzZPlikuIdOstatniegoAdresata() + 1);
 
     adresaci.push_back(adresat);
     cout << "Adresat zostal dodany" << endl;
