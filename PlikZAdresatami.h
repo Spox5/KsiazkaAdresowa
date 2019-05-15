@@ -3,6 +3,7 @@
 
 #include "PlikTekstowy.h"
 #include "Adresat.h"
+#include "FunkcjePomocnicze.h"
 #include <fstream>
 #include <sstream>
 
@@ -10,6 +11,7 @@ using namespace std;
 
 class PlikZAdresatami: public PlikTekstowy
 {
+    FunkcjePomocnicze funkcjePomocnicze;
     //const string NAZWA_PLIKU_Z_ADRESATAMI;
 
 public:
