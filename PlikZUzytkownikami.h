@@ -13,20 +13,7 @@ class PlikZUzytkownikami: public PlikTekstowy
 
 public:
     PlikZUzytkownikami(string nazwaPliku) : PlikTekstowy(nazwaPliku) {};
-    dopisz(string tekst)
-    {
-        fstream plikTekstowy;
-        plikTekstowy.open(pobierzNazwePliku().c_str(), ios::app);
-
-        if (plikTekstowy.good() == true)
-        {
-            if (czyPlikJestPusty())
-                plikTekstowy << "To jest poczatek pliku" << endl;
-            plikTekstowy << tekst << endl;
-        }
-
-        plikTekstowy.close();
-    }
+    void dopisz(string tekst);
     vector <Uzytkownik> wczytaniePlikuZUzytkownikami();
     void zapisanieUzytkownikaDoPliku(Uzytkownik uzytkownik);
     void zapisanieZmienionegoHaslaDoPliku(vector <Uzytkownik> uzytkownicy);
