@@ -3,7 +3,6 @@
 
 #include "Uzytkownik.h"
 #include "PlikTekstowy.h"
-#include <fstream>
 
 using namespace std;
 
