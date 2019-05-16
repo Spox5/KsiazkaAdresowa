@@ -7,7 +7,7 @@ void KsiazkaAdresowa::rejestracjaUzytkownika()
     uzytkownikMaster.rejestracjaUzytkownika();
 }
 
-int KsiazkaAdresowa::logowanieUzytkownika()
+void KsiazkaAdresowa::logowanieUzytkownika()
 {
     uzytkownikMaster.logowanieUzytkownika();
     if (uzytkownikMaster.czyUzytkownikJestZalogowany())
@@ -26,7 +26,7 @@ void KsiazkaAdresowa::zmianaHaslaUzytkownika()
     uzytkownikMaster.zmianaHaslaUzytkownika();
 }
 
-int KsiazkaAdresowa::wylogowanieUzytkownika()
+void KsiazkaAdresowa::wylogowanieUzytkownika()
 {
     uzytkownikMaster.wylogowanieUzytkownika();
     delete adresatMaster;

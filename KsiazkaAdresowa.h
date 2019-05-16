@@ -26,7 +26,7 @@ public:
         adresatMaster = NULL;
     }
     void rejestracjaUzytkownika ();
-    int logowanieUzytkownika();
+    void logowanieUzytkownika();
     void zmianaHaslaUzytkownika();
     int pobierzIdZalogowanegoUzytkownika();
 
@@ -36,7 +36,7 @@ public:
     void wyszukajAdresataPoNazwisku();
     void usuniecieAdresata ();
     void edycjaAdresata ();
-    int wylogowanieUzytkownika();
+    void wylogowanieUzytkownika();
 
 };
 
