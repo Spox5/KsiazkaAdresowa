@@ -47,8 +47,11 @@ vector <Uzytkownik> PlikZUzytkownikami::wczytaniePlikuZUzytkownikami()
     {
         while (getline(plikUzytkownicy, linia))
         {
-            uzytkownik = pobierzDaneUzytkownika(linia);
-            uzytkownicy.push_back(uzytkownik);
+            if (linia[0] > 48 && linia[0] < 58)
+            {
+                uzytkownik = pobierzDaneUzytkownika(linia);
+                uzytkownicy.push_back(uzytkownik);
+            }
         }
         plikUzytkownicy.close();
     }
@@ -93,16 +96,16 @@ void PlikZUzytkownikami::zapisanieZmienionegoHaslaDoPliku(vector <Uzytkownik> uz
 }
 
 void PlikZUzytkownikami::dopisz(string tekst)
+{
+    fstream plikTekstowy;
+    plikTekstowy.open(pobierzNazwePliku().c_str(), ios::app);
+
+    if (plikTekstowy.good() == true)
     {
-        fstream plikTekstowy;
-        plikTekstowy.open(pobierzNazwePliku().c_str(), ios::app);
-
-        if (plikTekstowy.good() == true)
-        {
-            if (czyPlikJestPusty())
-                plikTekstowy << "To jest poczatek pliku" << endl;
-            plikTekstowy << tekst << endl;
-        }
-
-        plikTekstowy.close();
+        if (czyPlikJestPusty())
+            plikTekstowy << "To jest poczatek pliku" << endl;
+        plikTekstowy << tekst << endl;
     }
+
+    plikTekstowy.close();
+}

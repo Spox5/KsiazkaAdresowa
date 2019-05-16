@@ -14,7 +14,9 @@ int AdresatMaster::pobierzZPlikuIdOstatniegoAdresata()
     {
         while (getline(plikTekstowy, daneJednegoAdresataOddzielonePionowymiKreskami))
         {
-            daneOstaniegoAdresataWPliku = daneJednegoAdresataOddzielonePionowymiKreskami;
+            if ((daneJednegoAdresataOddzielonePionowymiKreskami[0] > 47) && (daneJednegoAdresataOddzielonePionowymiKreskami[0] < 58))
+                daneOstaniegoAdresataWPliku = daneJednegoAdresataOddzielonePionowymiKreskami;
+            else;
         }
         plikTekstowy.close();
     }

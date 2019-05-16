@@ -11,7 +11,6 @@ using namespace std;
 class PlikZAdresatami: public PlikTekstowy
 {
     FunkcjePomocnicze funkcjePomocnicze;
-    //const string NAZWA_PLIKU_Z_ADRESATAMI;
 
 public:
     PlikZAdresatami(string nazwaPliku) : PlikTekstowy(nazwaPliku) {};
